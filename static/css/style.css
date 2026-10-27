@@ -631,7 +631,7 @@ ul {
     font-weight: 700;
     color: var(--primary);
     margin-bottom: 20px;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 .service-card__link {
@@ -1150,4 +1150,12 @@ details[open] .faq__q:after {
         white-space: normal;
         font-size: 16px;
     }
+}
+
+.service-card__text {
+    flex-grow: 1;
+}
+
+.service-card:has(.service-card__price) > p:last-child {
+    min-height: 3.2em;
 }
