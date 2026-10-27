@@ -13,14 +13,15 @@
             </div>
             <nav class="nav-desktop">
                 <ul class="nav-desktop__list">
-                    <li class="nav-desktop__item"><a href="/" class="nav-desktop__link">Главная</a></li>
-                    <li class="nav-desktop__item"><a href="/prochistka-kanalizatsii/" class="nav-desktop__link">Прочистка</a></li>
-                    <li class="nav-desktop__item"><a href="/santekhnicheskie-raboty/" class="nav-desktop__link">Сантехработы</a></li>
-                    <li class="nav-desktop__item"><a href="/o-nas/" class="nav-desktop__link">О нас</a></li>
-                    <li class="nav-desktop__item"><a href="/kontakty/" class="nav-desktop__link">Контакты</a></li>
+                    <li class="nav-desktop__item"><a href="/" class="nav-desktop__link{% if request.path == '/' %} nav-desktop__link--active{% endif %}">Главная</a></li>
+                    <li class="nav-desktop__item"><a href="/prochistka-kanalizatsii/" class="nav-desktop__link{% if request.path == '/prochistka-kanalizatsii/' %} nav-desktop__link--active{% endif %}">Прочистка</a></li>
+                    <li class="nav-desktop__item"><a href="/santekhnicheskie-raboty/" class="nav-desktop__link{% if request.path == '/santekhnicheskie-raboty/' %} nav-desktop__link--active{% endif %}">Сантехработы</a></li>
+                    <li class="nav-desktop__item"><a href="/o-nas/" class="nav-desktop__link{% if request.path == '/o-nas/' %} nav-desktop__link--active{% endif %}">О нас</a></li>
+                    <li class="nav-desktop__item"><a href="/kontakty/" class="nav-desktop__link{% if request.path == '/kontakty/' %} nav-desktop__link--active{% endif %}">Контакты</a></li>
                 </ul>
             </nav>
             <div class="header__right">
+                <a href="tel:{{ site_phone }}" class="header__phone-text">{{ site_phone_display }}</a>
                 <a href="tel:{{ site_phone }}" class="header__phone" aria-label="Позвонить">
                     <i class="fas fa-phone"></i>
                 </a>
