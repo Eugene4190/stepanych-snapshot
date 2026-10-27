@@ -1,10 +1,16 @@
 from django.contrib import admin
-from .models import SiteSettings, Lead, Service
+from .models import SiteSettings, Lead, Service, TelegramRecipient
+
+
+class TelegramRecipientInline(admin.TabularInline):
+    model = TelegramRecipient
+    extra = 1
 
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'disable_leads')
+    inlines = [TelegramRecipientInline]
     fieldsets = (
         ('Контакты', {
             'fields': ('phone', 'phone_display')
@@ -19,7 +25,7 @@ class SiteSettingsAdmin(admin.ModelAdmin):
             'fields': ('disable_leads',)
         }),
         ('Telegram уведомления', {
-            'fields': ('bot_token', 'recipients')
+            'fields': ('bot_token',)
         }),
     )
 

@@ -41,16 +41,14 @@ def feedback(request):
 
     lead = Lead.objects.create(phone=phone, description=description)
 
-    if settings_obj and settings_obj.bot_token and settings_obj.recipients:
+    if settings_obj and settings_obj.bot_token:
         text = f'Новая заявка с сайта stepanych.by\n\nТелефон: {phone}\n\nОписание: {description}'
-        for chat_id in settings_obj.recipients.splitlines():
-            chat_id = chat_id.strip()
-            if not chat_id:
-                continue
+        recipients = settings_obj.recipients_list.filter(is_active=True)
+        for recipient in recipients:
             try:
                 requests.post(
                     f'https://api.telegram.org/bot{settings_obj.bot_token}/sendMessage',
-                    data={'chat_id': chat_id, 'text': text},
+                    data={'chat_id': recipient.chat_id, 'text': text},
                     timeout=5,
                 )
             except Exception:
