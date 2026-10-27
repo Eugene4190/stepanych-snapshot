@@ -1,26 +1,34 @@
     <header class="header">
         <div class="header__container">
-            <button class="burger" id="burger" aria-label="Меню">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <a href="/" class="logo">
-                <img src="{{ site_logo|default:'/static/img/emblem.png' }}" alt="Степаныч" class="logo__img">
-            </a>
-            <nav class="nav" id="nav">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="/" class="nav__link">Главная</a></li>
-                    <li class="nav__item"><a href="/prochistka-kanalizatsii/" class="nav__link">Прочистка</a></li>
-                    <li class="nav__item"><a href="/santekhnicheskie-raboty/" class="nav__link">Сантехработы</a></li>
-                    <li class="nav__item"><a href="/o-nas/" class="nav__link">О нас</a></li>
-                    <li class="nav__item"><a href="/kontakty/" class="nav__link">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="header__spacer"></div>
-            <a href="tel:{{ site_phone }}" class="header__phone" aria-label="Позвонить">
-                <i class="fas fa-phone"></i>
-            </a>
-            <a href="/kontakty/#order" class="header__call">Оставить заявку</a>
+            <div class="header__left">
+                <button class="burger" id="burger" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <a href="/" class="logo">
+                    <img src="{{ site_logo|default:'/static/img/emblem.png' }}" alt="Степаныч" class="logo__img">
+                </a>
+            </div>
+            <div class="header__right">
+                <a href="tel:{{ site_phone }}" class="header__phone" aria-label="Позвонить">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="/kontakty/#order" class="header__call">Оставить заявку</a>
+            </div>
         </div>
     </header>
+
+    <nav class="nav" id="nav">
+        <div class="nav__overlay" id="navOverlay"></div>
+        <div class="nav__panel">
+            <button class="nav__close" id="navClose" aria-label="Закрыть меню">&times;</button>
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/" class="nav__link">Главная</a></li>
+                <li class="nav__item"><a href="/prochistka-kanalizatsii/" class="nav__link">Прочистка</a></li>
+                <li class="nav__item"><a href="/santekhnicheskie-raboty/" class="nav__link">Сантехработы</a></li>
+                <li class="nav__item"><a href="/o-nas/" class="nav__link">О нас</a></li>
+                <li class="nav__item"><a href="/kontakty/" class="nav__link">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
