@@ -1,4 +1,4 @@
-from .models import SiteSettings
+from .models import SiteSettings, Service
 
 
 def site_logo(request):
@@ -9,6 +9,7 @@ def site_logo(request):
     context['site_viber'] = 'viber://chat?number=%2B375292044963'
     context['site_whatsapp'] = 'https://wa.me/375292044963'
     context['site_telegram'] = 'https://t.me/Yuramolq'
+    context['services_menu'] = Service.objects.filter(is_active=True)
     if settings_obj:
         if settings_obj.logo:
             context['site_logo'] = settings_obj.logo.url

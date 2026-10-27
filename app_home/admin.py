@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SiteSettings, Lead
+from .models import SiteSettings, Lead, Service
 
 
 @admin.register(SiteSettings)
@@ -39,3 +39,13 @@ class LeadAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
+
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'price_text', 'is_active', 'sort_order')
+    list_editable = ('is_active', 'sort_order')
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('is_active',)
+    search_fields = ('title', 'short_description')
+    ordering = ('sort_order', 'id')

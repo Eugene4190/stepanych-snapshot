@@ -35,3 +35,22 @@ class Lead(models.Model):
 
     def __str__(self):
         return f'{self.phone} - {self.created_at:%d.%m.%Y %H:%M}'
+
+
+class Service(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Название')
+    slug = models.SlugField(unique=True, verbose_name='URL-идентификатор')
+    short_description = models.TextField(verbose_name='Краткое описание')
+    price_text = models.CharField(max_length=100, blank=True, verbose_name='Текст цены')
+    description = models.TextField(blank=True, verbose_name='Полное описание')
+    is_active = models.BooleanField(default=True, verbose_name='Активна')
+    sort_order = models.PositiveIntegerField(default=0, verbose_name='Порядок сортировки')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создана')
+
+    class Meta:
+        verbose_name = 'Услуга'
+        verbose_name_plural = 'Услуги'
+        ordering = ['sort_order', 'id']
+
+    def __str__(self):
+        return self.title

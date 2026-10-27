@@ -58,6 +58,14 @@
             <p class="section__subtitle">Выберите, что случилось.</p>
         </div>
         <div class="services-grid">
+            {% for service in services_menu %}
+            <div class="service-card">
+                <h3 class="service-card__title">{{ service.title }}</h3>
+                <p class="service-card__text">{{ service.short_description }}</p>
+                {% if service.price_text %}<div class="service-card__price">{{ service.price_text }}</div>{% endif %}
+                <a href="/{% if service.slug == 'prochistka-kanalizacii' %}prochistka-kanalizatsii/{% elif service.slug == 'santekhnicheskie-raboty' %}santekhnicheskie-raboty/{% else %}{{ service.slug }}/{% endif %}" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+            {% empty %}
             <div class="service-card">
                 <h3 class="service-card__title">Прочистка канализации</h3>
                 <p class="service-card__text">Засор в квартире, частном доме или организации. Электромеханическая машина. Гарантия на работу — 14 дней.</p>
@@ -70,6 +78,7 @@
                 <div class="service-card__price">цена до начала работ · индивидуально</div>
                 <a href="/santekhnicheskie-raboty/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
             </div>
+            {% endfor %}
         </div>
         <p style="text-align: center; margin-top: 32px; color: var(--text-light);"><strong>Не знаете, к какой сфере относится ваша проблема?</strong> Позвоните — разберёмся вместе и назовём цену. Консультация бесплатная.</p>
     </div>
