@@ -651,6 +651,15 @@ ul {
     margin-bottom: 16px;
 }
 
+.about-preview__content {
+    text-align: center;
+}
+
+.about-preview__image {
+    display: flex;
+    justify-content: center;
+}
+
 .about-preview__text {
     color: var(--text-light);
     margin-bottom: 24px;
