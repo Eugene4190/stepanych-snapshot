@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
-{% block title %}Услуги сантехника в Барановичах{% endblock %}
+{% block title %}Сантехник в Барановичах — услуги сантехника, вызов на дом без выходных | Степаныч{% endblock %}
+{% block meta_description %}Услуги сантехника в Барановичах: замена смесителей, сифонов, унитазов, стояков, монтаж водопровода и отопления. Цена до начала работ, оплата после. Вызов: +375 (29) 204-49-63.{% endblock %}
+{% block og_title %}Сантехник в Барановичах — услуги сантехника, вызов на дом без выходных | Степаныч{% endblock %}
+{% block og_description %}Сантехработы в Барановичах: смесители, сифоны, унитазы, стояки, отопление, водопровод. Цена до начала работ.{% endblock %}
 
 {% block content %}
+{% include 'partials/breadcrumbs.html' %}
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Услуги сантехника в Барановичах</h1>
+            <h1 class="hero__title">Услуги сантехника в Барановичах — вызов мастера на дом</h1>
             <p class="hero__subtitle">Проблемы с сантехникой всегда приходятся на неожиданное время: закапал смеситель, не уходит вода, потёк унитаз. Опишите проблему — перезвоним, назовём стоимость до начала работ и приедем в согласованное время.</p>
             <div class="hero__buttons">
                 <a href="#order" class="btn btn--primary"><i class="fas fa-envelope"></i> Оставить заявку</a>
@@ -146,12 +150,14 @@
     </div>
 </section>
 
+{% include 'includes/faq.html' %}
+
 <section class="section section--light">
     <div class="container">
         <div class="section__header">
             <h2 class="section__title">География выездов</h2>
         </div>
-        <p style="text-align: center; line-height: 2;">Барановичи · Жемчужный · Крошин · Городище · Полонка · Лесная · Снов · Ляховичи · Ивацевичи · Ганцевичи · Несвиж · Новогрудок · Столбцы · Слуцк · Берёза · Лунинец · Зельва · Слоним · Дрогичин · Дзержинск · Фаниполь · Лида</p>
+        <p style="text-align: center; line-height: 2;"><strong>Барановичи и Барановичский район</strong> · {% for r in regions %}{% if r.slug != 'baranovichskiy-rayon' %}<a href="/regiony/{{ r.slug }}/">{{ r.name }}</a> · {% endif %}{% endfor %}<a href="/regiony/">все регионы выездов</a></p>
         <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Регионы выездов — прочистка канализации и сантехработы по Барановичам и области | Степаныч{% endblock %}
+{% block meta_description %}Выезжаем по Барановичам, Барановичскому району и соседним городам: Ляховичи, Ивацевичи, Ганцевичи, Несвиж, Слоним, Лида и ещё десяток направлений. Цена до начала работ.{% endblock %}
+{% block og_title %}Регионы выездов — прочистка канализации и сантехработы по Барановичам и области | Степаныч{% endblock %}
+{% block og_description %}Барановичи, Барановичский район и соседние города: прочистка канализации и сантехработы с выездом мастера.{% endblock %}
+
+{% block content %}
+{% include 'partials/breadcrumbs.html' %}
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">Регионы выездов: Барановичи и вся область</h1>
+            <p class="hero__subtitle">Барановичи — базовая цена без доплат за выезд. В остальные населённые пункты выезжаем по договорённости: стоимость выезда зависит от расстояния и известна до начала работ.</p>
+            <div class="hero__buttons">
+                <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+                <a href="/kontakty/#order" class="btn btn--outline">Оставить заявку</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Куда выезжаем</h2>
+            <p class="section__subtitle">Выберите свой населённый пункт — на странице условия выезда и услуги.</p>
+        </div>
+        <div class="services-grid">
+            {% for r in regions %}
+            <div class="service-card">
+                <h3 class="service-card__title"><a href="/regiony/{{ r.slug }}/">{{ r.name }}</a></h3>
+                <p class="service-card__text">{{ r.note }}</p>
+                <div class="service-card__price">≈ {{ r.km }} км от Барановичей</div>
+            </div>
+            {% endfor %}
+        </div>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% endblock %}

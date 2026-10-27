@@ -1,4 +1,5 @@
 from .models import SiteSettings, Service
+from .seo import REGIONS
 
 
 def site_logo(request):
@@ -10,6 +11,7 @@ def site_logo(request):
     context['site_whatsapp'] = 'https://wa.me/375292044963'
     context['site_telegram'] = 'https://t.me/Yuramolq'
     context['services_menu'] = Service.objects.filter(is_active=True)
+    context['regions'] = REGIONS
     context['disable_leads'] = False
     if settings_obj:
         if settings_obj.logo:

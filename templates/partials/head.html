@@ -6,13 +6,16 @@
     <title>{% block title %}Степаныч — прочистка канализации и сантехработы в Барановичах{% endblock %}</title>
     <meta name="description" content="{% block meta_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Мастер без посредников, цена до начала работ, гарантия 14 дней, выезд без выходных.{% endblock %}">
     <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="{% block og_title %}Степаныч — прочистка канализации и сантехработы в Барановичах{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Цена до начала работ, гарантия.{% endblock %}">
-    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <meta property="og:site_name" content="Степаныч">
-    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}/static/img/emblem.png">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/static/img/emblem.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -21,25 +24,32 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "LocalBusiness",
+      "@type": "Plumber",
       "name": "Степаныч. Прочистка канализации и сантехработы",
       "image": "{{ request.scheme }}://{{ request.get_host }}/static/img/emblem.png",
+      "logo": "{{ request.scheme }}://{{ request.get_host }}/static/img/emblem.png",
       "telephone": "{{ site_phone }}",
-      "priceRange": "от 100 руб",
+      "priceRange": "от 100 BYN",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Барановичи",
         "addressCountry": "BY"
       },
-      "areaServed": ["Барановичи", "Барановичский район", "Ляховичи", "Ивацевичи", "Ганцевичи", "Слоним", "Несвиж", "Лида"],
+      "areaServed": ["Барановичи"{% for r in regions %}, "{{ r.name }}"{% endfor %}],
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
         "opens": "09:00",
         "closes": "23:00"
       },
+      "sameAs": ["https://vsf.by/yura"],
+      "founder": {"@type": "Person", "name": "Молчан Юрий Степанович"},
       "url": "{{ request.scheme }}://{{ request.get_host }}/"
     }
     </script>
+    {% block extra_head %}{% endblock %}
 </head>
 <body>
+{% block body %}{% endblock %}
+</body>
+</html>

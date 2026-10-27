@@ -1,0 +1,10 @@
+{% if crumbs %}
+<nav class="breadcrumbs" aria-label="Хлебные крошки">
+    <div class="container">
+        <a href="/">Главная</a><span class="breadcrumbs__sep">›</span>{% for c in crumbs %}{% if forloop.last %}<span>{{ c.name }}</span>{% else %}<a href="{{ c.url }}">{{ c.name }}</a><span class="breadcrumbs__sep">›</span>{% endif %}{% endfor %}
+    </div>
+</nav>
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Главная", "item": "{{ request.scheme }}://{{ request.get_host }}/"},{% for c in crumbs %}{"@type": "ListItem", "position": {{ forloop.counter|add:1 }}, "name": "{{ c.name }}", "item": "{{ request.scheme }}://{{ request.get_host }}{% if forloop.last %}{{ request.path }}{% else %}{{ c.url }}{% endif %}"}{% if not forloop.last %},{% endif %}{% endfor %}]}
+</script>
+{% endif %}

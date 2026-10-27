@@ -1,28 +1,92 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
+from django.http import HttpResponse, Http404
+from datetime import date
 from .models import Lead, SiteSettings
+from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA
 import requests
 
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'home.html', {'faq': FAQ_HOME})
 
 
 def prochistka(request):
-    return render(request, 'prochistka.html')
+    crumbs = [{'url': '/prochistka-kanalizatsii/', 'name': 'Прочистка канализации в Барановичах'}]
+    return render(request, 'prochistka.html', {'faq': FAQ_PROCHISTKA, 'crumbs': crumbs})
 
 
 def santehnika(request):
-    return render(request, 'santehnika.html')
+    crumbs = [{'url': '/santekhnicheskie-raboty/', 'name': 'Услуги сантехника в Барановичах'}]
+    return render(request, 'santehnika.html', {'faq': FAQ_SANTEHNIKA, 'crumbs': crumbs})
 
 
 def about(request):
-    return render(request, 'about.html')
+    crumbs = [{'url': '/o-nas/', 'name': 'О мастере'}]
+    return render(request, 'about.html', {'crumbs': crumbs})
 
 
 def contacts(request):
-    return render(request, 'contacts.html')
+    crumbs = [{'url': '/kontakty/', 'name': 'Контакты'}]
+    return render(request, 'contacts.html', {'crumbs': crumbs})
+
+
+def regions_index(request):
+    crumbs = [{'url': '/regiony/', 'name': 'Регионы выездов'}]
+    return render(request, 'regions_index.html', {'crumbs': crumbs})
+
+
+def region(request, slug):
+    item = next((r for r in REGIONS if r['slug'] == slug), None)
+    if not item:
+        raise Http404
+    faq = [
+        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Стоимость выезда зависит от расстояния и объёма работ: цену называем по телефону, до начала работ."},
+        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараемся приехать быстрее.'},
+        {'q': 'Какие работы вы выполняете на выезде?', 'a': 'Прочистка канализации и устранение засоров, а также сантехнические работы: смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод.'},
+    ]
+    crumbs = [
+        {'url': '/regiony/', 'name': 'Регионы выездов'},
+        {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
+    ]
+    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs})
+
+
+def robots(request):
+    host = f'{request.scheme}://{request.get_host()}'
+    txt = (
+        'User-agent: *\n'
+        'Allow: /\n'
+        'Disallow: /admin\n'
+        'Disallow: /feedback\n'
+        f'Sitemap: {host}/sitemap.xml\n'
+    )
+    return HttpResponse(txt, content_type='text/plain; charset=utf-8')
+
+
+def sitemap(request):
+    host = f'{request.scheme}://{request.get_host()}'
+    urls = [
+        ('/', '1.0'),
+        ('/prochistka-kanalizatsii/', '0.9'),
+        ('/santekhnicheskie-raboty/', '0.9'),
+        ('/regiony/', '0.8'),
+        ('/o-nas/', '0.5'),
+        ('/kontakty/', '0.5'),
+    ]
+    urls += [(f"/regiony/{r['slug']}/", '0.7') for r in REGIONS]
+    today = date.today().isoformat()
+    items = ''.join(
+        f'<url><loc>{host}{path}</loc><lastmod>{today}</lastmod><priority>{priority}</priority></url>'
+        for path, priority in urls
+    )
+    xml = (
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+        f'{items}</urlset>'
+    )
+    return HttpResponse(xml, content_type='application/xml; charset=utf-8')
 
 
 @require_POST

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Прочистка канализации и сантехработы в {{ region.name_prep }} — выезд мастера | Степаныч{% endblock %}
+{% block meta_description %}Прочистка канализации и сантехнические работы в {{ region.name_prep }} и окрестностях: мастер без посредников, цена до начала работ, гарантия 14 дней. Звоните: {{ site_phone_display }}.{% endblock %}
+{% block og_title %}Прочистка канализации и сантехработы в {{ region.name_prep }} — выезд мастера | Степаныч{% endblock %}
+{% block og_description %}{{ region.name }}: прочистка засоров и сантехработы, цена до начала работ, гарантия 14 дней.{% endblock %}
+
+{% block content %}
+{% include 'partials/breadcrumbs.html' %}
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">Прочистка канализации и сантехработы в {{ region.name_prep }}</h1>
+            <p class="hero__subtitle">{{ region.note }} Расстояние от Барановичей — около {{ region.km }} км, стоимость выезда называем по телефону до начала работ.</p>
+            <div class="hero__buttons">
+                <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+                <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+            </div>
+            <div class="hero__features">
+                <div class="hero__feature">
+                    <strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>14 дней</strong>
+                    <span>гарантия на устранённый засор</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Без выходных 9:00–23:00</strong>
+                    <span>аварии — по договорённости</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Услуги в {{ region.name_prep }}</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title">Прочистка канализации в {{ region.name_prep }}</h3>
+                <p class="service-card__text">Засор в квартире, частном доме или организации. Электромеханическая машина, гарантия на устранённый засор — 14 дней.</p>
+                <div class="service-card__price">от 100 руб · цена до начала работ</div>
+                <a href="/prochistka-kanalizatsii/" class="service-card__link">Подробнее об прочистке <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Сантехработы в {{ region.name_prep }}</h3>
+                <p class="service-card__text">Смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод, мелкий ремонт. Стоимость называем до начала работ.</p>
+                <div class="service-card__price">цена до начала работ · индивидуально</div>
+                <a href="/santekhnicheskie-raboty/" class="service-card__link">Подробнее о сантехработах <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);"><strong>Не знаете, к какой сфере относится ваша проблема?</strong> Позвоните — разберёмся вместе и назовём цену. Консультация бесплатная.</p>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% include 'includes/faq.html' %}
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Куда ещё выезжаем</h2>
+        </div>
+        <p style="text-align: center; line-height: 2;"><a href="/"><strong>Барановичи</strong></a> · {% for r in regions %}<a href="/regiony/{{ r.slug }}/">{{ r.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+    </div>
+</section>
+{% endblock %}
