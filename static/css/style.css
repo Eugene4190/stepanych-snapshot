@@ -639,10 +639,10 @@ ul {
 
 /* About preview */
 .about-preview {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 32px;
 }
 
 .about-preview__title {
@@ -653,11 +653,13 @@ ul {
 
 .about-preview__content {
     text-align: center;
+    max-width: 760px;
 }
 
 .about-preview__image {
     display: flex;
     justify-content: center;
+    order: -1;
 }
 
 .about-preview__text {
@@ -666,7 +668,10 @@ ul {
 }
 
 .about-preview__image img {
-    border-radius: 12px;
+    border-radius: 16px;
+    max-width: 340px;
+    width: 100%;
+    box-shadow: var(--shadow-lg);
 }
 
 /* Feedback form */
