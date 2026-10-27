@@ -65,7 +65,7 @@
         <div class="section__header">
             <h2 class="section__title">Куда ещё выезжаем</h2>
         </div>
-        <p style="text-align: center; line-height: 2;"><a href="/"><strong>Барановичи</strong></a> · {% for r in regions %}<a href="/regiony/{{ r.slug }}/">{{ r.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+        <p style="text-align: center; line-height: 2;"><a href="/" class="geo-link"><strong>Барановичи</strong></a> · {% for r in regions %}<a href="/regiony/{{ r.slug }}/" class="geo-link">{{ r.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
     </div>
 </section>
 {% endblock %}

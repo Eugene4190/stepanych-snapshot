@@ -156,7 +156,7 @@
         <div class="section__header">
             <h2 class="section__title">География выездов</h2>
         </div>
-        <p style="text-align: center; line-height: 2;"><strong>Барановичи и Барановичский район</strong> · {% for r in regions %}{% if r.slug != 'baranovichskiy-rayon' %}<a href="/regiony/{{ r.slug }}/">{{ r.name }}</a> · {% endif %}{% endfor %}<a href="/regiony/">все регионы выездов</a></p>
+        <p style="text-align: center; line-height: 2;"><strong>Барановичи и Барановичский район</strong> · {% for r in regions %}{% if r.slug != 'baranovichskiy-rayon' %}<a href="/regiony/{{ r.slug }}/" class="geo-link">{{ r.name }}</a> · {% endif %}{% endfor %}<a href="/regiony/" class="geo-link">все регионы выездов</a></p>
         <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>

@@ -1106,3 +1106,14 @@ details[open] .faq__q:after {
     margin-top: 10px;
     color: var(--on-dark-muted);
 }
+
+.geo-link {
+    padding: 2px 8px;
+    border-radius: 999px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.geo-link:hover {
+    color: var(--accent);
+    background: var(--accent-tint);
+}
