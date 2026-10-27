@@ -10,6 +10,7 @@
     --success-dark: #0a7a4b;
     --success-border: #a9e8cc;
     --sky: #7dd3fc;
+    --sky-deep: #0ea5e9;
     --cta: #12b76a;
     --cta-light: #1ac583;
     --cta-dark: #0a8f57;
@@ -144,6 +145,10 @@ ul {
 @media (min-width: 968px) {
     .nav-desktop {
         display: flex;
+    }
+
+    .burger {
+        display: none;
     }
 }
 
@@ -522,7 +527,9 @@ ul {
     padding: 28px 32px;
     background: linear-gradient(135deg, var(--surface-blue) 0%, var(--surface-blue-light) 100%);
     border-radius: 16px;
-    margin: 40px 0;
+    margin: -60px 0 40px;
+    position: relative;
+    z-index: 5;
     box-shadow: var(--shadow-lg);
 }
 
@@ -828,7 +835,7 @@ ul {
 }
 
 .sticky-contacts__item--telegram {
-    background: var(--sky);
+    background: var(--sky-deep);
 }
 
 .sticky-contacts__item--phone {
