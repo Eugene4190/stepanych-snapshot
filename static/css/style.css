@@ -146,10 +146,6 @@ ul {
     .nav-desktop {
         display: flex;
     }
-
-    .burger {
-        display: none;
-    }
 }
 
 .burger {
@@ -168,6 +164,12 @@ ul {
     height: 2px;
     background: var(--text);
     transition: 0.3s;
+}
+
+@media (min-width: 968px) {
+    .burger {
+        display: none;
+    }
 }
 
 .logo {
