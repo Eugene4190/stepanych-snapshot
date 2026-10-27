@@ -1062,11 +1062,20 @@ ul {
     gap: 12px;
 }
 
+.section--faq {
+    background: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
+                linear-gradient(135deg, var(--surface-deep) 0%, var(--surface-blue) 60%, var(--surface-blue-light) 100%);
+}
+
+.section--faq .section__title {
+    color: var(--on-dark);
+}
+
 .faq__item {
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 12px;
     padding: 16px 20px;
-    background: var(--bg);
+    background: rgba(255, 255, 255, 0.08);
 }
 
 .faq__q {
@@ -1076,6 +1085,7 @@ ul {
     display: flex;
     justify-content: space-between;
     gap: 12px;
+    color: var(--on-dark);
 }
 
 .faq__q::-webkit-details-marker {
@@ -1085,7 +1095,7 @@ ul {
 .faq__q:after {
     content: '+';
     font-size: 20px;
-    color: var(--primary);
+    color: var(--sky);
 }
 
 details[open] .faq__q:after {
@@ -1094,5 +1104,5 @@ details[open] .faq__q:after {
 
 .faq__a {
     margin-top: 10px;
-    color: var(--text-light);
+    color: var(--on-dark-muted);
 }
