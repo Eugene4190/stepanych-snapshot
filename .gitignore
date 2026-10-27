@@ -118,7 +118,6 @@ static/video
 
 
 # Исключаем файлы миграций
-**/migrations/*.py
 
 # Celery beat
 celerybeat-schedule*
