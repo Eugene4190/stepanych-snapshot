@@ -10,6 +10,7 @@ def site_logo(request):
     context['site_whatsapp'] = 'https://wa.me/375292044963'
     context['site_telegram'] = 'https://t.me/Yuramolq'
     context['services_menu'] = Service.objects.filter(is_active=True)
+    context['disable_leads'] = False
     if settings_obj:
         if settings_obj.logo:
             context['site_logo'] = settings_obj.logo.url
@@ -23,4 +24,5 @@ def site_logo(request):
             context['site_whatsapp'] = settings_obj.whatsapp_link
         if settings_obj.telegram_link:
             context['site_telegram'] = settings_obj.telegram_link
+        context['disable_leads'] = settings_obj.disable_leads
     return context

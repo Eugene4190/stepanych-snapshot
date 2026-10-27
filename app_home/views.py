@@ -27,6 +27,11 @@ def contacts(request):
 
 @require_POST
 def feedback(request):
+    settings_obj = SiteSettings.objects.first()
+    if settings_obj and settings_obj.disable_leads:
+        messages.error(request, 'Приём заявок временно остановлен.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
     phone = request.POST.get('phone', '').strip()
     description = request.POST.get('description', '').strip()
 
@@ -36,7 +41,6 @@ def feedback(request):
 
     lead = Lead.objects.create(phone=phone, description=description)
 
-    settings_obj = SiteSettings.objects.first()
     if settings_obj and settings_obj.bot_token and settings_obj.recipients:
         text = f'Новая заявка с сайта stepanych.by\n\nТелефон: {phone}\n\nОписание: {description}'
         for chat_id in settings_obj.recipients.splitlines():

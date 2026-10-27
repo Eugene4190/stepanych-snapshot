@@ -14,6 +14,7 @@ class SiteSettings(models.Model):
         help_text='Список chat_id получателей, по одному на строку'
     )
     logo = models.ImageField(upload_to='logo/', blank=True, null=True, verbose_name='Логотип сайта')
+    disable_leads = models.BooleanField(default=False, verbose_name='Остановить приём заявок')
 
     class Meta:
         verbose_name = 'Настройки сайта'

@@ -4,7 +4,7 @@ from .models import SiteSettings, Lead, Service
 
 @admin.register(SiteSettings)
 class SiteSettingsAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+    list_display = ('__str__', 'disable_leads')
     fieldsets = (
         ('Контакты', {
             'fields': ('phone', 'phone_display')
@@ -14,6 +14,9 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         }),
         ('Лого', {
             'fields': ('logo',)
+        }),
+        ('Заявки', {
+            'fields': ('disable_leads',)
         }),
         ('Telegram уведомления', {
             'fields': ('bot_token', 'recipients')

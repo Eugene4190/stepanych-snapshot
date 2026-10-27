@@ -4,6 +4,11 @@
             <h2 class="section__title">Неудобно звонить? Оставьте номер</h2>
             <p class="section__subtitle">Перезвоним в течение часа в рабочее время (9:00–23:00)</p>
         </div>
+        {% if disable_leads %}
+        <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 32px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; color: #991b1b;">
+            <strong>Приём заявок временно остановлен</strong>
+        </div>
+        {% else %}
         <form action="/feedback/" method="post" class="feedback-form">
             {% csrf_token %}
             <div class="feedback-form__row">
@@ -15,5 +20,6 @@
             <button type="submit" class="btn btn--primary btn--block">Оставить заявку</button>
             <p class="feedback-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
         </form>
+        {% endif %}
     </div>
 </section>
