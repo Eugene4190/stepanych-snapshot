@@ -190,6 +190,7 @@ ul {
     width: 44px;
     height: 44px;
     object-fit: contain;
+    border-radius: 22%;
 }
 
 .nav {
@@ -769,6 +770,7 @@ ul {
     width: 48px;
     height: 48px;
     filter: brightness(0) invert(1);
+    border-radius: 22%;
 }
 
 .footer__logo-title {
