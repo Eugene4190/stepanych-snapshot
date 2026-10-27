@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты — Степаныч{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__title">Контакты</h1>
+        <p class="hero__subtitle">Звоните или оставьте заявку. Без выходных 9:00–23:00. Аварийный выезд — по договорённости.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fas fa-phone" style="color: var(--primary);"></i> Телефон</h3>
+                <p class="service-card__text"><a href="tel:{{ site_phone }}" style="color: var(--primary); font-size: 20px; font-weight: 600;">{{ site_phone_display }}</a></p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fab fa-telegram" style="color: #0088cc;"></i> Telegram</h3>
+                <p class="service-card__text"><a href="{{ site_telegram }}" style="color: var(--primary); font-weight: 600;">Перейти в Telegram</a></p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fab fa-viber" style="color: #7360f2;"></i> Viber</h3>
+                <p class="service-card__text"><a href="{{ site_viber }}" style="color: var(--primary); font-weight: 600;">Написать в Viber</a></p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp</h3>
+                <p class="service-card__text"><a href="{{ site_whatsapp }}" style="color: var(--primary); font-weight: 600;">Написать в WhatsApp</a></p>
+            </div>
+        </div>
+        <div class="info-block" style="margin-top: 40px;">
+            <div class="info-block__item">
+                <strong>Режим работы</strong>
+                <span>Пн–Вс: 9:00 – 23:00</span>
+            </div>
+            <div class="info-block__item">
+                <strong>Аварийный выезд</strong>
+                <span>по договорённости</span>
+            </div>
+            <div class="info-block__item">
+                <strong>Реквизиты</strong>
+                <span>ИП Молчан Юрий Степанович · УНП 291568475</span>
+            </div>
+            <div class="info-block__item">
+                <strong>География</strong>
+                <span>Барановичи и район, выезд в соседние города</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% endblock %}

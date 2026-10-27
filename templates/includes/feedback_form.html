@@ -1,0 +1,19 @@
+<section class="section" id="order">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Неудобно звонить? Оставьте номер</h2>
+            <p class="section__subtitle">Перезвоним в течение часа в рабочее время (9:00–23:00)</p>
+        </div>
+        <form action="/feedback/" method="post" class="feedback-form">
+            {% csrf_token %}
+            <div class="feedback-form__row">
+                <input type="tel" name="phone" class="feedback-form__input" placeholder="Введите ваш номер телефона" required>
+            </div>
+            <div class="feedback-form__row">
+                <textarea name="description" class="feedback-form__textarea" placeholder="Что случилось" required></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary btn--block">Оставить заявку</button>
+            <p class="feedback-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+        </form>
+    </div>
+</section>

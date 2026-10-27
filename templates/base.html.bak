@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Степаныч — прочистка канализации и сантехработы в Барановичах{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header__container">
+            <button class="burger" id="burger" aria-label="Меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <a href="/" class="logo">
+                <img src="{{ site_logo|default:'/static/img/emblem.png' }}" alt="Степаныч" class="logo__img">
+            </a>
+            <nav class="nav" id="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="/" class="nav__link">Главная</a></li>
+                    <li class="nav__item"><a href="/prochistka-kanalizatsii/" class="nav__link">Прочистка</a></li>
+                    <li class="nav__item"><a href="/santekhnicheskie-raboty/" class="nav__link">Сантехработы</a></li>
+                    <li class="nav__item"><a href="/o-nas/" class="nav__link">О нас</a></li>
+                    <li class="nav__item"><a href="/kontakty/" class="nav__link">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header__spacer"></div>
+            <a href="tel:{{ site_phone }}" class="header__phone" aria-label="Позвонить">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a href="tel:{{ site_phone }}" class="header__call">Вызвать мастера</a>
+        </div>
+    </header>
+
+    <main>
+        {% if messages %}
+        <div class="messages">
+            <div class="container">
+                {% for message in messages %}
+                <div class="message message--{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__col">
+                <div class="footer__logo">
+                    <img src="/static/img/emblem.png" alt="Степаныч" class="footer__logo-img">
+                    <div>
+                        <div class="footer__logo-title">Степаныч · stepanych.by</div>
+                        <div class="footer__logo-sub">Устранение засоров и сантехнические работы. Барановичи и район.</div>
+                    </div>
+                </div>
+                <div class="footer__info">ИП Молчан Юрий Степанович · УНП 291568475</div>
+            </div>
+            <div class="footer__col">
+                <div class="footer__title">Контакты</div>
+                <ul class="footer__list">
+                    <li><a href="tel:{{ site_phone }}"><i class="fas fa-phone"></i> {{ site_phone_display }}</a></li>
+                    <li><a href="{{ site_telegram }}"><i class="fab fa-telegram"></i> Telegram</a></li>
+                    <li><a href="{{ site_viber }}"><i class="fab fa-viber"></i> Viber</a></li>
+                    <li><a href="{{ site_whatsapp }}"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="/kontakty/#order"><i class="fas fa-envelope"></i> Оставить заявку</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <div class="footer__title">Режим работы</div>
+                <ul class="footer__list">
+                    <li>Пн–Вс: 9:00 – 23:00</li>
+                    <li>Аварийный выезд: по договорённости</li>
+                    <li>Барановичи и район, выезд в соседние города</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer__bottom">
+            <div>© 2026 ИП Молчан Ю.С. Цены на сайте не являются публичной офертой — точную стоимость уточняйте по телефону.</div>
+            <div class="footer__links">
+                <a href="/">Степаныч — все услуги</a> · <a href="/prochistka-kanalizatsii/">Прочистка</a> · <a href="/santekhnicheskie-raboty/">Сантехработы</a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="sticky-contacts">
+        <a href="{{ site_viber }}" class="sticky-contacts__item sticky-contacts__item--viber"><i class="fab fa-viber"></i></a>
+        <a href="{{ site_whatsapp }}" class="sticky-contacts__item sticky-contacts__item--whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="{{ site_telegram }}" class="sticky-contacts__item sticky-contacts__item--telegram"><i class="fab fa-telegram"></i></a>
+        <a href="tel:{{ site_phone }}" class="sticky-contacts__item sticky-contacts__item--phone"><i class="fas fa-phone"></i></a>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

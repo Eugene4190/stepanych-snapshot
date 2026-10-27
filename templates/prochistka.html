@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+
+{% block title %}Прочистка канализации в Барановичах — от 100 руб{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__title">Прочистка канализации в Барановичах — от 100 руб</h1>
+        <p class="hero__subtitle">Точную цену называем до начала работ. Никаких посредников и наценок: вы звоните напрямую мастеру, который к вам приедет.</p>
+        <div class="hero__buttons">
+            <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+            <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+        </div>
+        <div class="hero__features">
+            <div class="hero__feature">
+                <strong>Цена до начала работ</strong>
+                <span>каждая работа индивидуальна</span>
+            </div>
+            <div class="hero__feature">
+                <strong>15+ лет</strong>
+                <span>опыт работы с канализацией и сантехникой</span>
+            </div>
+            <div class="hero__feature">
+                <strong>14 дней</strong>
+                <span>гарантия на устранённый засор</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="info-block">
+        <div class="info-block__item">
+            <strong>Официально</strong>
+            <span>ИП, УНП 291568475</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Без выходных 9:00–23:00</strong>
+            <span>аварии — по договорённости</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Оплата после работы</strong>
+            <span>наличные и безнал для юр. и физ. лиц</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Барановичи и вся область</strong>
+            <span>любые населённые пункты по договорённости</span>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Цены</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title">Квартира или частный дом</h3>
+                <p class="service-card__text">Раковина, унитаз, ванна, стояк, внутренняя и наружная сеть в доме. Прочистка профессиональным электромеханическим оборудованием.</p>
+                <div class="service-card__price">от 100 руб</div>
+                <p><strong>Входит:</strong> выезд, работа, гарантия 14 дней на устранённый засор</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Юрлица (безнал)</h3>
+                <p class="service-card__text">Кафе, магазины, предприятия. Договор, оплата по счёту, полный пакет документов. Прочистка стояков и внутренних линий, аварийный выезд по договору.</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+                <p><strong>Регулярное обслуживание</strong> — по отдельным условиям</p>
+            </div>
+        </div>
+        <div class="content" style="margin-top: 32px; max-width: 800px;">
+            <h3>Что может повлиять на стоимость</h3>
+            <ul>
+                <li>Разбор мебели и вскрытие коробов, чтобы добраться до трубы</li>
+                <li>Длинная наружная сеть в частном доме, колодцы</li>
+                <li>Застарелые пробки: жир, ил, корни — плотный засор требует больше времени</li>
+                <li>Химия в трубе до нашего приезда: работать с такой трубой дольше — цену согласуем до начала работ, как и любой дополнительный объём</li>
+            </ul>
+            <p>Если по ходу работы понадобится дополнительный объём — его цену согласуем с вами <strong>до начала этих работ</strong>. Итог всегда договорён заранее.</p>
+            <p><strong>Не знаете, сколько будет стоить ваш случай?</strong> Позвоните! Консультация по телефону бесплатно.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Как проходит работа</h2>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 40px;">
+            <div>
+                <img src="/static/img/mashinka.webp" alt="Электромеханическая машина для прочистки канализации в работе" style="border-radius: 12px;">
+            </div>
+            <div class="content">
+                <h3>Профессиональное оборудование</h3>
+                <p>Ручной трос крутят ручкой: своя спина, пара метров трубы и засор на расстоянии вытянутой руки. Здесь трос вращает мотор, а насадки подбираются под диаметр трубы. Усилие и вращение одинаковые на первом и на двадцатом метре.</p>
+            </div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">1</div>
+                <h3 class="service-card__title">Звонок</h3>
+                <p class="service-card__text">Описываете проблему. Задаём 2–3 вопросы и называем стоимость: от и до.</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">2</div>
+                <h3 class="service-card__title">Выезд</h3>
+                <p class="service-card__text">Приезжаем в согласованное время с оборудованием. Реальное время называем по телефону.</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">3</div>
+                <h3 class="service-card__title">Прочистка</h3>
+                <p class="service-card__text">Устраняем засор профессиональной электромеханикой. Если случай сложнее — согласуем цену до начала работ.</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">4</div>
+                <h3 class="service-card__title">Проверка</h3>
+                <p class="service-card__text">Проверяем проливом воды при вас. Гарантия 14 дней.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+
+<section class="section">
+    <div class="container">
+        <div class="about-preview">
+            <div class="about-preview__content">
+                <h2 class="about-preview__title">Кто к вам приедет</h2>
+                <p class="about-preview__text">Меня зовут Юрий. Сантехникой занимаюсь более 15 лет, официально работаю как ИП. Специализация — прочистка канализации: квартиры, частные дома, организации. А также выполняю и другие сантехнические работы по согласованию.</p>
+                <p class="about-preview__text">Никаких «мастеров с биржи», которых вы видите впервые и больше никогда не увидите.</p>
+                <p class="about-preview__text"><strong>ИП Молчан Юрий Степанович</strong> · УНП 291568475</p>
+                <div class="hero__buttons">
+                    <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> {{ site_phone_display }}</a>
+                    <a href="https://vsf.by/yura" class="btn btn--outline">Виртуальная визитка</a>
+                </div>
+            </div>
+            <div class="about-preview__image">
+                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">География выездов</h2>
+        </div>
+        <p style="text-align: center; line-height: 2;">Барановичи · Жемчужный · Крошин · Городище · Полонка · Лесная · Снов · Ляховичи · Ивацевичи · Ганцевичи · Несвиж · Новогрудок · Столбцы · Слуцк · Берёза · Лунинец · Зельва · Слоним · Дрогичин · Дзержинск · Фаниполь · Лида</p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+    </div>
+</section>
+{% endblock %}

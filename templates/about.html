@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}О нас — Степаныч{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__title">О нас</h1>
+        <p class="hero__subtitle">Конкретный мастер, которому в этом городе жить и работать. Без посредников.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-preview">
+            <div class="about-preview__content">
+                <h2 class="about-preview__title">Юрий Молчан</h2>
+                <p class="about-preview__text">Меня зовут Юрий. Сантехникой занимаюсь более 15 лет, официально работаю как ИП. Специализация — прочистка канализации: квартиры, частные дома, организации. А также выполняю и другие сантехнические работы по согласованию.</p>
+                <p class="about-preview__text">Никаких «мастеров с биржи», которых вы видите впервые и больше никогда не увидите. Трубку берёт не диспетчер, а мастер, который к вам приедет. Живём в Барановичах — нам тут жить и работать, репутация дороже разовой наживы.</p>
+                <p class="about-preview__text"><strong>ИП Молчан Юрий Степанович</strong> · УНП 291568475</p>
+                <ul style="list-style: disc; padding-left: 24px; color: var(--text-light); display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px;">
+                    <li>15+ лет в профессии</li>
+                    <li>Работаю напрямую, без наценки посредника</li>
+                    <li>Цена до начала работ</li>
+                    <li>Гарантия 14 дней на устранённый засор</li>
+                    <li>Оплата после работы</li>
+                    <li>Договор, безнал для юрлиц</li>
+                </ul>
+                <div class="hero__buttons">
+                    <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> {{ site_phone_display }}</a>
+                    <a href="https://vsf.by/yura" class="btn btn--outline">Виртуальная визитка</a>
+                </div>
+            </div>
+            <div class="about-preview__image">
+                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% endblock %}

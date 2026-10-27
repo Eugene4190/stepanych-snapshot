@@ -1,0 +1,17 @@
+{% include 'partials/head.html' %}
+{% include 'partials/header.html' %}
+
+    <main>
+        {% if messages %}
+        <div class="messages">
+            <div class="container">
+                {% for message in messages %}
+                <div class="message message--{{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+
+{% include 'partials/footer.html' %}

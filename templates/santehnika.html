@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}Услуги сантехника в Барановичах{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h1 class="hero__title">Услуги сантехника в Барановичах</h1>
+        <p class="hero__subtitle">Проблемы с сантехникой всегда приходятся на неожиданное время: закапал смеситель, не уходит вода, потёк унитаз. Опишите проблему — перезвоним, назовём стоимость до начала работ и приедем в согласованное время.</p>
+        <div class="hero__buttons">
+            <a href="#order" class="btn btn--primary"><i class="fas fa-envelope"></i> Оставить заявку</a>
+            <a href="tel:{{ site_phone }}" class="btn btn--outline"><i class="fas fa-phone"></i> Или позвоните: {{ site_phone_display }}</a>
+        </div>
+        <div class="hero__features">
+            <div class="hero__feature">
+                <strong>Цена до начала работ</strong>
+                <span>каждая работа индивидуальна</span>
+            </div>
+            <div class="hero__feature">
+                <strong>15+ лет</strong>
+                <span>опыт работы с канализацией и сантехникой</span>
+            </div>
+            <div class="hero__feature">
+                <strong>Оплата после</strong>
+                <span>наличные и безнал для юр. и физ. лиц</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="info-block">
+        <div class="info-block__item">
+            <strong>Гарантия на работы</strong>
+            <span>отвечаю за то, что сделал</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Работа по договору</strong>
+            <span>официально: ИП, УНП 291568475</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Приезжаю сам</strong>
+            <span>без посредников и «биржи»</span>
+        </div>
+        <div class="info-block__item">
+            <strong>Без выходных 9:00–23:00</strong>
+            <span>аварии — по договорённости</span>
+        </div>
+    </div>
+</div>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">С чем обращаются чаще всего</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title">Смесители</h3>
+                <p class="service-card__text">Замена и установка смесителя на кухне и в ванной. Течёт или капает — поменяю; работаю с вашим смесителем или подскажу, какой купить.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Сифоны и сливы</h3>
+                <p class="service-card__text">Замена сифона под раковиной и ванной, устранение протечек, подключение слива к канализации.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Унитазы</h3>
+                <p class="service-card__text">Установка, подключение и замена унитаза. Устранение течей и бегущей воды в бачке.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Подводка и краны</h3>
+                <p class="service-card__text">Замена гибкой подводки, запорных кранов и вентилей — то, что откручивается и меняется.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Раковины</h3>
+                <p class="service-card__text">Установка и подключение раковины к воде и канализации, замена креплений.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Замена стояков</h3>
+                <p class="service-card__text">Стояки канализации, водоснабжения и отопления: объём и цену согласуем до начала работ.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Отопление</h3>
+                <p class="service-card__text">Промывка и ремонт систем отопления, квартиры и частные дома.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Водопровод</h3>
+                <p class="service-card__text">Монтаж и замена труб водоснабжения, подключение и замена сантехприборов.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Мелкий ремонт</h3>
+                <p class="service-card__text">Остальные работы обсуждаем по телефону или по фото — скажу стоимость и срок заранее.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Список не полный — всё индивидуально. Пришлите фото задачи в <a href="{{ site_viber }}">Viber</a> / <a href="{{ site_telegram }}">Telegram</a>: так точнее назовём цену и время.</p>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Как это работает</h2>
+            <p class="section__subtitle">Три шага, никаких «мастеров с биржи» и цен по факту.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">1</div>
+                <h3 class="service-card__title">Заявка или звонок</h3>
+                <p class="service-card__text">Описываете задачу своими словами или присылаете фото в Viber / Telegram — так точнее.</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">2</div>
+                <h3 class="service-card__title">Расчёт</h3>
+                <p class="service-card__text">Перезваниваем, уточняем детали и называем стоимость. Прайса нет — всё индивидуально, но цену вы знаете до начала работ.</p>
+            </div>
+            <div class="service-card">
+                <div style="font-size: 32px; font-weight: 700; color: var(--primary); margin-bottom: 8px;">3</div>
+                <h3 class="service-card__title">Работа</h3>
+                <p class="service-card__text">Приезжаем в согласованное время, делаем, проверяем вместе. Оплата после работы.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+
+<section class="section">
+    <div class="container">
+        <div class="about-preview">
+            <div class="about-preview__content">
+                <h2 class="about-preview__title">Кто к вам приедет</h2>
+                <p class="about-preview__text">Меня зовут Юрий. Сантехникой занимаюсь более 15 лет, официально работаю как ИП. Приезжаю сам — никаких случайных «мастеров с биржи», которых вы видите впервые и больше никогда не увидите.</p>
+                <p class="about-preview__text">Основной профиль — прочистка канализации, но сантехника — родная профессия: смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод, мелкий ремонт. Цену называю до начала работ — вы всегда знаете стоимость заранее.</p>
+                <p class="about-preview__text"><strong>ИП Молчан Юрий Степанович</strong> · УНП 291568475</p>
+                <div class="hero__buttons">
+                    <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> {{ site_phone_display }}</a>
+                    <a href="https://vsf.by/yura" class="btn btn--outline">Виртуальная визитка</a>
+                </div>
+            </div>
+            <div class="about-preview__image">
+                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам, Барановичи">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">География выездов</h2>
+        </div>
+        <p style="text-align: center; line-height: 2;">Барановичи · Жемчужный · Крошин · Городище · Полонка · Лесная · Снов · Ляховичи · Ивацевичи · Ганцевичи · Несвиж · Новогрудок · Столбцы · Слуцк · Берёза · Лунинец · Зельва · Слоним · Дрогичин · Дзержинск · Фаниполь · Лида</p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+    </div>
+</section>
+{% endblock %}
