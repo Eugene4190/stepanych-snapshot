@@ -1137,3 +1137,17 @@ details[open] .faq__q:after {
     color: var(--accent);
     background: var(--accent-tint);
 }
+
+.contact-phone {
+    color: var(--accent);
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+@media (max-width: 648px) {
+    .contact-phone {
+        white-space: normal;
+        font-size: 16px;
+    }
+}
