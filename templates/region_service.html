@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ | Степаныч{% endblock %}
-{% block meta_description %}{{ meta.name }} в {{ region.name_prep }} и окрестностях: мастер без посредников, около {{ region.km }} км от Барановичей, цена до начала работ, гарантия 14 дней. Звоните: {{ site_phone_display }}.{% endblock %}
+{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия{% else %}вызов без выходных{% endif %}{% endblock %}
+{% block meta_description %}{{ meta.name }} в {{ region.name_prep }}: мастер без посредников, цена до начала работ, гарантия 14 дней, без выходных. Звоните: {{ site_phone_display }}.{% endblock %}
 {% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ | Степаныч{% endblock %}
 {% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней, без выходных 9:00–23:00.{% endblock %}
 
