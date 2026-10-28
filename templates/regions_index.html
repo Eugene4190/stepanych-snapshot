@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}Регионы выездов — прочистка канализации и сантехработы по Барановичам и области | Степаныч{% endblock %}
-{% block meta_description %}Выезжаем по Барановичам, Барановичскому району и соседним городам: Ляховичи, Ивацевичи, Ганцевичи, Несвиж, Слоним, Лида и ещё десяток направлений. Цена до начала работ.{% endblock %}
-{% block og_title %}Регионы выездов — прочистка канализации и сантехработы по Барановичам и области | Степаныч{% endblock %}
+{% block title %}Сантехник с выездом — регионы выездов по Барановичам и области | Степаныч{% endblock %}
+{% block meta_description %}Сантехник с выездом: Барановичи, Барановичский район и соседние города — Ляховичи, Ивацевичи, Ганцевичи, Несвиж, Слоним, Лида и ещё десяток направлений. Цена до начала работ.{% endblock %}
+{% block og_title %}Сантехник с выездом — регионы выездов по Барановичам и области | Степаныч{% endblock %}
 {% block og_description %}Барановичи, Барановичский район и соседние города: прочистка канализации и сантехработы с выездом мастера.{% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Регионы выездов: <span class="hero__accent">Барановичи и вся область</span></h1>
+            <h1 class="hero__title">Сантехник с выездом: <span class="hero__accent">Барановичи и вся область</span></h1>
             <p class="hero__subtitle">Барановичи — базовая цена без доплат за выезд. В остальные населённые пункты выезжаем по договорённости: стоимость выезда зависит от расстояния и известна до начала работ.</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
@@ -29,7 +29,7 @@
         <div class="services-grid">
             {% for r in regions %}
             <div class="service-card">
-                <h3 class="service-card__title"><a href="/regiony/{{ r.slug }}/">{{ r.name }}</a></h3>
+                <h3 class="service-card__title"><a href="/santehnik/{{ r.slug }}/">{{ r.name }}</a></h3>
                 <p class="service-card__text">{{ r.note }}</p>
                 <div class="service-card__price">≈ {{ r.km }} км от Барановичей</div>
             </div>

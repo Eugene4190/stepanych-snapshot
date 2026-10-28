@@ -33,7 +33,7 @@ def contacts(request):
 
 
 def regions_index(request):
-    crumbs = [{'url': '/regiony/', 'name': 'Регионы выездов'}]
+    crumbs = [{'url': '/santehnik/', 'name': 'Регионы выездов'}]
     return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом', 'nav_active': ''})
 
 
@@ -47,8 +47,8 @@ def region(request, slug):
         {'q': 'Какие работы вы выполняете на выезде?', 'a': 'Прочистка канализации и устранение засоров, а также сантехнические работы: смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод.'},
     ]
     crumbs = [
-        {'url': '/regiony/', 'name': 'Регионы выездов'},
-        {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
+        {'url': '/santehnik/', 'name': 'Регионы выездов'},
+        {'url': f"/santehnik/{item['slug']}/", 'name': item['name']},
     ]
     return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужна прочистка канализации или сантехработы в {item['name_prep']}", 'nav_active': ''})
 
@@ -96,11 +96,11 @@ def sitemap(request):
         ('/', '1.0'),
         ('/prochistka-kanalizatsii/', '0.9'),
         ('/santekhnicheskie-raboty/', '0.9'),
-        ('/regiony/', '0.8'),
+        ('/santehnik/', '0.8'),
         ('/o-nas/', '0.5'),
         ('/kontakty/', '0.5'),
     ]
-    urls += [(f"/regiony/{r['slug']}/", '0.7') for r in REGIONS]
+    urls += [(f"/santehnik/{r['slug']}/", '0.7') for r in REGIONS]
     urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty')]
     today = date.today().isoformat()
     items = ''.join(

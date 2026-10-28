@@ -7,8 +7,8 @@ from app_home import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
-    path('regiony/', views.regions_index, name='regions_index'),
-    path('regiony/<slug:slug>/', views.region, name='region'),
+    path('santehnik/', views.regions_index, name='regions_index'),
+    path('santehnik/<slug:slug>/', views.region, name='region'),
     path('prochistka-kanalizatsii/<slug:slug>/', views.region_service, {'service': 'prochistka-kanalizatsii'}, name='region_prochistka'),
     path('santekhnicheskie-raboty/<slug:slug>/', views.region_service, {'service': 'santekhnicheskie-raboty'}, name='region_santehnika'),
     path('robots.txt', views.robots, name='robots'),
