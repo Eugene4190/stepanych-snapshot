@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from datetime import date
 from urllib.parse import urlsplit
 from .models import Lead, SiteSettings
-from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, REGION_SERVICE_META
+from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_REGIONS, REGION_SERVICE_META
 import requests
 
 
@@ -35,7 +35,7 @@ def contacts(request):
 
 def regions_index(request):
     crumbs = [{'url': '/santehnik/', 'name': 'Регионы выездов'}]
-    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом', 'nav_active': ''})
+    return render(request, 'regions_index.html', {'faq': FAQ_REGIONS, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом', 'nav_active': ''})
 
 
 def region(request, slug):
