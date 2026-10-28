@@ -11,6 +11,10 @@
         {% else %}
         <form action="/feedback/" method="post" class="feedback-form">
             {% csrf_token %}
+            <div class="hp-field" aria-hidden="true">
+                <label for="hp-company">Компания</label>
+                <input type="text" name="company" id="hp-company" tabindex="-1" autocomplete="off">
+            </div>
             <div class="feedback-form__row">
                 <input type="tel" name="phone" class="feedback-form__input" placeholder="Введите ваш номер телефона" required>
             </div>

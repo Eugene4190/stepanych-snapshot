@@ -804,6 +804,15 @@ ul {
     box-shadow: var(--shadow-lg);
 }
 
+.hp-field {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
 .feedback-form__input,
 .feedback-form__textarea {
     width: 100%;

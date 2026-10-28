@@ -122,6 +122,10 @@ def feedback(request):
         messages.error(request, 'Приём заявок временно остановлен.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
+    if request.POST.get('company', '').strip():
+        messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
     phone = request.POST.get('phone', '').strip()
     description = request.POST.get('description', '').strip()
 
