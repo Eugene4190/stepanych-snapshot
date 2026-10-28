@@ -1351,14 +1351,19 @@ p a {
 }
 
 .scroll-top.show {
-    opacity: 1;
+    opacity: 0.75;
     visibility: visible;
     transform: none;
 }
 
+.scroll-top.show:hover {
+    opacity: 1;
+}
+
 @media (max-width: 648px) {
     .scroll-top {
-        left: 12px;
+        left: auto;
+        right: 12px;
         bottom: 64px;
     }
 }
