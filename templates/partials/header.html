@@ -14,8 +14,8 @@
             <nav class="nav-desktop">
                 <ul class="nav-desktop__list">
                     <li class="nav-desktop__item"><a href="/" class="nav-desktop__link{% if nav_active == 'home' %} nav-desktop__link--active{% endif %}">Главная</a></li>
-                    <li class="nav-desktop__item"><a href="{% if region %}/regiony/{{ region.slug }}/prochistka-kanalizatsii/{% else %}/prochistka-kanalizatsii/{% endif %}" class="nav-desktop__link{% if nav_active == 'prochistka' or nav_active == 'both' %} nav-desktop__link--active{% endif %}">Прочистка</a></li>
-                    <li class="nav-desktop__item"><a href="{% if region %}/regiony/{{ region.slug }}/santekhnicheskie-raboty/{% else %}/santekhnicheskie-raboty/{% endif %}" class="nav-desktop__link{% if nav_active == 'santehnika' or nav_active == 'both' %} nav-desktop__link--active{% endif %}">Сантехработы</a></li>
+                    <li class="nav-desktop__item"><a href="{% if region %}/regiony/{{ region.slug }}/prochistka-kanalizatsii/{% else %}/prochistka-kanalizatsii/{% endif %}" class="nav-desktop__link{% if nav_active == 'prochistka' %} nav-desktop__link--active{% endif %}">Прочистка</a></li>
+                    <li class="nav-desktop__item"><a href="{% if region %}/regiony/{{ region.slug }}/santekhnicheskie-raboty/{% else %}/santekhnicheskie-raboty/{% endif %}" class="nav-desktop__link{% if nav_active == 'santehnika' %} nav-desktop__link--active{% endif %}">Сантехработы</a></li>
                     <li class="nav-desktop__item"><a href="/o-nas/" class="nav-desktop__link{% if nav_active == 'about' %} nav-desktop__link--active{% endif %}">О нас</a></li>
                     <li class="nav-desktop__item"><a href="/kontakty/" class="nav-desktop__link{% if nav_active == 'contacts' %} nav-desktop__link--active{% endif %}">Контакты</a></li>
                 </ul>
@@ -36,8 +36,8 @@
             <button class="nav__close" id="navClose" aria-label="Закрыть меню">&times;</button>
             <ul class="nav__list">
                 <li class="nav__item"><a href="/" class="nav__link{% if nav_active == 'home' %} nav__link--active{% endif %}">Главная</a></li>
-                <li class="nav__item"><a href="{% if region %}/regiony/{{ region.slug }}/prochistka-kanalizatsii/{% else %}/prochistka-kanalizatsii/{% endif %}" class="nav__link{% if nav_active == 'prochistka' or nav_active == 'both' %} nav__link--active{% endif %}">Прочистка</a></li>
-                <li class="nav__item"><a href="{% if region %}/regiony/{{ region.slug }}/santekhnicheskie-raboty/{% else %}/santekhnicheskie-raboty/{% endif %}" class="nav__link{% if nav_active == 'santehnika' or nav_active == 'both' %} nav__link--active{% endif %}">Сантехработы</a></li>
+                <li class="nav__item"><a href="{% if region %}/regiony/{{ region.slug }}/prochistka-kanalizatsii/{% else %}/prochistka-kanalizatsii/{% endif %}" class="nav__link{% if nav_active == 'prochistka' %} nav__link--active{% endif %}">Прочистка</a></li>
+                <li class="nav__item"><a href="{% if region %}/regiony/{{ region.slug }}/santekhnicheskie-raboty/{% else %}/santekhnicheskie-raboty/{% endif %}" class="nav__link{% if nav_active == 'santehnika' %} nav__link--active{% endif %}">Сантехработы</a></li>
                 <li class="nav__item"><a href="/o-nas/" class="nav__link{% if nav_active == 'about' %} nav__link--active{% endif %}">О нас</a></li>
                 <li class="nav__item"><a href="/kontakty/" class="nav__link{% if nav_active == 'contacts' %} nav__link--active{% endif %}">Контакты</a></li>
             </ul>
