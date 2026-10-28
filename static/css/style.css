@@ -678,6 +678,22 @@ ul {
     gap: 14px;
 }
 
+.service-card__socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 14px;
+}
+
+.service-card__socials a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 0;
+    font-weight: 600;
+    color: var(--primary);
+}
+
 /* About preview */
 .about-preview {
     display: grid;

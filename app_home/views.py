@@ -50,7 +50,7 @@ def region(request, slug):
         {'url': '/regiony/', 'name': 'Регионы выездов'},
         {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
     ]
-    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужен мастер в {item['name_prep']}"})
+    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужен мастер в {item['name_prep']}", 'social_text_prochistka': f"Здравствуйте! Нужна прочистка канализации в {item['name_prep']}", 'social_text_santehnika': f"Здравствуйте! Нужны сантехнические работы в {item['name_prep']}"})
 
 
 def robots(request):
