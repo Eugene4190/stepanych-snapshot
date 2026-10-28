@@ -659,6 +659,12 @@ ul {
     letter-spacing: -0.01em;
 }
 
+.service-card__title i {
+    display: block;
+    margin: 0 auto 10px;
+    font-size: 30px;
+}
+
 .service-card__text {
     color: var(--text-light);
     margin-bottom: 18px;
@@ -1256,7 +1262,7 @@ details[open] .faq__q:after {
     padding: 6px 0;
 }
 
-@media (max-width: 648px) {
+@media (max-width: 1199px) {
     .contact-phone {
         white-space: normal;
         font-size: 16px;
