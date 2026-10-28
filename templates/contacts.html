@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load social %}
 
 {% block title %}Контакты сантехника в Барановичах — телефон, Viber, Telegram | Степаныч{% endblock %}
 {% block meta_description %}Контакты мастера по прочистке канализации и сантехработам в Барановичах: телефон +375 (29) 204-49-63, Viber, WhatsApp, Telegram. Без выходных 9:00–23:00.{% endblock %}
@@ -25,7 +26,7 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fab fa-telegram" style="color: #0088cc;"></i> Telegram</h3>
-                <p class="service-card__text"><a href="{{ site_telegram }}" style="color: var(--primary); font-weight: 600;">Перейти в Telegram</a></p>
+                <p class="service-card__text"><a href="{{ site_telegram|social_href:social_text }}" style="color: var(--primary); font-weight: 600;">Перейти в Telegram</a></p>
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fab fa-viber" style="color: #7360f2;"></i> Viber</h3>
@@ -33,7 +34,7 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp</h3>
-                <p class="service-card__text"><a href="{{ site_whatsapp }}" style="color: var(--primary); font-weight: 600;">Написать в WhatsApp</a></p>
+                <p class="service-card__text"><a href="{{ site_whatsapp|social_href:social_text }}" style="color: var(--primary); font-weight: 600;">Написать в WhatsApp</a></p>
             </div>
         </div>
         <div class="info-block" style="margin-top: 40px;">

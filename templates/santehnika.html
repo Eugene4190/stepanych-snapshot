@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load social %}
 
 {% block title %}Сантехник в Барановичах — услуги сантехника, вызов на дом без выходных | Степаныч{% endblock %}
 {% block meta_description %}Услуги сантехника в Барановичах: замена смесителей, сифонов, унитазов, стояков, монтаж водопровода и отопления. Цена до начала работ, оплата после. Вызов: +375 (29) 204-49-63.{% endblock %}
@@ -98,7 +99,7 @@
                 <p class="service-card__text">Монтаж и замена труб водоснабжения, подключение и замена сантехприборов.</p>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Список не полный — всё индивидуально. Пришлите фото задачи в <a href="{{ site_viber }}">Viber</a> / <a href="{{ site_telegram }}">Telegram</a>: так точнее назовём цену и время.</p>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Список не полный — всё индивидуально. Пришлите фото задачи в <a href="{{ site_viber }}">Viber</a> / <a href="{{ site_telegram|social_href:social_text }}">Telegram</a>: так точнее назовём цену и время.</p>
     </div>
 </section>
 

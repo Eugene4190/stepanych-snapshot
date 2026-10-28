@@ -9,32 +9,32 @@ import requests
 
 
 def home(request):
-    return render(request, 'home.html', {'faq': FAQ_HOME})
+    return render(request, 'home.html', {'faq': FAQ_HOME, 'social_text': 'Здравствуйте! Нужен мастер'})
 
 
 def prochistka(request):
     crumbs = [{'url': '/prochistka-kanalizatsii/', 'name': 'Прочистка канализации в Барановичах'}]
-    return render(request, 'prochistka.html', {'faq': FAQ_PROCHISTKA, 'crumbs': crumbs})
+    return render(request, 'prochistka.html', {'faq': FAQ_PROCHISTKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужна прочистка канализации'})
 
 
 def santehnika(request):
     crumbs = [{'url': '/santekhnicheskie-raboty/', 'name': 'Услуги сантехника в Барановичах'}]
-    return render(request, 'santehnika.html', {'faq': FAQ_SANTEHNIKA, 'crumbs': crumbs})
+    return render(request, 'santehnika.html', {'faq': FAQ_SANTEHNIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужны сантехнические работы'})
 
 
 def about(request):
     crumbs = [{'url': '/o-nas/', 'name': 'О мастере'}]
-    return render(request, 'about.html', {'crumbs': crumbs})
+    return render(request, 'about.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер'})
 
 
 def contacts(request):
     crumbs = [{'url': '/kontakty/', 'name': 'Контакты'}]
-    return render(request, 'contacts.html', {'crumbs': crumbs})
+    return render(request, 'contacts.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! У меня вопрос по услугам'})
 
 
 def regions_index(request):
     crumbs = [{'url': '/regiony/', 'name': 'Регионы выездов'}]
-    return render(request, 'regions_index.html', {'crumbs': crumbs})
+    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер в Барановичах или районе'})
 
 
 def region(request, slug):
@@ -50,7 +50,7 @@ def region(request, slug):
         {'url': '/regiony/', 'name': 'Регионы выездов'},
         {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
     ]
-    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs})
+    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужен мастер в {item['name_prep']}"})
 
 
 def robots(request):

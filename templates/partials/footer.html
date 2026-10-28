@@ -1,4 +1,5 @@
-    <footer class="footer">
+    {% load social %}
+<footer class="footer">
         <div class="container footer__container">
             <div class="footer__col">
                 <div class="footer__logo">
@@ -14,9 +15,9 @@
                 <div class="footer__title">Контакты</div>
                 <ul class="footer__list">
                     <li><a href="tel:{{ site_phone }}"><i class="fas fa-phone"></i> {{ site_phone_display }}</a></li>
-                    <li><a href="{{ site_telegram }}"><i class="fab fa-telegram"></i> Telegram</a></li>
+                    <li><a href="{{ site_telegram|social_href:social_text }}"><i class="fab fa-telegram"></i> Telegram</a></li>
                     <li><a href="{{ site_viber }}"><i class="fab fa-viber"></i> Viber</a></li>
-                    <li><a href="{{ site_whatsapp }}"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                    <li><a href="{{ site_whatsapp|social_href:social_text }}"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
                     <li><a href="/kontakty/#order"><i class="fas fa-envelope"></i> Оставить заявку</a></li>
                 </ul>
             </div>
@@ -39,8 +40,8 @@
 
     <div class="sticky-contacts">
         <a href="{{ site_viber }}" class="sticky-contacts__item sticky-contacts__item--viber"><i class="fab fa-viber"></i></a>
-        <a href="{{ site_whatsapp }}" class="sticky-contacts__item sticky-contacts__item--whatsapp"><i class="fab fa-whatsapp"></i></a>
-        <a href="{{ site_telegram }}" class="sticky-contacts__item sticky-contacts__item--telegram"><i class="fab fa-telegram"></i></a>
+        <a href="{{ site_whatsapp|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="{{ site_telegram|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--telegram"><i class="fab fa-telegram"></i></a>
         <a href="tel:{{ site_phone }}" class="sticky-contacts__item sticky-contacts__item--phone"><i class="fas fa-phone"></i></a>
     </div>
 
