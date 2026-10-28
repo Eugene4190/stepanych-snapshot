@@ -1052,6 +1052,12 @@ ul {
         grid-template-columns: minmax(0, 1fr) 244px;
         max-width: 800px;
     }
+    .about-preview__image img {
+        position: static;
+        width: 100%;
+        height: auto;
+        max-width: none;
+    }
     .footer__container {
         grid-template-columns: 1fr;
         text-align: center;
