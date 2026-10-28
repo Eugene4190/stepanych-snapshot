@@ -1125,6 +1125,9 @@ ul {
         flex-direction: row;
         gap: 8px;
     }
+    .footer {
+        padding-bottom: 76px;
+    }
     .sticky-contacts__item {
         width: 44px;
         height: 44px;
