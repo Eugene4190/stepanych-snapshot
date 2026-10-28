@@ -165,7 +165,7 @@ def feedback(request):
 
     phone, phone_error = normalize_phone(phone_raw)
     if phone_error == 'shape':
-        messages.error(request, 'Проверьте номер телефона: формат +375 (XX) XXX-XX-XX.')
+        messages.error(request, 'Проверьте номер телефона: мобильный +375 (XX) XXX-XX-XX, городской +375 (XXX) XX-XX-XX.')
         request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
     if phone_error == 'code':

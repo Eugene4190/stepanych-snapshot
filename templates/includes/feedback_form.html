@@ -23,7 +23,7 @@
                 <input type="text" name="company" id="hp-company" tabindex="-1" autocomplete="off">
             </div>
             <div class="feedback-form__row">
-                <input type="tel" name="phone" class="feedback-form__input" placeholder="Ваш номер телефона" inputmode="tel" pattern="[+0-9 ()-]{10,20}" title="Формат: +375 (XX) XXX-XX-XX" value="{{ form_phone }}" required>
+                <input type="tel" name="phone" class="feedback-form__input" placeholder="Ваш номер телефона" inputmode="tel" pattern="[+0-9 ()-]{10,20}" title="Мобильный: +375 (XX) XXX-XX-XX, городской: +375 (XXX) XX-XX-XX" value="{{ form_phone }}" required>
             </div>
             <div class="feedback-form__row">
                 <textarea name="description" class="feedback-form__textarea" placeholder="Что случилось" required>{{ form_description }}</textarea>
