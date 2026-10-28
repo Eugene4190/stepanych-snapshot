@@ -980,6 +980,17 @@ ul {
     }
     .about-preview {
         grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .about-preview__image {
+        order: -1;
+    }
+    .about-preview__image img {
+        width: auto;
+        height: auto;
+        max-width: 220px;
+        aspect-ratio: auto;
+        object-fit: contain;
     }
     .footer__container {
         grid-template-columns: 1fr;
