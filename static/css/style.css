@@ -541,13 +541,25 @@ ul {
 /* Info block */
 .info-block {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: 24px;
     padding: 28px 32px;
     background: linear-gradient(135deg, var(--surface-blue) 0%, var(--surface-blue-light) 100%);
     border-radius: 16px;
     margin: 40px 0;
     box-shadow: var(--shadow-lg);
+}
+
+@media (max-width: 1099px) {
+    .info-block {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 699px) {
+    .info-block {
+        grid-template-columns: 1fr;
+    }
 }
 
 .info-block__item {
