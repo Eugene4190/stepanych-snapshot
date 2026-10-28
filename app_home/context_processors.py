@@ -10,6 +10,7 @@ def site_logo(request):
     context['site_viber'] = 'viber://chat?number=%2B375292044963'
     context['site_whatsapp'] = 'https://wa.me/375292044963'
     context['site_telegram'] = 'https://t.me/Yuramolq'
+    context['social_text'] = 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер'
     context['services_menu'] = Service.objects.filter(is_active=True)
     context['regions'] = REGIONS
     context['disable_leads'] = False
