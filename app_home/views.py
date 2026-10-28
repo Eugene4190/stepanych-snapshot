@@ -34,7 +34,7 @@ def contacts(request):
 
 def regions_index(request):
     crumbs = [{'url': '/regiony/', 'name': 'Регионы выездов'}]
-    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер в Барановичах или районе'})
+    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом'})
 
 
 def region(request, slug):
