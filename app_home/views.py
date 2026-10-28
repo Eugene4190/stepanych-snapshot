@@ -63,9 +63,8 @@ def region_service(request, slug, service):
         {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараемся приехать быстрее.'},
     ]
     crumbs = [
-        {'url': '/regiony/', 'name': 'Регионы выездов'},
-        {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
-        {'url': f"/regiony/{item['slug']}/{service}/", 'name': meta['name']},
+        {'url': f'/{service}/', 'name': meta['name']},
+        {'url': f'/{service}/{slug}/', 'name': item['name']},
     ]
     ctx = {
         'region': item,
@@ -102,7 +101,7 @@ def sitemap(request):
         ('/kontakty/', '0.5'),
     ]
     urls += [(f"/regiony/{r['slug']}/", '0.7') for r in REGIONS]
-    urls += [(f"/regiony/{r['slug']}/{s}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty')]
+    urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty')]
     today = date.today().isoformat()
     items = ''.join(
         f'<url><loc>{host}{path}</loc><lastmod>{today}</lastmod><priority>{priority}</priority></url>'
