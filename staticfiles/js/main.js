@@ -23,8 +23,18 @@ if (navClose) {
     navClose.addEventListener('click', closeMenu);
 }
 
-// Close menu when clicking on link
 const navLinks = document.querySelectorAll('.nav__link');
 navLinks.forEach(link => {
     link.addEventListener('click', closeMenu);
 });
+
+const scrollTopBtn = document.getElementById('scrollTop');
+const toggleScrollTop = () => {
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('show', window.scrollY > 600);
+};
+
+if (scrollTopBtn) {
+    window.addEventListener('scroll', toggleScrollTop, { passive: true });
+    toggleScrollTop();
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+}
