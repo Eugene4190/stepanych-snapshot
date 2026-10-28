@@ -278,6 +278,11 @@ ul {
     color: var(--primary);
 }
 
+.nav__link--active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
 .header__phone {
     display: flex;
     align-items: center;

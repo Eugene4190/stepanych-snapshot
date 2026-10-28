@@ -39,3 +39,22 @@ if (scrollTopBtn) {
     toggleScrollTop();
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
+
+const anchorIds = ['prochistka', 'santehnika'];
+
+const syncAnchorNav = () => {
+    const hash = location.hash.replace('#', '');
+    anchorIds.forEach(id => {
+        document.querySelectorAll('a[href="#' + id + '"]').forEach(link => {
+            const on = hash === id;
+            if (link.classList.contains('nav-desktop__link')) {
+                link.classList.toggle('nav-desktop__link--active', on);
+            } else {
+                link.classList.toggle('nav__link--active', on);
+            }
+        });
+    });
+};
+
+window.addEventListener('hashchange', syncAnchorNav);
+syncAnchorNav();
