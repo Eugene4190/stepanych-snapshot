@@ -1,6 +1,16 @@
+import re
+from urllib.parse import unquote
+
 from django.core.exceptions import ValidationError
 from django.core.validators import URLValidator
 from django.db import models
+
+
+def normalize_viber_link(value):
+    digits = re.sub(r'\D', '', unquote(value or ''))
+    if not digits:
+        return value
+    return f'viber://chat?number=%2B{digits}'
 
 
 def validate_contact_link(value):
@@ -27,6 +37,10 @@ class SiteSettings(models.Model):
 
     def __str__(self):
         return 'Настройки сайта'
+
+    def save(self, *args, **kwargs):
+        self.viber_link = normalize_viber_link(self.viber_link)
+        super().save(*args, **kwargs)
 
 
 class TelegramRecipient(models.Model):

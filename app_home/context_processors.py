@@ -1,4 +1,4 @@
-from .models import SiteSettings, Service
+from .models import SiteSettings, Service, normalize_viber_link
 from .seo import REGIONS
 
 
@@ -21,7 +21,7 @@ def site_logo(request):
         if settings_obj.phone_display:
             context['site_phone_display'] = settings_obj.phone_display
         if settings_obj.viber_link:
-            context['site_viber'] = settings_obj.viber_link
+            context['site_viber'] = normalize_viber_link(settings_obj.viber_link)
         if settings_obj.whatsapp_link:
             context['site_whatsapp'] = settings_obj.whatsapp_link
         if settings_obj.telegram_link:
