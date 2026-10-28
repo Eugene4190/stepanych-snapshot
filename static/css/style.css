@@ -692,14 +692,12 @@ ul {
 }
 
 .check-list li {
-    position: relative;
-    padding-left: 28px;
+    text-align: center;
 }
 
 .check-list li::before {
     content: '✓';
-    position: absolute;
-    left: 0;
+    margin-right: 8px;
     color: var(--accent);
     font-weight: 700;
 }

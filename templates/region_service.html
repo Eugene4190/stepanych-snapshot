@@ -49,7 +49,24 @@
             <li>{{ w }}</li>
             {% endfor %}
         </ul>
+        {% if service == 'prochistka-kanalizatsii' %}
+        <div class="services-grid" style="margin-top: 32px;">
+            <div class="service-card">
+                <h3 class="service-card__title">Квартира или частный дом</h3>
+                <p class="service-card__text">Раковина, унитаз, ванна, стояк, внутренняя и наружная сеть в доме. Прочистка профессиональным электромеханическим оборудованием.</p>
+                <div class="service-card__price">от 100 руб</div>
+                <p><strong>Входит:</strong> выезд, работа, гарантия 14 дней на устранённый засор</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Юрлица (безнал)</h3>
+                <p class="service-card__text">Кафе, магазины, предприятия. Договор, оплата по счёту, полный пакет документов. Прочистка стояков и внутренних линий.</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+                <p><strong>Регулярное обслуживание</strong> — по отдельным условиям</p>
+            </div>
+        </div>
+        {% else %}
         <div class="price-line">{{ meta.price }}</div>
+        {% endif %}
         <p style="text-align: center; margin-top: 28px; color: var(--text-light);">{{ region.name }} — примерно {{ region.km }} км от Барановичей: стоимость выезда называем по телефону до начала работ. Также в {{ region.name_prep }}: <a href="/regiony/{{ region.slug }}/{{ meta.sibling }}/">{{ meta.sibling_name|lower }}</a>.</p>
     </div>
 </section>
