@@ -167,6 +167,11 @@ def feedback(request):
         messages.error(request, 'Проверьте номер телефона: формат +375 (XX) XXX-XX-XX.')
         return redirect(back_url(request))
 
+    site_phone = settings_obj.phone if settings_obj and settings_obj.phone else '+375292044963'
+    if phone == normalize_phone(site_phone):
+        messages.error(request, 'Это номер сайта, а не ваш. Укажите свой номер, чтобы мы могли перезвонить.')
+        return redirect(back_url(request))
+
     lead = Lead.objects.create(phone=phone, description=description)
 
     if settings_obj and settings_obj.bot_token:
