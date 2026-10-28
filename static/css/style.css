@@ -683,7 +683,7 @@ ul {
     display: grid;
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
     gap: 48px;
-    align-items: center;
+    align-items: stretch;
     max-width: 960px;
     margin: 0 auto;
 }
@@ -716,7 +716,7 @@ ul {
     border-radius: 16px;
     width: 100%;
     max-width: 320px;
-    aspect-ratio: 3 / 4;
+    height: 100%;
     object-fit: cover;
     object-position: 50% 18%;
     box-shadow: var(--shadow-lg);
