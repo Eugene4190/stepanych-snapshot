@@ -1048,21 +1048,9 @@ ul {
         width: 40px;
         height: 40px;
     }
-    .about-preview {
-        grid-template-columns: 1fr;
-        gap: 28px;
-    }
-    .about-preview__image {
-        order: -1;
-    }
-    .about-preview__image img {
-        position: static;
-        transform: none;
-        width: auto;
-        height: auto;
-        max-width: 220px;
-        aspect-ratio: auto;
-        object-fit: contain;
+    .about-preview--wide {
+        grid-template-columns: minmax(0, 1fr) 244px;
+        max-width: 800px;
     }
     .footer__container {
         grid-template-columns: 1fr;
@@ -1097,6 +1085,22 @@ ul {
 }
 
 @media (max-width: 648px) {
+    .about-preview {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+    .about-preview__image {
+        order: -1;
+    }
+    .about-preview__image img {
+        position: static;
+        transform: none;
+        width: auto;
+        height: auto;
+        max-width: 220px;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
     .header__container {
         gap: 6px;
         padding-top: 6px;
