@@ -4,37 +4,37 @@ from django.views.decorators.http import require_POST
 from django.http import HttpResponse, Http404
 from datetime import date
 from .models import Lead, SiteSettings
-from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA
+from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, REGION_SERVICE_META
 import requests
 
 
 def home(request):
-    return render(request, 'home.html', {'faq': FAQ_HOME, 'social_text': 'Здравствуйте! Нужен мастер'})
+    return render(request, 'home.html', {'faq': FAQ_HOME, 'social_text': 'Здравствуйте! Нужен мастер', 'nav_active': 'home'})
 
 
 def prochistka(request):
     crumbs = [{'url': '/prochistka-kanalizatsii/', 'name': 'Прочистка канализации в Барановичах'}]
-    return render(request, 'prochistka.html', {'faq': FAQ_PROCHISTKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужна прочистка канализации'})
+    return render(request, 'prochistka.html', {'faq': FAQ_PROCHISTKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужна прочистка канализации', 'nav_active': 'prochistka'})
 
 
 def santehnika(request):
     crumbs = [{'url': '/santekhnicheskie-raboty/', 'name': 'Услуги сантехника в Барановичах'}]
-    return render(request, 'santehnika.html', {'faq': FAQ_SANTEHNIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужны сантехнические работы'})
+    return render(request, 'santehnika.html', {'faq': FAQ_SANTEHNIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужны сантехнические работы', 'nav_active': 'santehnika'})
 
 
 def about(request):
     crumbs = [{'url': '/o-nas/', 'name': 'О мастере'}]
-    return render(request, 'about.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер'})
+    return render(request, 'about.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер', 'nav_active': 'about'})
 
 
 def contacts(request):
     crumbs = [{'url': '/kontakty/', 'name': 'Контакты'}]
-    return render(request, 'contacts.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! У меня вопрос по услугам'})
+    return render(request, 'contacts.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! У меня вопрос по услугам', 'nav_active': 'contacts'})
 
 
 def regions_index(request):
     crumbs = [{'url': '/regiony/', 'name': 'Регионы выездов'}]
-    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом'})
+    return render(request, 'regions_index.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! Нужен мастер с выездом', 'nav_active': ''})
 
 
 def region(request, slug):
@@ -50,7 +50,33 @@ def region(request, slug):
         {'url': '/regiony/', 'name': 'Регионы выездов'},
         {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
     ]
-    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужна прочистка канализации или сантехработы в {item['name_prep']}"})
+    return render(request, 'region.html', {'region': item, 'faq': faq, 'crumbs': crumbs, 'social_text': f"Здравствуйте! Нужна прочистка канализации или сантехработы в {item['name_prep']}", 'nav_active': 'both'})
+
+
+def region_service(request, slug, service):
+    item = next((r for r in REGIONS if r['slug'] == slug), None)
+    meta = REGION_SERVICE_META.get(service)
+    if not item or not meta:
+        raise Http404
+    faq = meta['faq'][:3] + [
+        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Стоимость выезда зависит от расстояния и объёма работ: цену называем по телефону, до начала работ."},
+        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараемся приехать быстрее.'},
+    ]
+    crumbs = [
+        {'url': '/regiony/', 'name': 'Регионы выездов'},
+        {'url': f"/regiony/{item['slug']}/", 'name': item['name']},
+        {'url': f"/regiony/{item['slug']}/{service}/", 'name': meta['name']},
+    ]
+    ctx = {
+        'region': item,
+        'service': service,
+        'meta': meta,
+        'faq': faq,
+        'crumbs': crumbs,
+        'nav_active': meta['key'],
+        'social_text': meta['social'].format(prep=item['name_prep']),
+    }
+    return render(request, 'region_service.html', ctx)
 
 
 def robots(request):
@@ -76,6 +102,7 @@ def sitemap(request):
         ('/kontakty/', '0.5'),
     ]
     urls += [(f"/regiony/{r['slug']}/", '0.7') for r in REGIONS]
+    urls += [(f"/regiony/{r['slug']}/{s}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty')]
     today = date.today().isoformat()
     items = ''.join(
         f'<url><loc>{host}{path}</loc><lastmod>{today}</lastmod><priority>{priority}</priority></url>'

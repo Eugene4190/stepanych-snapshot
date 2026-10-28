@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ | Степаныч{% endblock %}
+{% block meta_description %}{{ meta.name }} в {{ region.name_prep }} и окрестностях: мастер без посредников, около {{ region.km }} км от Барановичей, цена до начала работ, гарантия 14 дней. Звоните: {{ site_phone_display }}.{% endblock %}
+{% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ | Степаныч{% endblock %}
+{% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней, без выходных 9:00–23:00.{% endblock %}
+
+{% block content %}
+{% include 'partials/breadcrumbs.html' %}
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            {% if service == 'prochistka-kanalizatsii' %}
+            <h1 class="hero__title">Прочистка канализации<br><span class="hero__accent">в {{ region.name_prep }}</span></h1>
+            <p class="hero__subtitle">Электромеханическая прочистка засоров в квартирах, частных домах и организациях. {{ region.note }}</p>
+            {% else %}
+            <h1 class="hero__title">Сантехработы<br><span class="hero__accent">в {{ region.name_prep }}</span></h1>
+            <p class="hero__subtitle">Сантехмонтаж и ремонт любой сложности: от смесителя до стояка. {{ region.note }}</p>
+            {% endif %}
+            <div class="hero__buttons">
+                <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+                <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+            </div>
+            <div class="hero__features">
+                <div class="hero__feature">
+                    <strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>14 дней</strong>
+                    <span>гарантия на устранённый засор</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Без выходных 9:00–23:00</strong>
+                    <span>аварии — по договорённости</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">{{ meta.name }} в {{ region.name_prep }}: что делаем</h2>
+        </div>
+        <ul class="check-list">
+            {% for w in meta.works %}
+            <li>{{ w }}</li>
+            {% endfor %}
+        </ul>
+        <div class="price-line">{{ meta.price }}</div>
+        <p style="text-align: center; margin-top: 28px; color: var(--text-light);">{{ region.name }} — примерно {{ region.km }} км от Барановичей: стоимость выезда называем по телефону до начала работ. Также в {{ region.name_prep }}: <a href="/regiony/{{ region.slug }}/{{ meta.sibling }}/">{{ meta.sibling_name|lower }}</a>.</p>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% include 'includes/faq.html' %}
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Куда ещё выезжаем</h2>
+        </div>
+        <p style="text-align: center; line-height: 2;"><a href="{% if service == 'prochistka-kanalizatsii' %}/prochistka-kanalizatsii/{% else %}/santekhnicheskie-raboty/{% endif %}" class="geo-link"><strong>Барановичи</strong></a> · {% for r in regions %}<a href="/regiony/{{ r.slug }}/{{ service }}/" class="geo-link">{{ r.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+    </div>
+</section>
+{% endblock %}

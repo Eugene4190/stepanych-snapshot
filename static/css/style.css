@@ -683,8 +683,33 @@ ul {
     gap: 14px;
 }
 
-.service-card[id] {
-    scroll-margin-top: 90px;
+.check-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.check-list li {
+    position: relative;
+    padding-left: 28px;
+}
+
+.check-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+}
+
+.price-line {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+    margin-top: 24px;
 }
 
 /* About preview */
