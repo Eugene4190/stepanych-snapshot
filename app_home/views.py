@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, Http404
 from datetime import date
+from urllib.parse import urlsplit
 from .models import Lead, SiteSettings
 from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, REGION_SERVICE_META
 import requests
@@ -119,6 +120,15 @@ PHONE_CODES_2 = ('17', '25', '29', '33', '44')
 PHONE_CODES_3 = ('152', '154', '156', '159', '162', '163', '164', '165', '171', '173', '174', '176', '177', '179', '212', '213', '214', '215', '216', '222', '223', '224', '225', '226', '232', '233', '234', '235', '236')
 
 
+def back_url(request):
+    referer = request.META.get('HTTP_REFERER', '')
+    parts = urlsplit(referer)
+    if not referer or (parts.netloc and parts.netloc != request.get_host()):
+        return '/#order'
+    query = f'?{parts.query}' if parts.query else ''
+    return f'{parts.path}{query}#order'
+
+
 def normalize_phone(raw):
     digits = ''.join(ch for ch in raw if ch.isdigit())
     if digits.startswith('8375') and len(digits) == 13:
@@ -139,23 +149,23 @@ def feedback(request):
     settings_obj = SiteSettings.objects.first()
     if settings_obj and settings_obj.disable_leads:
         messages.error(request, 'Приём заявок временно остановлен.')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect(back_url(request))
 
     if request.POST.get('company', '').strip():
         messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect(back_url(request))
 
     phone_raw = request.POST.get('phone', '').strip()
     description = request.POST.get('description', '').strip()
 
     if not phone_raw or not description:
         messages.error(request, 'Пожалуйста, заполните все поля формы.')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect(back_url(request))
 
     phone = normalize_phone(phone_raw)
     if not phone:
         messages.error(request, 'Проверьте номер телефона: формат +375 (XX) XXX-XX-XX.')
-        return redirect(request.META.get('HTTP_REFERER', '/'))
+        return redirect(back_url(request))
 
     lead = Lead.objects.create(phone=phone, description=description)
 
@@ -173,4 +183,4 @@ def feedback(request):
                 pass
 
     messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
-    return redirect(request.META.get('HTTP_REFERER', '/'))
+    return redirect(back_url(request))

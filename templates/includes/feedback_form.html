@@ -4,6 +4,13 @@
             <h2 class="section__title">Неудобно звонить? Оставьте номер</h2>
             <p class="section__subtitle">Перезвоним в течение часа в рабочее время (9:00–23:00)</p>
         </div>
+        {% if messages %}
+        <div class="messages messages--form">
+            {% for message in messages %}
+            <div class="message message--{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
         {% if disable_leads %}
         <div style="max-width: 600px; margin: 0 auto; text-align: center; padding: 32px; background: var(--danger-tint); border: 1px solid var(--danger-border); border-radius: 8px; color: var(--danger-dark);">
             <strong>Приём заявок временно остановлен</strong>
