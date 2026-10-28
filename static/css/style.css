@@ -1367,3 +1367,15 @@ p a {
         bottom: 64px;
     }
 }
+
+body {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a,
+button,
+summary {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+}
