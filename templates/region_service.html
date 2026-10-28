@@ -125,7 +125,7 @@
         <div class="section__header">
             <h2 class="section__title">Куда ещё выезжаем</h2>
         </div>
-        <p style="text-align: center; line-height: 2;"><a href="{% if service == 'prochistka-kanalizatsii' %}/prochistka-kanalizatsii/{% else %}/santekhnicheskie-raboty/{% endif %}" class="geo-link"><strong>Барановичи</strong></a> · {% for r in regions %}<a href="/{{ service }}/{{ r.slug }}/" class="geo-link">{{ r.name }}</a>{% if not forloop.last %} · {% endif %}{% endfor %}</p>
+        <p style="text-align: center; line-height: 2;"><a href="{% if service == 'prochistka-kanalizatsii' %}/prochistka-kanalizatsii/{% else %}/santekhnicheskie-raboty/{% endif %}" class="geo-link">Барановичи</a> · {% for r in regions %}{% if r.slug == region.slug %}<strong>{{ r.name }}</strong>{% else %}<a href="/{{ service }}/{{ r.slug }}/" class="geo-link">{{ r.name }}</a>{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %}</p>
         <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>
