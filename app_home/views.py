@@ -115,6 +115,25 @@ def sitemap(request):
     return HttpResponse(xml, content_type='application/xml; charset=utf-8')
 
 
+PHONE_CODES_2 = ('17', '25', '29', '33', '44')
+PHONE_CODES_3 = ('152', '154', '156', '159', '162', '163', '164', '165', '171', '173', '174', '176', '177', '179', '212', '213', '214', '215', '216', '222', '223', '224', '225', '226', '232', '233', '234', '235', '236')
+
+
+def normalize_phone(raw):
+    digits = ''.join(ch for ch in raw if ch.isdigit())
+    if digits.startswith('8375') and len(digits) == 13:
+        digits = digits[1:]
+    elif digits.startswith('8') and len(digits) == 11:
+        digits = digits[1:]
+    if digits.startswith('0') and len(digits) == 10:
+        digits = '375' + digits[1:]
+    if len(digits) != 12 or not digits.startswith('375'):
+        return ''
+    if digits[3:5] not in PHONE_CODES_2 and digits[3:6] not in PHONE_CODES_3:
+        return ''
+    return '+' + digits
+
+
 @require_POST
 def feedback(request):
     settings_obj = SiteSettings.objects.first()
@@ -126,11 +145,16 @@ def feedback(request):
         messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
-    phone = request.POST.get('phone', '').strip()
+    phone_raw = request.POST.get('phone', '').strip()
     description = request.POST.get('description', '').strip()
 
-    if not phone or not description:
+    if not phone_raw or not description:
         messages.error(request, 'Пожалуйста, заполните все поля формы.')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+
+    phone = normalize_phone(phone_raw)
+    if not phone:
+        messages.error(request, 'Проверьте номер телефона: формат +375 (XX) XXX-XX-XX.')
         return redirect(request.META.get('HTTP_REFERER', '/'))
 
     lead = Lead.objects.create(phone=phone, description=description)
