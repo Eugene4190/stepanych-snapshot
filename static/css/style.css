@@ -595,7 +595,7 @@ ul {
 
 @media (max-width: 480px) {
     .services-grid:has(> :last-child:nth-child(3)) > :last-child {
-        width: calc((100% - 12px) / 2);
+        width: 100%;
     }
 }
 
@@ -1049,7 +1049,23 @@ ul {
     }
     .sticky-contacts {
         bottom: 10px;
-        right: 10px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 8px;
+    }
+    .sticky-contacts__item {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+    .service-card {
+        padding: 24px 18px;
+    }
+    .service-card__title {
+        font-size: 20px;
+        margin-bottom: 10px;
     }
 }
 
@@ -1061,6 +1077,12 @@ ul {
     .logo__img {
         width: 36px;
         height: 36px;
+    }
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .service-card {
+        padding: 22px 16px;
     }
 }
 
