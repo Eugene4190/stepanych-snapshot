@@ -1054,10 +1054,12 @@ ul {
         text-align: center;
     }
     .footer__logo {
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
     }
     .footer__logo-sub {
-        text-align: left;
+        text-align: center;
     }
     .footer__list {
         align-items: center;
