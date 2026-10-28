@@ -156,7 +156,7 @@ ul {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
+    padding: 12px;
     flex-direction: column;
     gap: 4px;
     flex-shrink: 0;
@@ -649,6 +649,12 @@ ul {
     flex: 1;
 }
 
+.service-card__text a,
+.footer__links a {
+    display: inline-block;
+    padding: 5px 0;
+}
+
 .service-card__price {
     font-weight: 700;
     color: var(--primary);
@@ -665,6 +671,7 @@ ul {
     transition: gap 0.2s;
     margin-top: auto;
     align-self: center;
+    padding: 6px 0;
 }
 
 .service-card__link:hover {
@@ -828,6 +835,7 @@ ul {
     align-items: center;
     gap: 8px;
     transition: color 0.2s;
+    padding: 4px 0;
 }
 
 .footer__list a:hover {
@@ -1009,9 +1017,6 @@ ul {
         padding-top: 6px;
         padding-bottom: 6px;
     }
-    .burger {
-        padding: 4px;
-    }
     .burger span {
         width: 20px;
     }
@@ -1053,10 +1058,6 @@ ul {
         padding-left: 12px;
         padding-right: 12px;
     }
-    .header__call {
-        font-size: 11px;
-        padding: 5px 8px;
-    }
     .logo__img {
         width: 36px;
         height: 36px;
@@ -1079,6 +1080,8 @@ ul {
 .breadcrumbs a {
     color: var(--text-light);
     text-decoration: underline;
+    display: inline-block;
+    padding: 5px 0;
 }
 
 .breadcrumbs a:hover {
@@ -1122,7 +1125,7 @@ ul {
     gap: 12px;
     color: var(--on-dark);
     position: relative;
-    padding-right: 28px;
+    padding: 8px 28px 8px 0;
 }
 
 .faq__q::-webkit-details-marker {
@@ -1150,7 +1153,7 @@ details[open] .faq__q:after {
 }
 
 .geo-link {
-    padding: 2px 8px;
+    padding: 5px 8px;
     border-radius: 999px;
     transition: color 0.2s, background 0.2s;
 }
@@ -1165,6 +1168,8 @@ details[open] .faq__q:after {
     font-size: 18px;
     font-weight: 600;
     white-space: nowrap;
+    display: inline-block;
+    padding: 6px 0;
 }
 
 @media (max-width: 648px) {
@@ -1219,4 +1224,72 @@ details[open] .faq__q:after {
     .header__phone-text {
         display: none;
     }
+}
+
+.work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.work-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
+@media (max-width: 968px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+@media (min-width: 968px) and (max-width: 1099px) {
+    .header__phone-text {
+        display: none;
+    }
+    .header__phone {
+        display: flex;
+    }
+    .nav-desktop__list {
+        gap: 14px;
+    }
+    .nav-desktop__link {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    .header__call {
+        padding: 7px 12px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 360px) {
+    .header__phone {
+        display: none;
+    }
+    .header__call {
+        padding: 6px 8px;
+    }
+    .header__left {
+        gap: 8px;
+    }
+    .header__container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .logo {
+        gap: 8px;
+    }
+    .logo__title {
+        font-size: 18px;
+    }
+}
+
+p a {
+    display: inline-block;
+    padding: 4px 0;
 }
