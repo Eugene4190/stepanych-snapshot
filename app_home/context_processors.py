@@ -2,6 +2,11 @@ from .models import SiteSettings, Service, normalize_viber_link
 from .seo import REGIONS
 
 
+def form_draft(request):
+    draft = request.session.pop('form_draft', None) or {}
+    return {'form_phone': draft.get('phone', ''), 'form_description': draft.get('description', '')}
+
+
 def site_logo(request):
     settings_obj = SiteSettings.objects.first()
     context = {'site_logo': '/static/img/emblem.png'}

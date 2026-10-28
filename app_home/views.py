@@ -138,10 +138,10 @@ def normalize_phone(raw):
     if digits.startswith('0') and len(digits) == 10:
         digits = '375' + digits[1:]
     if len(digits) != 12 or not digits.startswith('375'):
-        return ''
+        return '', 'shape'
     if digits[3:5] not in PHONE_CODES_2 and digits[3:6] not in PHONE_CODES_3:
-        return ''
-    return '+' + digits
+        return '', 'code'
+    return '+' + digits, None
 
 
 @require_POST
@@ -160,16 +160,23 @@ def feedback(request):
 
     if not phone_raw or not description:
         messages.error(request, 'Пожалуйста, заполните все поля формы.')
+        request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
-    phone = normalize_phone(phone_raw)
-    if not phone:
+    phone, phone_error = normalize_phone(phone_raw)
+    if phone_error == 'shape':
         messages.error(request, 'Проверьте номер телефона: формат +375 (XX) XXX-XX-XX.')
+        request.session['form_draft'] = {'phone': phone_raw, 'description': description}
+        return redirect(back_url(request))
+    if phone_error == 'code':
+        messages.error(request, 'Проверьте код оператора: после +375 — 17, 25, 29, 33, 44 или трёхзначный код города.')
+        request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
     site_phone = settings_obj.phone if settings_obj and settings_obj.phone else '+375292044963'
-    if phone == normalize_phone(site_phone):
-        messages.error(request, 'Это номер сайта, а не ваш. Укажите свой номер, чтобы мы могли перезвонить.')
+    if phone == normalize_phone(site_phone)[0]:
+        messages.error(request, 'Этот номер не ваш. Укажите свой номер, чтобы мы могли перезвонить.')
+        request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
     lead = Lead.objects.create(phone=phone, description=description)
