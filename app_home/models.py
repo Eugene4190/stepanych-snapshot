@@ -1,10 +1,20 @@
+from django.core.exceptions import ValidationError
+from django.core.validators import URLValidator
 from django.db import models
+
+
+def validate_contact_link(value):
+    if value.startswith('viber://'):
+        if len(value) <= len('viber://'):
+            raise ValidationError('Введите ссылку вида viber://chat?number=…', code='invalid')
+        return
+    URLValidator(schemes=['http', 'https'])(value)
 
 
 class SiteSettings(models.Model):
     phone = models.CharField(max_length=50, default='+375292044963', verbose_name='Контактный номер телефона')
     phone_display = models.CharField(max_length=50, default='+375 (29) 204-49-63', verbose_name='Номер телефона для отображения')
-    viber_link = models.URLField(blank=True, default='viber://chat?number=%2B375292044963', verbose_name='Ссылка Viber')
+    viber_link = models.CharField(max_length=200, blank=True, default='viber://chat?number=%2B375292044963', verbose_name='Ссылка Viber', validators=[validate_contact_link])
     whatsapp_link = models.URLField(blank=True, default='https://wa.me/375292044963', verbose_name='Ссылка WhatsApp')
     telegram_link = models.URLField(blank=True, default='https://t.me/Yuramolq', verbose_name='Ссылка Telegram')
     bot_token = models.CharField(max_length=255, blank=True, verbose_name='Токен бота Telegram')
