@@ -694,6 +694,10 @@ ul {
     color: var(--primary);
 }
 
+.service-card[id] {
+    scroll-margin-top: 90px;
+}
+
 /* About preview */
 .about-preview {
     display: grid;
