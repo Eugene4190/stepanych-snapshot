@@ -1056,9 +1056,6 @@ ul {
         display: flex;
         align-items: center;
         justify-content: center;
-        background: var(--accent-tint);
-        border-radius: 16px;
-        padding: 16px;
     }
     .about-preview__image img {
         position: static;
