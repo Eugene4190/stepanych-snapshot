@@ -713,11 +713,16 @@ ul {
 /* About preview */
 .about-preview {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr);
+    grid-template-columns: minmax(0, 1fr) 244px;
     gap: 48px;
     align-items: stretch;
-    max-width: 960px;
+    max-width: 800px;
     margin: 0 auto;
+}
+
+.about-preview--wide {
+    grid-template-columns: minmax(0, 1fr) 370px;
+    max-width: 926px;
 }
 
 .about-preview__title {
@@ -747,8 +752,7 @@ ul {
 .about-preview__image img {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    right: 0;
     height: 100%;
     width: auto;
     max-width: 100%;
