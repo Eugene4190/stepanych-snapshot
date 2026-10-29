@@ -1237,6 +1237,31 @@ ul {
                 linear-gradient(135deg, var(--surface-deep) 0%, var(--surface-blue) 60%, var(--surface-blue-light) 100%);
 }
 
+.section--faq--light {
+    background: linear-gradient(180deg, var(--accent-tint) 0%, var(--bg-light) 100%);
+}
+
+.section--faq--light .section__title {
+    color: var(--text);
+}
+
+.section--faq--light .faq__item {
+    background: var(--bg);
+    border-color: var(--border-light);
+}
+
+.section--faq--light .faq__q {
+    color: var(--text);
+}
+
+.section--faq--light .faq__q:after {
+    color: var(--accent);
+}
+
+.section--faq--light .faq__a {
+    color: var(--text-light);
+}
+
 .section--faq .section__title {
     color: var(--on-dark);
 }
