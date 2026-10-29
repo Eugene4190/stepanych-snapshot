@@ -10,11 +10,16 @@ if env_file.exists():
         if not line or line.startswith('#') or '=' not in line:
             continue
         key, _, value = line.partition('=')
-        os.environ.setdefault(key.strip(), value.strip())
+        os.environ.setdefault(key.strip(), value.strip().strip('"\''))
 
 SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 DEBUG = os.getenv("DEBUG") == "True"
+
+if not DEBUG and not SECRET_KEY:
+    raise RuntimeError(
+        "SECRET_KEY не задан. Заполните файл .env перед запуском в production-режиме."
+    )
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
