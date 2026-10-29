@@ -19,7 +19,7 @@ DEBUG = os.getenv("DEBUG") == "True"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ['127.0.0.1', 'localhost', "stepanych.by", "0.0.0.0", "62.182.102.27"]
+    ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1, localhost, stepanych.by, 0.0.0.0, 62.182.102.27').split(',')]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
