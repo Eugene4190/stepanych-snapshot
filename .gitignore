@@ -130,3 +130,4 @@ db.sqlite3
 QWEN.md
 **/migrations/*.py
 !**/migrations/__init__.py
+*:Zone.Identifier
