@@ -1108,6 +1108,9 @@ ul {
         gap: 28px;
         max-width: 100%;
     }
+    .about-preview__title {
+        text-align: center;
+    }
     .about-preview__image {
         order: -1;
         display: block;
@@ -1269,6 +1272,7 @@ ul {
     list-style: none;
     display: flex;
     justify-content: center;
+    text-align: center;
     gap: 12px;
     color: var(--on-dark);
     position: relative;
