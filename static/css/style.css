@@ -1099,9 +1099,11 @@ ul {
 }
 
 @media (max-width: 648px) {
-    .about-preview {
+    .about-preview,
+    .about-preview--wide {
         grid-template-columns: 1fr;
         gap: 28px;
+        max-width: 100%;
     }
     .about-preview__image {
         order: -1;
@@ -1113,11 +1115,20 @@ ul {
     .about-preview__image img {
         position: static;
         transform: none;
-        width: auto;
+        width: 100%;
         height: auto;
-        max-width: 220px;
+        max-width: none;
         aspect-ratio: auto;
         object-fit: contain;
+    }
+    .hero__buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    .hero__buttons .btn {
+        width: 100%;
+        max-width: 340px;
+        justify-content: center;
     }
     .header__container {
         gap: 6px;
