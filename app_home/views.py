@@ -35,7 +35,7 @@ def contacts(request):
 
 def gidrodinamika(request):
     crumbs = [{'url': '/gidrodinamicheskaya-prochistka/', 'name': 'Гидродинамическая прочистка канализации'}]
-    return render(request, 'gidrodinamika.html', {'faq': FAQ_GIDRODINAMIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Интересует гидродинамическая прочистка канализации', 'nav_active': 'prochistka'})
+    return render(request, 'gidrodinamika.html', {'faq': FAQ_GIDRODINAMIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Интересует гидродинамическая прочистка канализации', 'nav_active': 'gidrodinamika'})
 
 
 def regions_index(request):
