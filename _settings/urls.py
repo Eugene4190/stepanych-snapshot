@@ -13,6 +13,7 @@ urlpatterns = [
     path('santekhnicheskie-raboty/<slug:slug>/', views.region_service, {'service': 'santekhnicheskie-raboty'}, name='region_santehnika'),
     path('robots.txt', views.robots, name='robots'),
     path('sitemap.xml', views.sitemap, name='sitemap'),
+    path('gidrodinamicheskaya-prochistka/', views.gidrodinamika, name='gidrodinamika'),
     path('prochistka-kanalizatsii/', views.prochistka, name='prochistka'),
     path('santekhnicheskie-raboty/', views.santehnika, name='santehnika'),
     path('o-nas/', views.about, name='about'),

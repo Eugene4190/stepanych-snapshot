@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block title %}Гидродинамическая прочистка канализации в Барановичах — от 15 руб/метр{% endblock %}
+{% block meta_description %}Гидродинамическая прочистка канализации в Барановичах: от 15 руб/метр для физ и юрлиц. Прямые участки моем давлением изнутри, для линий с поворотами предложим электромеханику.{% endblock %}
+{% block og_title %}Гидродинамическая прочистка канализации в Барановичах — от 15 руб/метр{% endblock %}
+{% block og_description %}Прочистка канализации давлением на прямых участках. От 15 руб/метр для физ и юрлиц.{% endblock %}
+{% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-avr.png{% endblock %}
+{% block og_image_width %}1080{% endblock %}
+{% block og_image_height %}1080{% endblock %}
+
+{% block content %}
+{% include 'partials/breadcrumbs.html' %}
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">Гидродинамическая прочистка канализации <span class="hero__accent">в Барановичах</span><br>от 15 руб/метр</h1>
+            <p class="hero__subtitle">Цена одинаковая для физ и юрлиц, называем до начала работ. Вода под давлением смывает жировой и илистый налёт со стенок трубы по всей длине, а не только пробивает пробку.</p>
+            <div class="hero__buttons">
+                <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+                <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+            </div>
+            <div class="hero__features">
+                <div class="hero__feature">
+                    <strong>От 15 руб/метр</strong>
+                    <span>цена одинаковая для физ и юрлиц</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Прямые участки</strong>
+                    <span>там, где форсунка проходит по оси трубы</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>14 дней</strong>
+                    <span>гарантия на выполненные работы</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <div class="info-block">
+        <div class="info-block__item">
+            <div class="info-block__icon"><i class="fas fa-file-contract"></i></div>
+            <strong>Официально</strong>
+            <span>ИП, УНП 291568475</span>
+        </div>
+        <div class="info-block__item">
+            <div class="info-block__icon"><i class="fas fa-clock"></i></div>
+            <strong>Без выходных 9:00–23:00</strong>
+            <span>аварии — по договорённости</span>
+        </div>
+        <div class="info-block__item">
+            <div class="info-block__icon"><i class="fas fa-credit-card"></i></div>
+            <strong>Оплата после работы</strong>
+            <span>наличные и безнал для юр. и физ. лиц</span>
+        </div>
+        <div class="info-block__item">
+            <div class="info-block__icon"><i class="fas fa-map-marker-alt"></i></div>
+            <strong>Барановичи и вся область</strong>
+            <span>любые населённые пункты по договорённости</span>
+        </div>
+    </div>
+</div>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Как это работает</h2>
+            <p class="section__subtitle">Три шага: сначала понимаем линию, потом моем, потом проверяем.</p>
+        </div>
+        <div class="steps steps--3">
+            <div class="step">
+                <div class="step__num">1</div>
+                <h3 class="step__title">Смотрим линию</h3>
+                <p class="step__text">Уточняем диаметр, длину, число поворотов и доступы. Если линия с поворотами — сразу скажем и предложим <a href="/prochistka-kanalizatsii/">электромеханическую прочистку</a>: там, где форсунка упрётся, спираль пройдёт.</p>
+            </div>
+            <div class="step">
+                <div class="step__num">2</div>
+                <h3 class="step__title">Моем давлением</h3>
+                <p class="step__text">Шланг с форсункой идёт по трубе: струи бьют вперёд и назад, смывают налёт со стенок и выносят взвесь к ревизии или колодцу. Работает только вода и давление, без ударов по трубе.</p>
+            </div>
+            <div class="step">
+                <div class="step__num">3</div>
+                <h3 class="step__title">Проверяем проливом</h3>
+                <p class="step__text">После мойки проливаем линию водой при вас: видно, что труба чистая и уход свободный. Гарантия на выполненные работы 14 дней.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Когда гидродинамика даёт лучший результат</h2>
+        </div>
+        <div class="content" style="max-width: 800px; margin: 0 auto;">
+            <ul>
+                <li><strong>Длинные прямые участки:</strong> наружная сеть частного дома, дворовая линия, ливнёвка — чем длиннее и прямее, тем выгоднее мойка по всей длине.</li>
+                <li><strong>Жировые и илистые отложения:</strong> линии кухонь кафе и столовых, мойки, выпуски из пищевых цехов — жир смывается со стенок, а не протыкается каналом посередине.</li>
+                <li><strong>Профилактика:</strong> плановая мойка сети до сезона убирает налёт, из-за которого потом образуются пробки. Для организаций — регулярное обслуживание по договору.</li>
+                <li><strong>Труба уже пробита, но работает медленно:</strong> пробки нет, а уход вялый — значит стенки заросли. Мойка возвращает трубе рабочий просвет.</li>
+            </ul>
+            <p>Частая связка, которая даёт самый долгий результат: <a href="/prochistka-kanalizatsii/">электромеханика пробивает плотную пробку</a>, а гидродинамика домывает стенки за ней до чистой трубы. После такой пары отложения нарастают заметно медленнее.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Честно про повороты</h2>
+            <p class="section__subtitle">Главное ограничение гидродинамики — геометрия линии, и мы про него говорим до начала работ.</p>
+        </div>
+        <div class="content" style="max-width: 800px; margin: 0 auto;">
+            <p>Форсунка движется строго по оси трубы: её толкают струи воды, а не рука или мотор. Поэтому прямая линия — её стихия, а поворот, колено или контруклон — предел: на изгибе шланг упирается в стенку, теряет ход и начинает тереть стык вместо мойки.</p>
+            <p>Мы не берёмся за гидродинамику там, где она не пройдёт или навредит стыкам. Если линия с поворотами, надёжнее работает <a href="/prochistka-kanalizatsii/">электромеханическая прочистка</a>: спираль с головкой проходит повороты и переходы и разрушает засор точечно, именно в том месте, где он стоит.</p>
+            <p>По телефону уточняем конфигурацию линии и предлагаем способ, который подходит вашему случаю, а не тот, что дороже. Если случай спорный — на месте смотрим ревизии и колодцы и выбираем по факту, иногда оба способа сразу.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Цены</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title">Физ и юр лица</h3>
+                <p class="service-card__text">Гидродинамическая прочистка прямых участков канализации и ливнёвки. Цена за метр одинаковая для всех, без отдельного «тарифа для организаций».</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+                <p><strong>Итог</strong> зависит от длины, диаметра и доступа — считаем по факту и озвучиваем до начала работ</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title">Юрлица (безнал)</h3>
+                <p class="service-card__text">Договор, счёт, закрывающие документы. Плановая мойка сетей кафе, магазинов, предприятий и регулярное обслуживание по графику.</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+                <p><strong>Регулярное обслуживание</strong> — по отдельным условиям</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Гидродинамика или электромеханика</h2>
+            <p class="section__subtitle">Оба способа наши, поэтому предлагаем по задаче, а не по наличию техники.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-card__title">Гидродинамика</h3>
+                <p class="service-card__text">Прямые участки и длинные линии, жировой и илистый налёт по всей длине, наружные сети и ливнёвка, профилактика до сезона. Моет стенки, а не только пробивает пробку.</p>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><a href="/prochistka-kanalizatsii/" style="color: inherit; text-decoration: none;">Электромеханика</a></h3>
+                <p class="service-card__text">Повороты, колена и переходы, точечные пробки из тряпок, предметов и плотного засора, стояки и внутренние линии в квартире и доме. Пробивает засор точно в месте, где он стоит.</p>
+            </div>
+        </div>
+        <p style="text-align: center; margin-top: 24px; color: var(--text-light);">Не знаете, какой способ ваш? Опишите линию по телефону или пришлите фото в Viber / Telegram — подскажем честно, даже если выгоднее окажется не наш способ.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="about-preview">
+            <div class="about-preview__content">
+                <h2 class="about-preview__title">Кто к вам приедет</h2>
+                <p class="about-preview__text">Меня зовут Юрий. Сантехникой занимаюсь более 15 лет, официально работаю как ИП. Специализация — прочистка канализации: квартиры, частные дома, организации, включая гидродинамическую мойку сетей.</p>
+                <p class="about-preview__text">Никаких «мастеров с биржи», которых вы видите впервые и больше никогда не увидите.</p>
+                <p class="about-preview__text"><strong>ИП Молчан Юрий Степанович</strong> · УНП 291568475</p>
+                <div class="hero__buttons">
+                    <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> {{ site_phone_display }}</a>
+                    <a href="https://vsf.by/yura" class="btn btn--outline">Виртуальная визитка</a>
+                </div>
+            </div>
+            <div class="about-preview__image">
+                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/faq.html' %}
+{% endblock %}

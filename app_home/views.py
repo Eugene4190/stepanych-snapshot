@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 from datetime import date
 from urllib.parse import urlsplit
 from .models import Lead, SiteSettings
-from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_REGIONS, REGION_SERVICE_META
+from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_GIDRODINAMIKA, FAQ_REGIONS, REGION_SERVICE_META
 import requests
 
 
@@ -31,6 +31,11 @@ def about(request):
 def contacts(request):
     crumbs = [{'url': '/kontakty/', 'name': 'Контакты'}]
     return render(request, 'contacts.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! У меня вопрос по услугам', 'nav_active': 'contacts'})
+
+
+def gidrodinamika(request):
+    crumbs = [{'url': '/gidrodinamicheskaya-prochistka/', 'name': 'Гидродинамическая прочистка канализации'}]
+    return render(request, 'gidrodinamika.html', {'faq': FAQ_GIDRODINAMIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Интересует гидродинамическая прочистка канализации', 'nav_active': 'prochistka'})
 
 
 def regions_index(request):
@@ -97,6 +102,7 @@ def sitemap(request):
         ('/', '1.0'),
         ('/prochistka-kanalizatsii/', '0.9'),
         ('/santekhnicheskie-raboty/', '0.9'),
+        ('/gidrodinamicheskaya-prochistka/', '0.9'),
         ('/santehnik/', '0.8'),
         ('/o-nas/', '0.5'),
         ('/kontakty/', '0.5'),
