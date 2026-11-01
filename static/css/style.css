@@ -1401,6 +1401,76 @@ details[open] .faq__q:after {
     font-size: 16px;
 }
 
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.trust-card {
+    position: relative;
+    overflow: hidden;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 16px;
+    padding: 30px 22px 26px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.trust-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--cta));
+}
+
+.trust-card__icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #ffffff;
+    font-size: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.trust-card__title {
+    margin: 0 0 10px;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--accent);
+}
+
+.trust-card__text {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--text-light);
+}
+
+@media (min-width: 968px) {
+    .trust-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+}
+
+@media (max-width: 648px) {
+    .trust-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 .steps {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
