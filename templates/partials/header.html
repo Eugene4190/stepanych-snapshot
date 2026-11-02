@@ -39,5 +39,10 @@
                 <li class="nav__item"><a href="/o-nas/" class="nav__link{% if nav_active == 'about' %} nav__link--active{% endif %}">О нас</a></li>
                 <li class="nav__item"><a href="/kontakty/" class="nav__link{% if nav_active == 'contacts' %} nav__link--active{% endif %}">Контакты</a></li>
             </ul>
+            <div class="nav__phone">
+                <span class="nav__phone-label">Телефон мастера</span>
+                <a href="tel:{{ site_phone }}" class="nav__phone-link"><i class="fas fa-phone"></i>{{ site_phone_display }}</a>
+                <span class="nav__phone-note">без выходных 9:00–23:00</span>
+            </div>
         </div>
     </nav>

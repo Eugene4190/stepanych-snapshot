@@ -284,6 +284,46 @@ ul {
     font-weight: 700;
 }
 
+.nav__phone {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.nav__phone-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text);
+    opacity: 0.55;
+}
+
+.nav__phone-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary);
+    text-decoration: none;
+}
+
+.nav__phone-link i {
+    color: var(--cta);
+    font-size: 18px;
+}
+
+.nav__phone-note {
+    font-size: 13px;
+    color: var(--text);
+    opacity: 0.55;
+}
+
 .header__phone {
     display: flex;
     align-items: center;
