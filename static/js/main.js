@@ -38,3 +38,28 @@ if (scrollTopBtn) {
     toggleScrollTop();
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
+
+const track = (name) => {
+    if (typeof ym === 'function') ym(114024474, 'reachGoal', name);
+    if (typeof gtag === 'function') gtag('event', name);
+};
+
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    if (href.startsWith('tel:')) track('phone_click');
+    else if (href.startsWith('viber://')) track('viber_click');
+    else if (href.indexOf('wa.me') !== -1) track('whatsapp_click');
+    else if (href.indexOf('t.me') !== -1) track('telegram_click');
+    else if (href.indexOf('#order') !== -1) track('order_click');
+});
+
+const feedbackForm = document.querySelector('.feedback-form');
+if (feedbackForm) {
+    feedbackForm.addEventListener('submit', () => track('lead_submit'));
+}
+
+if (document.querySelector('.messages .message--success')) {
+    track('lead_success');
+}
