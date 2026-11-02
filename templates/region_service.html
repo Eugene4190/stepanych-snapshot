@@ -31,19 +31,46 @@
                 <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
             </div>
             <div class="hero__features">
+                {% if service == 'gidrodinamicheskaya-prochistka' %}
                 <div class="hero__feature">
-                    {% if meta.key == 'gidrodinamika' %}<strong>От 15 руб / метр</strong>
-                    <span>единая цена для физ. и юр. лиц</span>{% else %}<strong>Цена до начала работ</strong>
-                    <span>каждая работа индивидуальна</span>{% endif %}
+                    <strong>Единая цена</strong>
+                    <span>одинаковая для физ. и юр. лиц, без тарифа для организаций</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Прямые участки</strong>
+                    <span>форсунка идёт по оси трубы и моет стенки по всей длине</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Чистые стенки</strong>
+                    <span>после мойки отложения нарастают медленнее</span>
+                </div>
+                {% elif service == 'santekhnicheskie-raboty' %}
+                <div class="hero__feature">
+                    <strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>15+ лет</strong>
+                    <span>опыт работы с канализацией и сантехникой</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>Оплата после</strong>
+                    <span>наличные и безнал для юр. и физ. лиц</span>
+                </div>
+                {% else %}
+                <div class="hero__feature">
+                    <strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>15+ лет</strong>
+                    <span>опыт работы с канализацией и сантехникой</span>
                 </div>
                 <div class="hero__feature">
                     <strong>14 дней</strong>
                     <span>гарантия на устранённый засор</span>
                 </div>
-                <div class="hero__feature">
-                    <strong>Без выходных 9:00–23:00</strong>
-                    <span>аварии — по договорённости</span>
-                </div>
+                {% endif %}
             </div>
         </div>
     </div>
