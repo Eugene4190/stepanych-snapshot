@@ -15,6 +15,7 @@ urlpatterns = [
     path('favicon.ico', views.favicon, name='favicon'),
     path('robots.txt', views.robots, name='robots'),
     path('sitemap.xml', views.sitemap, name='sitemap'),
+    path('google836237fd6f72d14.html', views.gsc_verify, name='gsc_verify'),
     path('gidrodinamicheskaya-prochistka/', views.gidrodinamika, name='gidrodinamika'),
     path('prochistka-kanalizatsii/', views.prochistka, name='prochistka'),
     path('santekhnicheskie-raboty/', views.santehnika, name='santehnika'),

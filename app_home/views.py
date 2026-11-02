@@ -92,6 +92,10 @@ def favicon(request):
         return HttpResponse(f.read(), content_type='image/x-icon')
 
 
+def gsc_verify(request):
+    return HttpResponse('google-site-verification: google836237fd6f72d14.html')
+
+
 def robots(request):
     host = f'{request.scheme}://{request.get_host()}'
     txt = (
