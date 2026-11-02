@@ -1412,7 +1412,7 @@ details[open] .faq__q:after {
     cursor: pointer;
 }
 
-.service-card--clickable .service-card__text a::after {
+.service-card--clickable a::after {
     content: '';
     position: absolute;
     inset: 0;
