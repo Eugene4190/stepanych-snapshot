@@ -19,6 +19,20 @@ def site_logo(request):
     context['services_menu'] = Service.objects.filter(is_active=True)
     context['regions'] = REGIONS
     context['disable_leads'] = False
+    info_defs = [
+        ('fa-file-contract', 'Официально', 'ИП, УНП 291568475'),
+        ('fa-clock', 'Без выходных 9:00–23:00', 'аварии — по договорённости'),
+        ('fa-credit-card', 'Оплата после работы', 'наличные и безнал для юр. и физ. лиц'),
+        ('fa-map-marker-alt', 'Барановичи и вся область', 'любые населённые пункты по договорённости'),
+    ]
+    info_items = []
+    for idx, (icon, dtitle, dtext) in enumerate(info_defs, start=1):
+        title, text = dtitle, dtext
+        if settings_obj:
+            title = getattr(settings_obj, f'info{idx}_title', '') or dtitle
+            text = getattr(settings_obj, f'info{idx}_text', '') or dtext
+        info_items.append({'icon': icon, 'title': title, 'text': text})
+    context['info_items'] = info_items
     if settings_obj:
         if settings_obj.logo:
             context['site_logo'] = settings_obj.logo.url

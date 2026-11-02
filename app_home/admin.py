@@ -24,6 +24,9 @@ class SiteSettingsAdmin(admin.ModelAdmin):
         ('Заявки', {
             'fields': ('disable_leads',)
         }),
+        ('Тексты инфоплашки', {
+            'fields': (('info1_title', 'info1_text'), ('info2_title', 'info2_text'), ('info3_title', 'info3_text'), ('info4_title', 'info4_text'))
+        }),
         ('Telegram уведомления', {
             'fields': ('bot_token',)
         }),

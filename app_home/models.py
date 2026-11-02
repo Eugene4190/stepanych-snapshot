@@ -30,6 +30,14 @@ class SiteSettings(models.Model):
     bot_token = models.CharField(max_length=255, blank=True, verbose_name='Токен бота Telegram')
     logo = models.ImageField(upload_to='logo/', blank=True, null=True, verbose_name='Логотип сайта')
     disable_leads = models.BooleanField(default=False, verbose_name='Остановить приём заявок')
+    info1_title = models.CharField(max_length=100, blank=True, verbose_name='Плашка 1: заголовок')
+    info1_text = models.CharField(max_length=200, blank=True, verbose_name='Плашка 1: текст')
+    info2_title = models.CharField(max_length=100, blank=True, verbose_name='Плашка 2: заголовок')
+    info2_text = models.CharField(max_length=200, blank=True, verbose_name='Плашка 2: текст')
+    info3_title = models.CharField(max_length=100, blank=True, verbose_name='Плашка 3: заголовок')
+    info3_text = models.CharField(max_length=200, blank=True, verbose_name='Плашка 3: текст')
+    info4_title = models.CharField(max_length=100, blank=True, verbose_name='Плашка 4: заголовок')
+    info4_text = models.CharField(max_length=200, blank=True, verbose_name='Плашка 4: текст')
 
     class Meta:
         verbose_name = 'Настройки сайта'

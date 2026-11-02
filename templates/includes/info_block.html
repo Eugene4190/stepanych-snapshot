@@ -1,0 +1,9 @@
+<div class="info-block">
+    {% for item in info_items %}
+    <div class="info-block__item">
+        <div class="info-block__icon"><i class="fas {{ item.icon }}"></i></div>
+        <strong>{{ item.title }}</strong>
+        <span>{{ item.text }}</span>
+    </div>
+    {% endfor %}
+</div>
