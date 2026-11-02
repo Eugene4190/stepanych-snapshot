@@ -790,17 +790,28 @@ ul {
 }
 
 /* Feedback form */
-#order {
+.section--dark,
+#order,
+.section--faq {
     background: radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
                 radial-gradient(circle at 92% 88%, rgba(226, 57, 57, 0.20) 0%, transparent 42%),
                 linear-gradient(135deg, var(--surface-deep) 0%, var(--surface-blue) 60%, var(--surface-blue-light) 100%);
 }
 
-#order .section__title {
+.section--dark .section__title,
+#order .section__title,
+.section--faq .section__title {
     color: var(--on-dark);
 }
 
+.section--dark .section__subtitle,
 #order .section__subtitle {
+    color: var(--on-dark-muted);
+}
+
+.compare-note {
+    text-align: center;
+    margin-top: 24px;
     color: var(--on-dark-muted);
 }
 
@@ -1249,15 +1260,7 @@ ul {
     gap: 12px;
 }
 
-.section--faq {
-    background: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 8% 90%, rgba(226, 57, 57, 0.20) 0%, transparent 42%),
-                linear-gradient(135deg, var(--surface-deep) 0%, var(--surface-blue) 60%, var(--surface-blue-light) 100%);
-}
 
-.section--faq .section__title {
-    color: var(--on-dark);
-}
 
 .faq__item {
     border: 1px solid rgba(255, 255, 255, 0.14);
