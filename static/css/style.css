@@ -290,7 +290,9 @@ ul {
     border-top: 1px solid var(--border);
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
+    text-align: center;
 }
 
 .nav__phone-label {
@@ -326,6 +328,7 @@ ul {
 
 .nav__socials {
     display: flex;
+    justify-content: center;
     gap: 12px;
     margin-top: 14px;
 }
