@@ -113,6 +113,25 @@ def square_santehnika(emb, mask):
     img.convert('RGB').save(IMG / 'square-santehnika.png', optimize=True)
 
 
+def square_gidro(emb, mask):
+    img = Image.new('RGBA', (S, S), BG + (255,))
+    d = ImageDraw.Draw(img)
+    put_emblem(img, emb, mask, 310, 240)
+    tracked(d, 458, 'СТЕПАНЫЧ', 'ExtraBold', 62, (255, 255, 255), 10)
+    size = 84
+    while size > 40:
+        f = F('ExtraBold', size)
+        if sum(d.textlength(c, font=f) for c in 'ГИДРОДИНАМИЧЕСКАЯ') + 5 * 16 <= 1010:
+            break
+        size -= 2
+    tracked(d, 578, 'ГИДРОДИНАМИЧЕСКАЯ', 'ExtraBold', size, (255, 255, 255), 5)
+    tracked(d, 676, 'ПРОЧИСТКА', 'ExtraBold', size, (255, 255, 255), 5)
+    tracked(d, 766, 'КАНАЛИЗАЦИЯ · ЛИВНЁВКА', 'SemiBold', 40, MUT, 12)
+    tracked(d, 826, 'ПРОФИЛАКТИКА НАЛЁТА', 'SemiBold', 40, MUT, 12)
+    square_pill(d, 940)
+    img.convert('RGB').save(IMG / 'square-gidro.png', optimize=True)
+
+
 def square_prochistka(emb, mask):
     img = Image.new('RGBA', (S, S), BG + (255,))
     d = ImageDraw.Draw(img)
@@ -153,9 +172,10 @@ def main():
     emb, mask = emblem_masked()
     square_avr(emb, mask)
     square_santehnika(emb, mask)
+    square_gidro(emb, mask)
     square_prochistka(emb, mask)
     print('PHONE:', PHONE)
-    print('regenerated: square-avr.png, square-santehnika.png, square-prochistka.png')
+    print('regenerated: square-avr.png, square-santehnika.png, square-gidro.png, square-prochistka.png')
 
 
 if __name__ == '__main__':
