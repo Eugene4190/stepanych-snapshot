@@ -524,6 +524,10 @@ ul {
     gap: 24px;
 }
 
+.hero__features--two {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .hero__feature {
     padding: 20px;
     background: rgba(255, 255, 255, 0.08);
