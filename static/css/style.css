@@ -588,6 +588,10 @@ ul {
 }
 
 /* Services grid */
+#services {
+    scroll-margin-top: 96px;
+}
+
 .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
