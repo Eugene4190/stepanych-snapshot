@@ -8,6 +8,12 @@
 {% block og_image_width %}1080{% endblock %}
 {% block og_image_height %}1080{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Прочистка канализации в Барановичах","serviceType":"Прочистка канализации электромеханической машиной","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"Барановичи"},"offers":{"@type":"Offer","priceCurrency":"BYN","price":"100","description":"от 100 руб, итоговая цена называется до начала работ"}}
+</script>
+{% endblock %}
+
 {% block content %}
 {% include 'partials/breadcrumbs.html' %}
 <section class="hero">

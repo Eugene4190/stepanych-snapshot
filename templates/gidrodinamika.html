@@ -8,6 +8,12 @@
 {% block og_image_width %}1080{% endblock %}
 {% block og_image_height %}1080{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Гидродинамическая прочистка канализации в Барановичах","serviceType":"Гидродинамическая прочистка канализации водой под давлением","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"Барановичи"},"offers":{"@type":"Offer","priceCurrency":"BYN","price":"15","description":"от 15 руб за метр, цена одинаковая для физ. и юр. лиц"}}
+</script>
+{% endblock %}
+
 {% block content %}
 {% include 'partials/breadcrumbs.html' %}
 <section class="hero">

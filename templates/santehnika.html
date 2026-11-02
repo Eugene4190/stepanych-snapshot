@@ -9,6 +9,12 @@
 {% block og_image_width %}1080{% endblock %}
 {% block og_image_height %}1080{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"Сантехработы в Барановичах","serviceType":"Сантехнические работы: монтаж, ремонт, обслуживание","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"Барановичи"}}
+</script>
+{% endblock %}
+
 {% block content %}
 {% include 'partials/breadcrumbs.html' %}
 <section class="hero">

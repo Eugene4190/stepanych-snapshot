@@ -5,6 +5,12 @@
 {% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ{% endblock %}
 {% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней.{% endblock %}
 
+{% block extra_head %}
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Service","name":"{{ meta.name }} в {{ region.name_prep }}","serviceType":"{{ meta.name }}","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"{{ region.name }}"}{% if meta.price_value %},"offers":{"@type":"Offer","priceCurrency":"BYN","price":"{{ meta.price_value }}","description":"выезд в {{ region.name_prep }}: цена работ от {{ meta.price_value }} BYN, стоимость выезда называется до начала работ"}{% endif %}}
+</script>
+{% endblock %}
+
 {% block content %}
 {% include 'partials/breadcrumbs.html' %}
 <section class="hero">
