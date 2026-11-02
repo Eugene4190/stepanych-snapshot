@@ -96,6 +96,18 @@ def gsc_verify(request):
     return HttpResponse('google-site-verification: google836237fd6f72d14.html')
 
 
+def yandex_verify(request):
+    html = (
+        '<html>\n'
+        '    <head>\n'
+        '        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n'
+        '    </head>\n'
+        '    <body>Verification: 519bc6b980d12639</body>\n'
+        '</html>\n'
+    )
+    return HttpResponse(html)
+
+
 def robots(request):
     host = f'{request.scheme}://{request.get_host()}'
     txt = (
