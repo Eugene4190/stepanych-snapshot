@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
@@ -82,6 +85,11 @@ def region_service(request, slug, service):
         'social_text': meta['social'].format(prep=item['name_prep']),
     }
     return render(request, 'region_service.html', ctx)
+
+
+def favicon(request):
+    with open(os.path.join(settings.BASE_DIR, 'static', 'img', 'favicon.ico'), 'rb') as f:
+        return HttpResponse(f.read(), content_type='image/x-icon')
 
 
 def robots(request):
