@@ -324,6 +324,36 @@ ul {
     opacity: 0.55;
 }
 
+.nav__socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.nav__social {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.nav__social--viber {
+    background: #7360f2;
+}
+
+.nav__social--whatsapp {
+    background: #25d366;
+}
+
+.nav__social--telegram {
+    background: var(--telegram);
+}
+
 .header__phone {
     display: flex;
     align-items: center;
