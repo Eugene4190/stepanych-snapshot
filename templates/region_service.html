@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия{% else %}вызов без выходных{% endif %}{% endblock %}
+{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия{% elif meta.key == 'gidrodinamika' %}от 15 руб/метр, гарантия{% else %}вызов без выходных{% endif %}{% endblock %}
 {% block meta_description %}{{ meta.name }} в {{ region.name_prep }}: мастер без посредников, цена до начала работ, гарантия 14 дней, без выходных. Звоните: {{ site_phone_display }}.{% endblock %}
 {% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ{% endblock %}
 {% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней.{% endblock %}
@@ -13,6 +13,9 @@
             {% if service == 'prochistka-kanalizatsii' %}
             <h1 class="hero__title">Прочистка канализации<br><span class="hero__accent">в {{ region.name_prep }}</span></h1>
             <p class="hero__subtitle">Электромеханическая прочистка засоров в квартирах, частных домах и организациях. {{ region.note }}</p>
+            {% elif service == 'gidrodinamicheskaya-prochistka' %}
+            <h1 class="hero__title">Гидродинамическая прочистка<br><span class="hero__accent">в {{ region.name_prep }}</span></h1>
+            <p class="hero__subtitle">Прямые участки канализации и ливнёвки моем водой под давлением: налёт со стенок уходит по всей длине трубы. {{ region.note }}</p>
             {% else %}
             <h1 class="hero__title">Сантехработы<br><span class="hero__accent">в {{ region.name_prep }}</span></h1>
             <p class="hero__subtitle">Сантехмонтаж и ремонт любой сложности: от смесителя до стояка. {{ region.note }}</p>
@@ -23,8 +26,9 @@
             </div>
             <div class="hero__features">
                 <div class="hero__feature">
-                    <strong>Цена до начала работ</strong>
-                    <span>каждая работа индивидуальна</span>
+                    {% if meta.key == 'gidrodinamika' %}<strong>От 15 руб / метр</strong>
+                    <span>единая цена для физ. и юр. лиц</span>{% else %}<strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>{% endif %}
                 </div>
                 <div class="hero__feature">
                     <strong>14 дней</strong>
@@ -89,6 +93,14 @@
                 <p><strong>Регулярное обслуживание</strong> — по отдельным условиям</p>
             </div>
         </div>
+        {% elif service == 'gidrodinamicheskaya-prochistka' %}
+        <div class="price-single" style="margin-top: 32px;">
+            <div class="service-card">
+                <h3 class="service-card__title">Единая цена — физ. и юр. лица</h3>
+                <p class="service-card__text">Мойка прямых участков канализации и ливнёвки водой под давлением. Организациям — договор, безнал и закрывающие документы по той же цене за метр.</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+            </div>
+        </div>
         {% else %}
         <div class="price-line">{{ meta.price }}</div>
         {% endif %}
@@ -125,7 +137,7 @@
         <div class="section__header">
             <h2 class="section__title">Куда ещё выезжаем</h2>
         </div>
-        <p style="text-align: center; line-height: 2;"><a href="{% if service == 'prochistka-kanalizatsii' %}/prochistka-kanalizatsii/{% else %}/santekhnicheskie-raboty/{% endif %}" class="geo-link">Барановичи</a> · {% for r in regions %}{% if r.slug == region.slug %}<strong>{{ r.name }}</strong>{% else %}<a href="/{{ service }}/{{ r.slug }}/" class="geo-link">{{ r.name }}</a>{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %} · <a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
+        <p style="text-align: center; line-height: 2;"><a href="/{{ service }}/" class="geo-link">Барановичи</a> · {% for r in regions %}{% if r.slug == region.slug %}<strong>{{ r.name }}</strong>{% else %}<a href="/{{ service }}/{{ r.slug }}/" class="geo-link">{{ r.name }}</a>{% endif %}{% if not forloop.last %} · {% endif %}{% endfor %} · <a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
         <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>

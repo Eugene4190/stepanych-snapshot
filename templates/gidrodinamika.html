@@ -147,4 +147,14 @@
 </section>
 
 {% include 'includes/faq.html' %}
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">География выездов</h2>
+        </div>
+        <p style="text-align: center; line-height: 2;"><strong>Барановичи</strong> · {% for r in regions %}<a href="/gidrodinamicheskaya-prochistka/{{ r.slug }}/" class="geo-link">{{ r.name }}</a> · {% endfor %}<a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+    </div>
+</section>
 {% endblock %}

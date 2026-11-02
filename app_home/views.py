@@ -108,7 +108,7 @@ def sitemap(request):
         ('/kontakty/', '0.5'),
     ]
     urls += [(f"/santehnik/{r['slug']}/", '0.7') for r in REGIONS]
-    urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty')]
+    urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty', 'gidrodinamicheskaya-prochistka')]
     today = date.today().isoformat()
     items = ''.join(
         f'<url><loc>{host}{path}</loc><lastmod>{today}</lastmod><priority>{priority}</priority></url>'

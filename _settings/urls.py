@@ -11,6 +11,7 @@ urlpatterns = [
     path('santehnik/<slug:slug>/', views.region, name='region'),
     path('prochistka-kanalizatsii/<slug:slug>/', views.region_service, {'service': 'prochistka-kanalizatsii'}, name='region_prochistka'),
     path('santekhnicheskie-raboty/<slug:slug>/', views.region_service, {'service': 'santekhnicheskie-raboty'}, name='region_santehnika'),
+    path('gidrodinamicheskaya-prochistka/<slug:slug>/', views.region_service, {'service': 'gidrodinamicheskaya-prochistka'}, name='region_gidrodinamika'),
     path('robots.txt', views.robots, name='robots'),
     path('sitemap.xml', views.sitemap, name='sitemap'),
     path('gidrodinamicheskaya-prochistka/', views.gidrodinamika, name='gidrodinamika'),
