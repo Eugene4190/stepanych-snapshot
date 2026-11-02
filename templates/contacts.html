@@ -20,19 +20,19 @@
 <section class="section">
     <div class="container">
         <div class="services-grid">
-            <div class="service-card">
+            <div class="service-card service-card--clickable">
                 <h3 class="service-card__title"><i class="fas fa-phone" style="color: var(--primary);"></i> Телефон</h3>
                 <p class="service-card__text"><a href="tel:{{ site_phone }}" class="contact-phone">{{ site_phone_display }}</a></p>
             </div>
-            <div class="service-card">
+            <div class="service-card service-card--clickable">
                 <h3 class="service-card__title"><i class="fab fa-telegram" style="color: #0088cc;"></i> Telegram</h3>
                 <p class="service-card__text"><a href="{{ site_telegram|social_href:social_text }}" style="color: var(--primary); font-weight: 600;">Перейти в Telegram</a></p>
             </div>
-            <div class="service-card">
+            <div class="service-card service-card--clickable">
                 <h3 class="service-card__title"><i class="fab fa-viber" style="color: #7360f2;"></i> Viber</h3>
                 <p class="service-card__text"><a href="{{ site_viber }}" style="color: var(--primary); font-weight: 600;">Написать в Viber</a></p>
             </div>
-            <div class="service-card">
+            <div class="service-card service-card--clickable">
                 <h3 class="service-card__title"><i class="fab fa-whatsapp" style="color: #25d366;"></i> WhatsApp</h3>
                 <p class="service-card__text"><a href="{{ site_whatsapp|social_href:social_text }}" style="color: var(--primary); font-weight: 600;">Написать в WhatsApp</a></p>
             </div>

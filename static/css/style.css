@@ -1404,6 +1404,17 @@ details[open] .faq__q:after {
     font-size: 16px;
 }
 
+.service-card--clickable {
+    cursor: pointer;
+}
+
+.service-card--clickable .service-card__text a::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+}
+
 .price-single {
     max-width: 620px;
     margin: 0 auto;
