@@ -1401,6 +1401,11 @@ details[open] .faq__q:after {
     font-size: 16px;
 }
 
+.price-single {
+    max-width: 620px;
+    margin: 0 auto;
+}
+
 .trust-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
