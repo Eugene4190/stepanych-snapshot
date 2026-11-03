@@ -21,7 +21,7 @@
             <p class="hero__subtitle">{{ task.lead }}</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
-                <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+                <a href="#order" class="btn btn--outline">Оставьте заявку онлайн</a>
             </div>
             <div class="hero__features">
                 <div class="hero__feature">
@@ -46,9 +46,9 @@
         <div class="section__header">
             <h2 class="section__title">{{ task.symptoms_title }}</h2>
         </div>
-        <ul class="check-list">
+        <ul class="task-grid">
             {% for s in task.symptoms %}
-            <li>{{ s }}</li>
+            <li><i class="fas fa-check"></i><span>{{ s }}</span></li>
             {% endfor %}
         </ul>
     </div>
@@ -59,40 +59,72 @@
         <div class="section__header">
             <h2 class="section__title">{{ task.steps_title }}</h2>
         </div>
-        <ul class="check-list">
+        <ol class="task-steps">
             {% for s in task.steps %}
-            <li>{{ s }}</li>
+            <li>
+                <div class="task-steps__num">{{ forloop.counter }}</div>
+                <div class="task-steps__text">{{ s }}</div>
+            </li>
             {% endfor %}
-        </ul>
-        {% if task.price_line %}
-        <p class="section__subtitle">{{ task.price_line }}</p>
-        {% elif task.price_from %}
-        <p class="section__subtitle">От {{ task.price_from }} руб. {{ task.price_note }}</p>
+        </ol>
+        {% if task.price_from or task.price_line %}
+        <div class="price-panel">
+            <div class="price-panel__content">
+                <strong>Цена до начала работ</strong>
+                <span>{% if task.price_line %}{{ task.price_line }}{% else %}{{ task.price_note }}{% endif %}</span>
+            </div>
+            <div class="price-panel__value">{% if task.price_from %}от {{ task.price_from }} руб{% else %}от {{ task.offer_price }} руб / метр{% endif %}</div>
+        </div>
         {% else %}
-        <p class="section__subtitle">{{ task.price_note }}</p>
+        <p class="section__subtitle price-note">{{ task.price_note }}</p>
         {% endif %}
     </div>
 </section>
 
 <section class="section">
     <div class="container">
-        <div class="section__header">
-            <h2 class="section__title">Вопросы и ответы</h2>
+        <div class="about-preview">
+            <div class="about-preview__content">
+                <h2 class="about-preview__title">Кто к вам приедет</h2>
+                <p class="about-preview__text">Меня зовут Юрий. Сантехникой занимаюсь более 15 лет, официально работаю как ИП. Специализация — прочистка канализации: квартиры, частные дома, организации. А также выполняю и другие сантехнические работы по согласованию.</p>
+                <p class="about-preview__text">Никаких «мастеров с биржи», которых вы видите впервые и больше никогда не увидите.</p>
+                <p class="about-preview__text"><strong>ИП Молчан Юрий Степанович</strong> · УНП 291568475</p>
+                <div class="hero__buttons">
+                    <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> {{ site_phone_display }}</a>
+                    <a href="https://vsf.by/yura" class="btn btn--outline">Виртуальная визитка</a>
+                </div>
+            </div>
+            <div class="about-preview__image">
+                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
+            </div>
         </div>
-        {% include 'includes/faq.html' %}
     </div>
 </section>
+
+{% include 'includes/faq.html' %}
 
 <section class="section section--light">
     <div class="container">
         <div class="section__header">
             <h2 class="section__title">Смотрите также</h2>
         </div>
-        <ul class="check-list">
-            <li><a href="/prochistka-kanalizatsii/">Прочистка канализации в Барановичах — все случаи и цены</a></li>
-            <li><a href="/gidrodinamicheskaya-prochistka/">Гидродинамическая промывка труб водой под давлением</a></li>
-            <li><a href="/santekhnicheskie-raboty/">Сантехнические работы: смесители, сифоны, унитазы, стояки</a></li>
-        </ul>
+        <div class="services-grid services-grid--3">
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fas fa-water"></i>Прочистка канализации</h3>
+                <p class="service-card__text">Любой засор: квартира, частный дом, стояк или организация.</p>
+                <a class="service-card__link" href="/prochistka-kanalizatsii/">Все случаи и цены <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fas fa-tint"></i>Гидродинамика</h3>
+                <p class="service-card__text">Промывка труб водой под давлением, без механики внутри линии.</p>
+                <a class="service-card__link" href="/gidrodinamicheskaya-prochistka/">Как это работает <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card">
+                <h3 class="service-card__title"><i class="fas fa-wrench"></i>Сантехработы</h3>
+                <p class="service-card__text">Смесители, сифоны, унитазы, стояки и подводка воды.</p>
+                <a class="service-card__link" href="/santekhnicheskie-raboty/">Что ещё делаем <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
 </section>
 
