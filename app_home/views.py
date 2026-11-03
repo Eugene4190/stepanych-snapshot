@@ -8,7 +8,9 @@ from django.http import HttpResponse, Http404
 from datetime import date
 from urllib.parse import urlsplit
 from .models import Lead, SiteSettings
-from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_GIDRODINAMIKA, FAQ_REGIONS, REGION_SERVICE_META
+import json
+
+from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_GIDRODINAMIKA, FAQ_REGIONS, REGION_SERVICE_META, TASKS
 import requests
 
 
@@ -131,6 +133,7 @@ def sitemap(request):
         ('/o-nas/', '0.5'),
         ('/kontakty/', '0.5'),
     ]
+    urls += [(f"/{t['slug']}/", '0.8') for t in TASKS]
     urls += [(f"/santehnik/{r['slug']}/", '0.7') for r in REGIONS]
     urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty', 'gidrodinamicheskaya-prochistka')]
     today = date.today().isoformat()
@@ -226,3 +229,34 @@ def feedback(request):
 
     messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
     return redirect(back_url(request))
+
+
+def task_page(request, slug):
+    task = next((t for t in TASKS if t['slug'] == slug), None)
+    if not task:
+        raise Http404
+    crumbs = [
+        {'url': '/prochistka-kanalizatsii/', 'name': 'Прочистка канализации в Барановичах'},
+        {'url': f"/{slug}/", 'name': task['crumb']},
+    ]
+    schemas = []
+    offer_price = task.get('offer_price') or task.get('price_from')
+    if task.get('service_type') and offer_price:
+        offer_desc = task.get('offer_desc') or f"от {offer_price} руб, итоговая цена называется до начала работ"
+        schemas.append(json.dumps({
+            '@context': 'https://schema.org',
+            '@type': 'Service',
+            'name': task['title'],
+            'serviceType': task['service_type'],
+            'provider': {'@type': 'Plumber', 'name': 'Степаныч', 'telephone': '+375292044963'},
+            'areaServed': {'@type': 'City', 'name': 'Барановичи'},
+            'offers': {'@type': 'Offer', 'priceCurrency': 'BYN', 'price': str(offer_price), 'description': offer_desc},
+        }, ensure_ascii=False))
+    return render(request, 'task.html', {
+        'task': task,
+        'crumbs': crumbs,
+        'faq': task['faq'],
+        'social_text': task['social_text'],
+        'nav_active': 'prochistka',
+        'service_schema': schemas[0] if schemas else '',
+    })

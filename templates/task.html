@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ task.title }}{% endblock %}
+{% block meta_description %}{{ task.desc }}{% endblock %}
+{% block og_title %}{{ task.title }}{% endblock %}
+{% block og_description %}{{ task.og_desc }}{% endblock %}
+{% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-prochistka.png{% endblock %}
+{% block og_image_width %}1080{% endblock %}
+{% block og_image_height %}1080{% endblock %}
+
+{% block extra_head %}
+{% if service_schema %}<script type="application/ld+json">{{ service_schema }}</script>{% endif %}
+{% endblock %}
+
+{% block content %}
+{% include 'partials/breadcrumbs.html' %}
+<section class="hero">
+    <div class="container hero__container">
+        <div class="hero__content">
+            <h1 class="hero__title">{{ task.h1 }} <span class="hero__accent">{{ task.h1_accent }}</span></h1>
+            <p class="hero__subtitle">{{ task.lead }}</p>
+            <div class="hero__buttons">
+                <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
+                <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
+            </div>
+            <div class="hero__features">
+                <div class="hero__feature">
+                    <strong>Цена до начала работ</strong>
+                    <span>каждая работа индивидуальна</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>В день обращения</strong>
+                    <span>Барановичи, 9:00–23:00 без выходных</span>
+                </div>
+                <div class="hero__feature">
+                    <strong>14 дней</strong>
+                    <span>гарантия на устранённый засор</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">{{ task.symptoms_title }}</h2>
+        </div>
+        <ul class="check-list">
+            {% for s in task.symptoms %}
+            <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">{{ task.steps_title }}</h2>
+        </div>
+        <ul class="check-list">
+            {% for s in task.steps %}
+            <li>{{ s }}</li>
+            {% endfor %}
+        </ul>
+        {% if task.price_line %}
+        <p class="section__subtitle">{{ task.price_line }}</p>
+        {% elif task.price_from %}
+        <p class="section__subtitle">От {{ task.price_from }} руб. {{ task.price_note }}</p>
+        {% else %}
+        <p class="section__subtitle">{{ task.price_note }}</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Вопросы и ответы</h2>
+        </div>
+        {% include 'includes/faq.html' %}
+    </div>
+</section>
+
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Смотрите также</h2>
+        </div>
+        <ul class="check-list">
+            <li><a href="/prochistka-kanalizatsii/">Прочистка канализации в Барановичах — все случаи и цены</a></li>
+            <li><a href="/gidrodinamicheskaya-prochistka/">Гидродинамическая промывка труб водой под давлением</a></li>
+            <li><a href="/santekhnicheskie-raboty/">Сантехнические работы: смесители, сифоны, унитазы, стояки</a></li>
+        </ul>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
+{% endblock %}

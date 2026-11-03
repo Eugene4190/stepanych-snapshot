@@ -23,4 +23,5 @@ urlpatterns = [
     path('o-nas/', views.about, name='about'),
     path('kontakty/', views.contacts, name='contacts'),
     path('feedback/', views.feedback, name='feedback'),
+    path('<slug:slug>/', views.task_page, name='task_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
