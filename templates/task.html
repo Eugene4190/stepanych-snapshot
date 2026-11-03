@@ -32,10 +32,17 @@
                     <strong>Быстрый выезд</strong>
                     <span>Барановичи, 9:00–23:00 без выходных</span>
                 </div>
+                {% if task.slug == 'kak-prochistit-zasor-samomu' %}
+                <div class="hero__feature">
+                    <strong>Официально</strong>
+                    <span>ИП Молчан, УНП 291568475</span>
+                </div>
+                {% else %}
                 <div class="hero__feature">
                     <strong>14 дней</strong>
-                    <span>гарантия на устранённый засор</span>
+                    <span>гарантия на нашу работу</span>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -77,6 +84,9 @@
         </div>
         {% else %}
         <p class="section__subtitle price-note">{{ task.price_note }}</p>
+        {% endif %}
+        {% if task.disclaimer %}
+        <p class="section__subtitle price-note">{{ task.disclaimer }}</p>
         {% endif %}
     </div>
 </section>
