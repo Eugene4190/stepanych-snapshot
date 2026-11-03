@@ -242,7 +242,7 @@ def task_page(request, slug):
     schemas = []
     offer_price = task.get('offer_price') or task.get('price_from')
     if task.get('service_type') and offer_price:
-        offer_desc = task.get('offer_desc') or f"от {offer_price} руб, итоговая цена называется до начала работ"
+        offer_desc = task.get('offer_desc') or f"от {offer_price} руб, цену называем до начала работ"
         schemas.append(json.dumps({
             '@context': 'https://schema.org',
             '@type': 'Service',
