@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия{% elif meta.key == 'gidrodinamika' %}от 15 руб/метр, гарантия{% else %}вызов без выходных{% endif %}{% endblock %}
-{% block meta_description %}{{ meta.name }} в {{ region.name_prep }}: мастер без посредников, цена до начала работ, гарантия 14 дней, без выходных. Звоните: {{ site_phone_display }}.{% endblock %}
+{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия 14 дней на работу{% elif meta.key == 'gidrodinamika' %}от 15 руб/метр, гарантия 14 дней на работу{% else %}вызов без выходных{% endif %}{% endblock %}
+{% block meta_description %}{{ meta.name }} в {{ region.name_prep }}: мастер без посредников, цена до начала работ, гарантия 14 дней на работу, без выходных. Звоните: {{ site_phone_display }}.{% endblock %}
 {% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ{% endblock %}
-{% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней.{% endblock %}
+{% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ, гарантия 14 дней на работу.{% endblock %}
 
 {% block extra_head %}
 <script type="application/ld+json">
