@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 
-{% block title %}Прочистка канализации и сантехник в Барановичах — Степаныч{% endblock %}
-{% block meta_description %}Прочистка канализации от 100 руб и сантехработы в Барановичах и районе: без посредников, цена до начала работ, гарантия 14 дней. Звоните: +375 (29) 204-49-63.{% endblock %}
-{% block og_title %}Прочистка канализации и сантехник в Барановичах — выезд без выходных{% endblock %}
-{% block og_description %}Без посредников: прочистка и сантехработы в Барановичах. Цена до начала работ, гарантия 14 дней.{% endblock %}
+{% block title %}Прочистка канализации и сантехработы в Барановичах — Степаныч{% endblock %}
+{% block meta_description %}Прочистка канализации от 100 руб и сантехработы в Барановичах и районе: без посредников, цена до начала работ. Звоните: {{ site_phone_display }}.{% endblock %}
+{% block og_title %}Прочистка канализации и сантехработы в Барановичах — выезд без выходных{% endblock %}
+{% block og_description %}Без посредников: прочистка и сантехработы в Барановичах. Цена до начала работ.{% endblock %}
 {% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-avr.png{% endblock %}
 {% block og_image_width %}1080{% endblock %}
 {% block og_image_height %}1080{% endblock %}
@@ -24,12 +24,12 @@
                     <span>опыт работы с канализацией и сантехникой</span>
                 </div>
                 <div class="hero__feature">
-                    <strong>Гарантия на работы</strong>
-                    <span>отвечаю за то, что сделал</span>
+                    <strong>Квартиры, дома, организации</strong>
+                    <span>и частникам, и организациям</span>
                 </div>
                 <div class="hero__feature">
-                    <strong>Выезд входит в стоимость работ</strong>
-                    <span>назовём стоимость до начала работ</span>
+                    <strong>Выезд по Барановичам</strong>
+                    <span>входит в стоимость работ, при отказе оплачивается</span>
                 </div>
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="services-grid services-grid--3">
             <div class="service-card service-card--clickable">
                 <h3 class="service-card__title">Прочистка канализации</h3>
-                <p class="service-card__text">Засор в квартире, частном доме или организации. Электромеханическая машина. Гарантия на работу — 14 дней.</p>
+                <p class="service-card__text">Засор в квартире, частном доме или организации. Электромеханическая машина. Цена до начала работ.</p>
                 <div class="service-card__price">от 100 руб · цена до начала работ</div>
                 <a href="/prochistka-kanalizatsii/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
             </div>
@@ -66,7 +66,7 @@
                 <a href="/santekhnicheskie-raboty/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 32px; color: var(--text-light);"><strong>Не знаете, к какой сфере относится ваша проблема?</strong> Позвоните — разберёмся вместе и назовём цену.</p>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);"><strong>Не знаете, к какой сфере относится ваша проблема?</strong> Позвоните — разберусь вместе с вами и назову цену.</p>
     </div>
 </section>
 
@@ -81,8 +81,8 @@
         <div class="trust-grid">
             <div class="trust-card">
                 <div class="trust-card__icon"><i class="fas fa-shield-alt"></i></div>
-                <h3 class="trust-card__title">Гарантия 14 дней</h3>
-                <p class="trust-card__text">на нашу работу: если засор вернулся на том же участке — приезжаю и устраняю бесплатно</p>
+                <h3 class="trust-card__title">Гарантия на работу</h3>
+                <p class="trust-card__text">отвечаю за результат: если по моей вине что-то пойдёт не так — исправлю</p>
             </div>
             <div class="trust-card">
                 <div class="trust-card__icon"><i class="fas fa-user-tie"></i></div>
@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="about-preview__image">
-                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам, Барановичи">
+                <img src="/static/img/yuri.webp" width="928" height="1600" loading="lazy" decoding="async" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам, Барановичи">
             </div>
         </div>
     </div>
@@ -129,10 +129,10 @@
     <div class="container">
         <div class="section__header">
             <h2 class="section__title">География выездов</h2>
-            <p class="section__subtitle">Барановичи — базовая цена. За город — доплата за выезд, оговариваем по телефону заранее.</p>
+            <p class="section__subtitle">Выезд: {{ travel_policy }}.</p>
         </div>
         <p style="text-align: center; line-height: 2;"><strong>Барановичи</strong> · {% for r in regions %}<a href="/santehnik/{{ r.slug }}/" class="geo-link">{{ r.name }}</a> · {% endfor %}<a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
-        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, и я обсужу выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>
 {% endblock %}

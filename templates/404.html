@@ -1,15 +1,17 @@
 {% extends 'base.html' %}
 
 {% block title %}Страница не найдена — Степаныч{% endblock %}
-{% block meta_description %}Страница не найдена. Мастер на связи: позвоните +375 (29) 204-49-63 или перейдите в нужный раздел сайта Степаныч.{% endblock %}
+{% block meta_description %}Страница не найдена. Мастер на связи: позвоните {{ site_phone_display }} или перейдите в нужный раздел сайта Степаныч.{% endblock %}
 {% block og_title %}Страница не найдена{% endblock %}
 {% block og_description %}Страница не найдена. Мастер на связи: позвоните или перейдите в нужный раздел.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, follow">{% endblock %}
+{% block canonical %}{% endblock %}
 
 {% block content %}
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Ошибка 404<br><span class="hero__accent">страница не найдена</span></h1>
+            <h1 class="hero__title">Ошибка 404 —<br><span class="hero__accent">страница не найдена</span></h1>
             <p class="hero__subtitle">Адрес {{ request_path }} не существует или переехал. Мастер на связи без выходных 9:00–23:00 — позвоните или перейдите в нужный раздел ниже.</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>

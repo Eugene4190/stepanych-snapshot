@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block title %}Прочистка канализации в Барановичах — от 100 руб, устранение засоров{% endblock %}
-{% block meta_description %}Прочистка канализации и устранение засоров в Барановичах и районе: квартиры, дома, организации. Гарантия 14 дней, цена до начала работ. Звоните: +375 (29) 204-49-63.{% endblock %}
+{% block meta_description %}Прочистка канализации в Барановичах и районе: квартиры, дома, организации. Гарантия 14 дней, цена до начала работ. {{ site_phone_display }}.{% endblock %}
 {% block og_title %}Прочистка канализации в Барановичах — от 100 руб, устранение засоров{% endblock %}
-{% block og_description %}Засоры в Барановичах: квартиры, дома, организации. Гарантия 14 дней, цена до начала работ.{% endblock %}
+{% block og_description %}Засоры в Барановичах: квартиры, дома, организации. Гарантия 14 дней на устранённый засор, цена до начала работ.{% endblock %}
 {% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-prochistka.png{% endblock %}
 {% block og_image_width %}1080{% endblock %}
 {% block og_image_height %}1080{% endblock %}
 
 {% block extra_head %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Прочистка канализации в Барановичах","serviceType":"Прочистка канализации электромеханической машиной","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"Барановичи"},"offers":{"@type":"Offer","priceCurrency":"BYN","price":"100","description":"от 100 руб, итоговая цена называется до начала работ"}}
+{"@context":"https://schema.org","@type":"Service","name":"Прочистка канализации в Барановичах","serviceType":"Прочистка канализации электромеханической машиной","provider":{"@type":"Plumber","name":"Степаныч","telephone":"{{ site_phone }}"},"areaServed":{"@type":"City","name":"Барановичи"},"offers":{"@type":"Offer","priceCurrency":"BYN","price":"100","description":"минимум 100 руб; для юрлиц — от 15 руб за метр линии"}}
 </script>
 {% endblock %}
 
@@ -19,8 +19,8 @@
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Прочистка канализации <span class="hero__accent">в Барановичах</span><br>от 100 руб</h1>
-            <p class="hero__subtitle">Цену называем до начала работ. Никаких посредников и наценок: вы звоните напрямую мастеру, который к вам приедет.</p>
+            <h1 class="hero__title">Прочистка канализации <span class="hero__accent">в Барановичах</span> —<br>от 100 руб</h1>
+            <p class="hero__subtitle">Цену называю до начала работ. Никаких посредников и наценок: вы звоните напрямую мастеру, который к вам приедет.</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
                 <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="hero__feature">
                     <strong>14 дней</strong>
-                    <span>гарантия на нашу работу</span>
+                    <span>гарантия на устранённый засор</span>
                 </div>
             </div>
         </div>
@@ -52,18 +52,18 @@
         <div class="section__header">
             <h2 class="section__title">Цены</h2>
         </div>
-        <div class="services-grid">
+        <div class="services-grid price-cards">
             <div class="service-card">
                 <h3 class="service-card__title">Квартира или частный дом</h3>
                 <p class="service-card__text">Раковина, унитаз, ванна, стояк, внутренняя и наружная сеть в доме. Прочистка профессиональным электромеханическим оборудованием.</p>
                 <div class="service-card__price">от 100 руб</div>
-                <p><strong>Входит:</strong> выезд, работа, гарантия 14 дней на нашу работу</p>
+                <p><strong>Входит:</strong> работа и гарантия 14 дней на устранённый засор. Выезд: {{ travel_policy }}.</p>
             </div>
             <div class="service-card">
                 <h3 class="service-card__title">Юрлица (безнал)</h3>
                 <p class="service-card__text">Кафе, магазины, предприятия. Договор, оплата по счёту, полный пакет документов. Прочистка стояков и внутренних линий, аварийный выезд по договору.</p>
                 <div class="service-card__price">от 15 руб / метр</div>
-                <p><strong>Регулярное обслуживание</strong> — по отдельным условиям</p>
+                <p><strong>Минимум 100 руб</strong> за работу. Регулярное обслуживание — по отдельным условиям. Выезд: {{ travel_policy }}.</p>
             </div>
         </div>
         <div class="content" style="margin: 32px auto 0; max-width: 800px;">
@@ -71,11 +71,12 @@
             <ul>
                 <li>Разбор мебели и вскрытие коробов, чтобы добраться до трубы</li>
                 <li>Длинная наружная сеть в частном доме, колодцы</li>
-                <li>Застарелые пробки: жир, ил, корни — плотный засор требует больше времени</li>
-                <li>Химия в трубе до нашего приезда: работать с такой трубой дольше — цену согласуем до начала работ, как и любой дополнительный объём</li>
+                <li>Застарелые пробки: жир и ил — плотный засор требует больше времени</li>
+                <li>Химия в трубе до моего приезда: работать с такой трубой дольше — цену согласую до начала работ, как и любой дополнительный объём</li>
             </ul>
-            <p>Если по ходу работы понадобится дополнительный объём — его цену согласуем с вами <strong>до начала этих работ</strong>.</p>
-            <p><strong>Не знаете, сколько будет стоить ваш случай?</strong> Позвоните! Выезд по Барановичам входит в стоимость выполненных работ.</p>
+            <p>Если по ходу работы понадобится дополнительный объём — его цену согласую с вами <strong>до начала этих работ</strong>.</p>
+            <p><strong>Не знаете, сколько будет стоить ваш случай?</strong> Позвоните! Выезд: {{ travel_policy }}.</p>
+            <p><strong>Гарантия 14 дней</strong> действует на устранённый засор. Она не действует, если из трубы извлечены посторонние предметы — салфетки, тряпки, средства гигиены, игрушки, строительный мусор и т. п.: их повторное попадание не является браком работы.</p>
         </div>
     </div>
 </section>
@@ -88,7 +89,7 @@
         </div>
         <div class="work-grid">
             <div>
-                <img src="/static/img/mashinka.webp" alt="Электромеханическая машина для прочистки канализации в работе">
+                <img src="/static/img/mashinka.webp" width="1000" height="681" loading="lazy" decoding="async" alt="Электромеханическая машина для прочистки канализации в работе">
             </div>
             <div class="content">
                 <h3>Профессиональное оборудование</h3>
@@ -99,22 +100,22 @@
             <div class="step">
                 <div class="step__num">1</div>
                 <h3 class="step__title">Звонок</h3>
-                <p class="step__text">Описываете проблему. Задаём 2–3 вопроса и называем стоимость: от и до.</p>
+                <p class="step__text">Описываете проблему. Задаю 2–3 вопроса и называю стоимость: от и до.</p>
             </div>
             <div class="step">
                 <div class="step__num">2</div>
                 <h3 class="step__title">Выезд</h3>
-                <p class="step__text">Приезжаем в согласованное время с оборудованием. Реальное время называем по телефону.</p>
+                <p class="step__text">Приезжаю в согласованное время с оборудованием. Реальное время называю по телефону.</p>
             </div>
             <div class="step">
                 <div class="step__num">3</div>
                 <h3 class="step__title">Прочистка</h3>
-                <p class="step__text">Устраняем засор профессиональной электромеханикой. Если случай сложнее — согласуем цену до начала работ.</p>
+                <p class="step__text">Устраняю засор профессиональной электромеханикой. Если случай сложнее — согласую цену до начала работ.</p>
             </div>
             <div class="step">
                 <div class="step__num">4</div>
                 <h3 class="step__title">Проверка</h3>
-                <p class="step__text">Проверяем проливом воды при вас. Гарантия 14 дней.</p>
+                <p class="step__text">Проверяю проливом воды при вас. Гарантия 14 дней на устранённый засор.</p>
             </div>
         </div>
     </div>
@@ -135,7 +136,7 @@
                 </div>
             </div>
             <div class="about-preview__image">
-                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
+                <img src="/static/img/yuri.webp" width="928" height="1600" loading="lazy" decoding="async" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
             </div>
         </div>
     </div>
@@ -149,7 +150,7 @@
             <h2 class="section__title">География выездов</h2>
         </div>
         <p style="text-align: center; line-height: 2;"><strong>Барановичи</strong> · {% for r in regions %}<a href="/prochistka-kanalizatsii/{{ r.slug }}/" class="geo-link">{{ r.name }}</a> · {% endfor %}<a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
-        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, и я обсужу выезд индивидуально, стоимость зависит от расстояния.</p>
     </div>
 </section>
 {% endblock %}

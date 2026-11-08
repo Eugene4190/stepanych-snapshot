@@ -69,7 +69,8 @@ class TelegramRecipient(models.Model):
 
 class Lead(models.Model):
     phone = models.CharField(max_length=50, verbose_name='Номер телефона')
-    description = models.TextField(verbose_name='Описание проблемы')
+    description = models.TextField(blank=True, verbose_name='Описание проблемы')
+    source = models.CharField(max_length=255, blank=True, verbose_name='Страница заявки')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Создана')
 
     class Meta:

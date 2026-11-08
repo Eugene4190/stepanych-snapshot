@@ -16,6 +16,13 @@ SECRET_KEY = os.getenv('SECRET_KEY', '')
 
 DEBUG = os.getenv("DEBUG") == "True"
 
+SITE_PHONE = os.getenv('SITE_PHONE', '+375292044963')
+SITE_PHONE_DISPLAY = os.getenv('SITE_PHONE_DISPLAY', '+375 (29) 204-49-63')
+METRICA_ID = os.getenv('METRICA_ID', '114024474')
+GA_ID = os.getenv('GA_ID', 'G-X4BGEXF0R2')
+# Обновляйте при изменении контента, а не при каждом запросе sitemap.xml.
+SITEMAP_LASTMOD = os.getenv('SITEMAP_LASTMOD', '2026-11-07')
+
 if not DEBUG and not SECRET_KEY:
     raise RuntimeError(
         "SECRET_KEY не задан. Заполните файл .env перед запуском в production-режиме."
@@ -25,6 +32,10 @@ if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
     ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1, localhost, stepanych.by, 0.0.0.0, 62.182.102.27').split(',')]
+
+# Nginx передаёт схему запроса в X-Forwarded-Proto. Без этого canonical,
+# og:url, sitemap и robots отдают http вместо https.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -97,15 +108,13 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = "static/"
-if DEBUG:
-    STATICFILES_DIRS = [
-        BASE_DIR / "static",
-    ]
-else:
-    STATIC_ROOT = BASE_DIR / "static"
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 MAILERS = {

@@ -2,7 +2,7 @@
 {% load social %}
 
 {% block title %}Контакты сантехника в Барановичах — телефон, Viber, Telegram{% endblock %}
-{% block meta_description %}Контакты мастера по прочистке канализации и сантехработам в Барановичах: телефон +375 (29) 204-49-63, Viber, WhatsApp, Telegram. Без выходных 9:00–23:00.{% endblock %}
+{% block meta_description %}Контакты мастера по прочистке канализации и сантехработам в Барановичах: телефон {{ site_phone_display }}, Viber, WhatsApp, Telegram. Без выходных 9:00–23:00.{% endblock %}
 {% block og_title %}Контакты сантехника в Барановичах — телефон, Viber, Telegram{% endblock %}
 {% block og_description %}Телефон, Viber, WhatsApp, Telegram мастера. Барановичи, без выходных 9:00–23:00.{% endblock %}
 
@@ -11,7 +11,7 @@
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Контакты: сантехник <span class="hero__accent">в Барановичах</span><br>звоните без выходных</h1>
+            <h1 class="hero__title">Контакты: сантехник <span class="hero__accent">в Барановичах</span> —<br>звоните без выходных</h1>
             <p class="hero__subtitle">Звоните или оставьте заявку. Без выходных 9:00–23:00. Аварийный выезд — по договорённости.</p>
         </div>
     </div>
@@ -42,7 +42,7 @@
             <div class="info-block__item">
                 <div class="info-block__icon"><i class="fas fa-clock"></i></div>
             <strong>Режим работы</strong>
-                <span>Пн–Вс: 9:00 – 23:00</span>
+                <span>Пн–Вс: 9:00–23:00</span>
             </div>
             <div class="info-block__item">
                 <div class="info-block__icon"><i class="fas fa-bolt"></i></div>
@@ -60,6 +60,7 @@
                 <span>Барановичи и район, выезд в соседние города</span>
             </div>
         </div>
+        <p style="text-align: center; margin-top: 24px; color: var(--text-light);">Выезд: {{ travel_policy }}.</p>
     </div>
 </section>
 

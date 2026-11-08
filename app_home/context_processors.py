@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from .models import SiteSettings, Service, normalize_viber_link
 from .seo import REGIONS
 
@@ -10,11 +12,14 @@ def form_draft(request):
 def site_logo(request):
     settings_obj = SiteSettings.objects.first()
     context = {'site_logo': '/static/img/emblem.png'}
-    context['site_phone'] = '+375292044963'
-    context['site_phone_display'] = '+375 (29) 204-49-63'
-    context['site_viber'] = 'viber://chat?number=%2B375292044963'
-    context['site_whatsapp'] = 'https://wa.me/375292044963'
+    context['site_phone'] = settings.SITE_PHONE
+    context['site_phone_display'] = settings.SITE_PHONE_DISPLAY
+    context['site_viber'] = f'viber://chat?number=%2B{settings.SITE_PHONE.lstrip("+")}'
+    context['site_whatsapp'] = f'https://wa.me/{settings.SITE_PHONE.lstrip("+")}'
     context['site_telegram'] = 'https://t.me/Yuramolq'
+    context['metrica_id'] = settings.METRICA_ID
+    context['ga_id'] = settings.GA_ID
+    context['travel_policy'] = 'по Барановичам — входит в стоимость выполненных работ, при отказе оплачивается; за город — по расстоянию'
     context['social_text'] = 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер'
     context['services_menu'] = Service.objects.filter(is_active=True)
     context['regions'] = REGIONS

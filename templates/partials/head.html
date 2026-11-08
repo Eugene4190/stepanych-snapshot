@@ -2,33 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=114024474', 'ym');
-
-        ym(114024474, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/114024474" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X4BGEXF0R2"></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-X4BGEXF0R2');
+        window.SITE_ANALYTICS = {
+            metricaId: '{{ metrica_id }}',
+            gaId: '{{ ga_id }}'
+        };
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Степаныч — прочистка канализации и сантехработы в Барановичах{% endblock %}</title>
-    <meta name="description" content="{% block meta_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Мастер без посредников, цена до начала работ, гарантия 14 дней, выезд без выходных.{% endblock %}">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+    <meta name="description" content="{% block meta_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Мастер без посредников, цена до начала работ, выезд без выходных.{% endblock %}">
+    {% block robots %}<meta name="robots" content="index, follow">{% endblock %}
+    {% block canonical %}<link rel="canonical" href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">{% endblock %}
     <meta property="og:type" content="website">
     <meta property="og:locale" content="ru_RU">
     <meta property="og:title" content="{% block og_title %}Прочистка канализации и сантехработы в Барановичах — без выходных{% endblock %}">
-    <meta property="og:description" content="{% block og_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Цена до начала работ, гарантия.{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Прочистка канализации и сантехнические работы в Барановичах и районе. Цена до начала работ.{% endblock %}">
     <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
     <meta property="og:site_name" content="Степаныч">
     <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-avr.png{% endblock %}">
@@ -50,7 +38,7 @@
       "image": "{{ request.scheme }}://{{ request.get_host }}/static/img/emblem.png",
       "logo": "{{ request.scheme }}://{{ request.get_host }}/static/img/emblem.png",
       "telephone": "{{ site_phone }}",
-      "priceRange": "от 100 BYN",
+      "priceRange": "от 100 BYN за прочистку, от 15 BYN за метр гидродинамической промывки прямых участков",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Барановичи",

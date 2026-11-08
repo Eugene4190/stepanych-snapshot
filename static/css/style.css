@@ -672,6 +672,16 @@ ul {
     gap: 20px;
 }
 
+.price-cards {
+    grid-template-rows: auto auto auto auto;
+}
+
+.price-cards .service-card {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 4;
+}
+
 @media (min-width: 968px) {
     .services-grid {
         grid-template-columns: repeat(4, 1fr);
@@ -1027,6 +1037,18 @@ ul {
     color: white;
 }
 
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* Sticky contacts */
 .sticky-contacts {
     position: fixed;
@@ -1193,6 +1215,25 @@ ul {
     }
 }
 
+@media (max-width: 968px) {
+    .sticky-contacts {
+        bottom: 10px;
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 8px;
+    }
+    .footer {
+        padding-bottom: 76px;
+    }
+    .sticky-contacts__item {
+        width: 44px;
+        height: 44px;
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 648px) {
     .about-preview,
     .about-preview--wide {
@@ -1259,22 +1300,6 @@ ul {
     }
     .section__title {
         font-size: 28px;
-    }
-    .sticky-contacts {
-        bottom: 10px;
-        right: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        flex-direction: row;
-        gap: 8px;
-    }
-    .footer {
-        padding-bottom: 76px;
-    }
-    .sticky-contacts__item {
-        width: 44px;
-        height: 44px;
-        font-size: 20px;
     }
     .service-card {
         padding: 24px 18px;
@@ -1758,7 +1783,7 @@ p a {
     opacity: 1;
 }
 
-@media (max-width: 648px) {
+@media (max-width: 968px) {
     .scroll-top {
         left: auto;
         right: 12px;
@@ -1908,5 +1933,78 @@ summary {
     }
     .task-steps__text {
         padding-top: 7px;
+    }
+}
+
+.btn--small {
+    padding: 10px 18px;
+    font-size: 14px;
+}
+
+.cookie-banner {
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 18px 22px;
+    background: var(--dark, #0d2b45);
+    color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 16px 40px -12px rgba(7, 26, 43, 0.55);
+}
+
+.cookie-banner[hidden] {
+    display: none;
+}
+
+.cookie-banner p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cookie-banner a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.cookie-banner__actions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 10px;
+}
+
+.cookie-banner .btn--outline {
+    background: transparent;
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: none;
+}
+
+.cookie-banner .btn--outline:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: #ffffff;
+}
+
+@media (max-width: 699px) {
+    .cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+    }
+    .cookie-banner__actions {
+        width: 100%;
+    }
+    .cookie-banner__actions .btn {
+        flex: 1 1 0;
+        text-align: center;
     }
 }

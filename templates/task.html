@@ -9,7 +9,7 @@
 {% block og_image_height %}1080{% endblock %}
 
 {% block extra_head %}
-{% if service_schema %}<script type="application/ld+json">{{ service_schema }}</script>{% endif %}
+{% if service_schema %}<script type="application/ld+json">{{ service_schema|safe }}</script>{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">{{ task.h1 }} <span class="hero__accent">{{ task.h1_accent }}</span></h1>
+            <h1 class="hero__title">{{ task.h1 }} — <span class="hero__accent">{{ task.h1_accent }}</span></h1>
             <p class="hero__subtitle">{{ task.lead }}</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
@@ -37,10 +37,15 @@
                     <strong>Официально</strong>
                     <span>ИП Молчан, УНП 291568475</span>
                 </div>
-                {% else %}
+                {% elif task.guarantee %}
                 <div class="hero__feature">
                     <strong>14 дней</strong>
-                    <span>гарантия на нашу работу</span>
+                    <span>гарантия на устранённый засор</span>
+                </div>
+                {% else %}
+                <div class="hero__feature">
+                    <strong>Без выходных</strong>
+                    <span>9:00–23:00, аварии — по договорённости</span>
                 </div>
                 {% endif %}
             </div>
@@ -80,11 +85,14 @@
                 <strong>Цена до начала работ</strong>
                 <span>{% if task.price_line %}{{ task.price_line }}{% else %}{{ task.price_note }}{% endif %}</span>
             </div>
-            <div class="price-panel__value">{% if task.price_from %}от {{ task.price_from }} руб{% else %}от {{ task.offer_price }} руб / метр{% endif %}</div>
+            {% if task.price_from or task.offer_price %}
+            <div class="price-panel__value">{% if task.price_from %}от {{ task.price_from }} руб{% else %}от {{ task.offer_price }} руб{% endif %}</div>
+            {% endif %}
         </div>
         {% else %}
         <p class="section__subtitle price-note">{{ task.price_note }}</p>
         {% endif %}
+        <p class="section__subtitle price-note">Выезд: {{ travel_policy }}.</p>
         {% if task.disclaimer %}
         <p class="section__subtitle price-note">{{ task.disclaimer }}</p>
         {% endif %}
@@ -107,7 +115,7 @@
                 </div>
             </div>
             <div class="about-preview__image">
-                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
+                <img src="/static/img/yuri.webp" width="928" height="1600" loading="lazy" decoding="async" alt="Юрий Молчан — мастер по прочистке канализации, Барановичи">
             </div>
         </div>
     </div>
@@ -126,13 +134,13 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fas fa-tint"></i>Гидродинамика</h3>
-                <p class="service-card__text">Промывка труб водой под давлением, без механики внутри линии.</p>
+                <p class="service-card__text">Промывка только прямых участков труб водой под давлением, без механики внутри линии. Засоры и повороты — электромеханической машиной.</p>
                 <a class="service-card__link" href="/gidrodinamicheskaya-prochistka/">Как это работает <i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fas fa-wrench"></i>Сантехработы</h3>
                 <p class="service-card__text">Смесители, сифоны, унитазы, стояки и подводка воды.</p>
-                <a class="service-card__link" href="/santekhnicheskie-raboty/">Что ещё делаем <i class="fas fa-arrow-right"></i></a>
+                <a class="service-card__link" href="/santekhnicheskie-raboty/">Что ещё делаю <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </div>

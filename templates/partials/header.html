@@ -2,13 +2,13 @@
 <header class="header">
         <div class="header__container">
             <div class="header__left">
-                <button class="burger" id="burger" aria-label="Меню">
+                <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="nav">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
                 <a href="/" class="logo">
-                    <img src="{{ site_logo|default:'/static/img/emblem.png' }}" alt="Степаныч" class="logo__img">
+                    <img src="{{ site_logo|default:'/static/img/emblem.png' }}" alt="Степаныч" class="logo__img" width="192" height="192" decoding="async">
                     <span class="logo__title">Степаныч</span>
                 </a>
             </div>
@@ -25,7 +25,7 @@
                 <a href="tel:{{ site_phone }}" class="header__phone" aria-label="Позвонить">
                     <i class="fas fa-phone"></i>
                 </a>
-                <a href="#order" class="header__call">Оставить заявку</a>
+                <a href="{% if request.path == '/santehnik/' %}#order{% else %}/kontakty/#order{% endif %}" class="header__call">Оставить заявку</a>
             </div>
         </div>
     </header>

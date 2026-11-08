@@ -2,7 +2,7 @@
 {% load social %}
 
 {% block title %}Услуги сантехника в Барановичах — вызов на дом без выходных{% endblock %}
-{% block meta_description %}Услуги сантехника в Барановичах: смесители, сифоны, унитазы, стояки, водопровод и отопление. Цена до начала работ, оплата после. Звоните: +375 (29) 204-49-63.{% endblock %}
+{% block meta_description %}Услуги сантехника в Барановичах: смесители, сифоны, унитазы, стояки, водопровод и отопление. Цена до начала работ, оплата после. Звоните: {{ site_phone_display }}.{% endblock %}
 {% block og_title %}Сантехник в Барановичах — услуги сантехника, вызов на дом без выходных{% endblock %}
 {% block og_description %}Смесители, сифоны, унитазы, стояки, отопление, водопровод в Барановичах. Цена до начала работ.{% endblock %}
 {% block og_image %}{{ request.scheme }}://{{ request.get_host }}/static/img/square-santehnika.png{% endblock %}
@@ -11,7 +11,7 @@
 
 {% block extra_head %}
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Service","name":"Сантехработы в Барановичах","serviceType":"Сантехнические работы: монтаж, ремонт, обслуживание","provider":{"@type":"Plumber","name":"Степаныч","telephone":"+375292044963"},"areaServed":{"@type":"City","name":"Барановичи"}}
+{"@context":"https://schema.org","@type":"Service","name":"Сантехработы в Барановичах","serviceType":"Сантехнические работы: монтаж, ремонт, обслуживание","provider":{"@type":"Plumber","name":"Степаныч","telephone":"{{ site_phone }}"},"areaServed":{"@type":"City","name":"Барановичи"}}
 </script>
 {% endblock %}
 
@@ -20,8 +20,8 @@
 <section class="hero">
     <div class="container hero__container">
         <div class="hero__content">
-            <h1 class="hero__title">Услуги сантехника <span class="hero__accent">в Барановичах</span><br>вызов мастера на дом</h1>
-            <p class="hero__subtitle">Проблемы с сантехникой всегда приходятся на неожиданное время: закапал смеситель, не уходит вода, потёк унитаз. Опишите проблему — перезвоним, назовём стоимость до начала работ и приедем в согласованное время.</p>
+            <h1 class="hero__title">Услуги сантехника <span class="hero__accent">в Барановичах</span> —<br>вызов мастера на дом</h1>
+            <p class="hero__subtitle">Проблемы с сантехникой всегда приходятся на неожиданное время: закапал смеситель, не уходит вода, потёк унитаз. Опишите проблему — перезвоню, назову стоимость до начала работ и приеду в согласованное время.</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
                 <a href="#order" class="btn btn--outline">Неудобно звонить? Оставьте номер</a>
@@ -36,8 +36,8 @@
                     <span>опыт работы с канализацией и сантехникой</span>
                 </div>
                 <div class="hero__feature">
-                    <strong>Оплата после</strong>
-                    <span>наличные и безнал для юр. и физ. лиц</span>
+                    <strong>Квартиры, дома, организации</strong>
+                    <span>и частникам, и организациям</span>
                 </div>
             </div>
         </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title">Замена стояков</h3>
-                <p class="service-card__text">Стояки канализации, водоснабжения и отопления: объём и цену согласуем до начала работ.</p>
+                <p class="service-card__text">Стояки канализации, водоснабжения и отопления: объём и цену согласую до начала работ.</p>
             </div>
             <div class="service-card">
                 <h3 class="service-card__title">Отопление</h3>
@@ -84,10 +84,10 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title">Водопровод</h3>
-                <p class="service-card__text">Монтаж и замена труб водоснабжения, подключение и замена сантехприборов.</p>
+                <p class="service-card__text">Монтаж и замена труб водоснабжения, подключение и замена сантехники.</p>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Список не полный — всё индивидуально. Пришлите фото задачи в <a href="{{ site_viber }}">Viber</a> / <a href="{{ site_telegram|social_href:social_text }}">Telegram</a>: так точнее назовём цену и время.</p>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Список не полный — всё индивидуально. Пришлите фото задачи в <a href="{{ site_viber }}">Viber</a> / <a href="{{ site_telegram|social_href:social_text }}">Telegram</a>: так точнее назову цену и время.</p>
     </div>
 </section>
 
@@ -107,12 +107,12 @@
             <div class="step">
                 <div class="step__num">2</div>
                 <h3 class="step__title">Расчёт</h3>
-                <p class="step__text">Перезваниваем, уточняем детали и называем стоимость. Прайса нет — всё индивидуально, но цену вы знаете до начала работ.</p>
+                <p class="step__text">Перезвоню, уточню детали и назову стоимость. Прайса нет — всё индивидуально, но цену вы знаете до начала работ.</p>
             </div>
             <div class="step">
                 <div class="step__num">3</div>
                 <h3 class="step__title">Работа</h3>
-                <p class="step__text">Приезжаем в согласованное время, делаем, проверяем вместе. Оплата после работы.</p>
+                <p class="step__text">Приезжаю в согласованное время, делаю, проверяем вместе. Оплата после работы.</p>
             </div>
         </div>
     </div>
@@ -133,7 +133,7 @@
                 </div>
             </div>
             <div class="about-preview__image">
-                <img src="/static/img/yuri.webp" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам, Барановичи">
+                <img src="/static/img/yuri.webp" width="928" height="1600" loading="lazy" decoding="async" alt="Юрий Молчан — мастер по прочистке канализации и сантехработам, Барановичи">
             </div>
         </div>
     </div>
@@ -147,7 +147,7 @@
             <h2 class="section__title">География выездов</h2>
         </div>
         <p style="text-align: center; line-height: 2;"><strong>Барановичи</strong> · {% for r in regions %}<a href="/santekhnicheskie-raboty/{{ r.slug }}/" class="geo-link">{{ r.name }}</a> · {% endfor %}<a href="/santehnik/" class="geo-link">все регионы выездов</a></p>
-        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+        <p style="text-align: center; margin-top: 16px; color: var(--text-light);">Выезд: {{ travel_policy }}. Нет вашего населённого пункта в списке — позвоните, и я обсужу индивидуально.</p>
     </div>
 </section>
 {% endblock %}

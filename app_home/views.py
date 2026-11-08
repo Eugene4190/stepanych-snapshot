@@ -5,13 +5,19 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse, Http404
-from datetime import date
 from urllib.parse import urlsplit
 from .models import Lead, SiteSettings
+from django.core.cache import cache
 import json
+import logging
+import time
 
 from .seo import REGIONS, FAQ_HOME, FAQ_PROCHISTKA, FAQ_SANTEHNIKA, FAQ_GIDRODINAMIKA, FAQ_REGIONS, REGION_SERVICE_META, TASKS
 import requests
+
+logger = logging.getLogger(__name__)
+
+TRAVEL_POLICY = 'по Барановичам — входит в стоимость выполненных работ, при отказе оплачивается; за город — по расстоянию'
 
 
 def home(request):
@@ -38,6 +44,18 @@ def contacts(request):
     return render(request, 'contacts.html', {'crumbs': crumbs, 'social_text': 'Здравствуйте! У меня вопрос по услугам', 'nav_active': 'contacts'})
 
 
+def privacy(request):
+    crumbs = [{'url': '/politika-konfidencialnosti/', 'name': 'Политика обработки персональных данных'}]
+    return render(request, 'privacy.html', {'crumbs': crumbs, 'nav_active': ''})
+
+
+def error_500(request):
+    return render(request, '500.html', {
+        'site_phone': settings.SITE_PHONE,
+        'site_phone_display': settings.SITE_PHONE_DISPLAY,
+    }, status=500)
+
+
 def gidrodinamika(request):
     crumbs = [{'url': '/gidrodinamicheskaya-prochistka/', 'name': 'Гидродинамическая прочистка канализации'}]
     return render(request, 'gidrodinamika.html', {'faq': FAQ_GIDRODINAMIKA, 'crumbs': crumbs, 'social_text': 'Здравствуйте! Интересует гидродинамическая прочистка канализации', 'nav_active': 'gidrodinamika'})
@@ -53,8 +71,8 @@ def region(request, slug):
     if not item:
         raise Http404
     faq = [
-        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Стоимость выезда зависит от расстояния и объёма работ: цену называем до начала работ."},
-        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараемся приехать быстрее.'},
+        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Выезд — по расстоянию, стоимость называю заранее, до начала работ."},
+        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараюсь приехать быстрее.'},
         {'q': 'Какие работы вы выполняете на выезде?', 'a': 'Прочистка канализации и устранение засоров, а также сантехнические работы: смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод.'},
     ]
     crumbs = [
@@ -69,9 +87,9 @@ def region_service(request, slug, service):
     meta = REGION_SERVICE_META.get(service)
     if not item or not meta:
         raise Http404
-    faq = meta['faq'][:3] + [
-        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Стоимость выезда зависит от расстояния и объёма работ: цену называем до начала работ."},
-        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараемся приехать быстрее.'},
+    faq = meta['region_faq'] + [
+        {'q': f"Сколько стоит выезд в {item['acc']}?", 'a': f"{item['name']} — примерно {item['km']} км от Барановичей. Выезд — по расстоянию, стоимость называю заранее, до начала работ."},
+        {'q': f"Как быстро вы приезжаете в {item['acc']}?", 'a': 'По договорённости, обычно в течение одного-двух дней. Аварийные случаи — по созвону, стараюсь приехать быстрее.'},
     ]
     crumbs = [
         {'url': f'/{service}/', 'name': meta['name']},
@@ -81,6 +99,7 @@ def region_service(request, slug, service):
         'region': item,
         'service': service,
         'meta': meta,
+        'region_note': item['notes'][meta['key']],
         'faq': faq,
         'crumbs': crumbs,
         'nav_active': meta['key'],
@@ -132,13 +151,14 @@ def sitemap(request):
         ('/santehnik/', '0.8'),
         ('/o-nas/', '0.5'),
         ('/kontakty/', '0.5'),
+        ('/politika-konfidencialnosti/', '0.3'),
     ]
     urls += [(f"/{t['slug']}/", '0.8') for t in TASKS]
     urls += [(f"/santehnik/{r['slug']}/", '0.7') for r in REGIONS]
     urls += [(f"/{s}/{r['slug']}/", '0.7') for r in REGIONS for s in ('prochistka-kanalizatsii', 'santekhnicheskie-raboty', 'gidrodinamicheskaya-prochistka')]
-    today = date.today().isoformat()
+    lastmod = settings.SITEMAP_LASTMOD
     items = ''.join(
-        f'<url><loc>{host}{path}</loc><lastmod>{today}</lastmod><priority>{priority}</priority></url>'
+        f'<url><loc>{host}{path}</loc><lastmod>{lastmod}</lastmod><priority>{priority}</priority></url>'
         for path, priority in urls
     )
     xml = (
@@ -184,15 +204,36 @@ def feedback(request):
         messages.error(request, 'Приём заявок временно остановлен.')
         return redirect(back_url(request))
 
-    if request.POST.get('company', '').strip():
-        messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
+    # Скрытое поле заполняют только боты: автозаполнение формы отключено.
+    # Заявку не принимаем, но боту показываем обычный успех.
+    if request.POST.get('hp_site', '').strip():
+        logger.warning(
+            'Honeypot triggered; lead rejected (phone=%s, description=%r)',
+            request.POST.get('phone', '').strip()[:20],
+            request.POST.get('description', '').strip()[:200],
+        )
+        messages.success(request, 'Заявка отправлена! Перезвоню в ближайшее время.')
+        return redirect(back_url(request))
+
+    # Поле заполняет JS при открытии страницы: бот шлёт форму мгновенно.
+    ts_raw = request.POST.get('form_ts', '').strip()
+    if ts_raw.isdigit() and 0 <= time.time() * 1000 - int(ts_raw) < 3000:
+        logger.warning('Form submitted too fast; lead rejected (phone=%s)', request.POST.get('phone', '').strip()[:20])
+        messages.success(request, 'Заявка отправлена! Перезвоню в ближайшее время.')
+        return redirect(back_url(request))
+
+    ip = request.META.get('REMOTE_ADDR', '')
+    rl_key = f'lead_rl_{ip}'
+    attempts = cache.get(rl_key, 0)
+    if attempts >= 3:
+        messages.error(request, 'С вашего адреса уже отправлено несколько заявок. Позвоните — так быстрее.')
         return redirect(back_url(request))
 
     phone_raw = request.POST.get('phone', '').strip()
     description = request.POST.get('description', '').strip()
 
-    if not phone_raw or not description:
-        messages.error(request, 'Пожалуйста, заполните все поля формы.')
+    if not phone_raw:
+        messages.error(request, 'Укажите номер телефона — перезвоню и уточню детали.')
         request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
@@ -206,28 +247,35 @@ def feedback(request):
         request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
-    site_phone = settings_obj.phone if settings_obj and settings_obj.phone else '+375292044963'
+    site_phone = settings_obj.phone if settings_obj and settings_obj.phone else settings.SITE_PHONE
     if phone == normalize_phone(site_phone)[0]:
-        messages.error(request, 'Этот номер не ваш. Укажите свой номер, чтобы мы могли перезвонить.')
+        messages.error(request, 'Этот номер не ваш. Укажите свой номер, чтобы я мог перезвонить.')
         request.session['form_draft'] = {'phone': phone_raw, 'description': description}
         return redirect(back_url(request))
 
-    lead = Lead.objects.create(phone=phone, description=description)
+    source = (request.POST.get('page', '').strip() or request.META.get('HTTP_REFERER', ''))[:255]
+    lead = Lead.objects.create(phone=phone, description=description, source=source)
+    cache.set(rl_key, attempts + 1, 600)
 
     if settings_obj and settings_obj.bot_token:
-        text = f'Новая заявка с сайта stepanych.by\n\nТелефон: {phone}\n\nОписание: {description}'
+        text = f'Новая заявка с сайта stepanych.by\n\nТелефон: {phone}\n\nОписание: {description or "Описание не указано"}\n\nСтраница: {source or "неизвестна"}'
         recipients = settings_obj.recipients_list.filter(is_active=True)
+        if not recipients:
+            logger.warning('Telegram recipients are not configured; lead %s saved without notification', lead.pk)
         for recipient in recipients:
             try:
-                requests.post(
+                response = requests.post(
                     f'https://api.telegram.org/bot{settings_obj.bot_token}/sendMessage',
                     data={'chat_id': recipient.chat_id, 'text': text},
                     timeout=5,
                 )
+                response.raise_for_status()
             except Exception:
-                pass
+                logger.exception('Telegram notification failed for chat_id=%s, lead_id=%s', recipient.chat_id, lead.pk)
+    else:
+        logger.warning('Telegram bot token is not configured; lead %s saved without notification', lead.pk)
 
-    messages.success(request, 'Заявка отправлена! Мы перезвоним вам в ближайшее время.')
+    messages.success(request, 'Заявка отправлена! Перезвоню в ближайшее время.')
     return redirect(back_url(request))
 
 
@@ -242,13 +290,13 @@ def task_page(request, slug):
     schemas = []
     offer_price = task.get('offer_price') or task.get('price_from')
     if task.get('service_type') and offer_price:
-        offer_desc = task.get('offer_desc') or f"от {offer_price} руб, цену называем до начала работ"
+        offer_desc = task.get('offer_desc') or f"от {offer_price} руб, цену называю до начала работ"
         schemas.append(json.dumps({
             '@context': 'https://schema.org',
             '@type': 'Service',
             'name': task['title'],
             'serviceType': task['service_type'],
-            'provider': {'@type': 'Plumber', 'name': 'Степаныч', 'telephone': '+375292044963'},
+            'provider': {'@type': 'Plumber', 'name': 'Степаныч', 'telephone': settings.SITE_PHONE},
             'areaServed': {'@type': 'City', 'name': 'Барановичи'},
             'offers': {'@type': 'Offer', 'priceCurrency': 'BYN', 'price': str(offer_price), 'description': offer_desc},
         }, ensure_ascii=False))

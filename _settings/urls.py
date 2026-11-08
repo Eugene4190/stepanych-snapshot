@@ -22,6 +22,9 @@ urlpatterns = [
     path('santekhnicheskie-raboty/', views.santehnika, name='santehnika'),
     path('o-nas/', views.about, name='about'),
     path('kontakty/', views.contacts, name='contacts'),
+    path('politika-konfidencialnosti/', views.privacy, name='privacy'),
     path('feedback/', views.feedback, name='feedback'),
     path('<slug:slug>/', views.task_page, name='task_page'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler500 = 'app_home.views.error_500'

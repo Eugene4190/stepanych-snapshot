@@ -2,10 +2,10 @@
     <div class="container">
         <div class="section__header">
             <h2 class="section__title">Неудобно звонить? Оставьте номер</h2>
-            <p class="section__subtitle">Перезвоним в рабочее время (9:00–23:00), обычно в течение часа</p>
+            <p class="section__subtitle">Перезвоню в рабочее время (9:00–23:00), обычно в течение часа</p>
         </div>
         {% if messages %}
-        <div class="messages messages--form">
+        <div class="messages messages--form" role="status" aria-live="polite">
             {% for message in messages %}
             <div class="message message--{{ message.tags }}">{{ message }}</div>
             {% endfor %}
@@ -16,20 +16,24 @@
             <strong>Приём заявок временно остановлен</strong>
         </div>
         {% else %}
-        <form action="/feedback/" method="post" class="feedback-form">
+        <form action="/feedback/" method="post" class="feedback-form" autocomplete="off">
             {% csrf_token %}
             <div class="hp-field" aria-hidden="true">
-                <label for="hp-company">Компания</label>
-                <input type="text" name="company" id="hp-company" tabindex="-1" autocomplete="off">
+                <label for="hp_site">Не заполняйте это поле</label>
+                <input type="text" name="hp_site" id="hp_site" tabindex="-1" autocomplete="new-password">
+            </div>
+            <input type="hidden" name="form_ts" value="">
+            <input type="hidden" name="page" value="">
+            <div class="feedback-form__row">
+                <label class="visually-hidden" for="ff-phone">Ваш номер телефона</label>
+                <input type="tel" id="ff-phone" name="phone" class="feedback-form__input" placeholder="Ваш номер телефона" inputmode="tel" autocomplete="tel" pattern="[+0-9 ()-]{10,20}" title="Мобильный: +375 (XX) XXX-XX-XX, городской: +375 (XXX) XX-XX-XX" value="{{ form_phone }}" required>
             </div>
             <div class="feedback-form__row">
-                <input type="tel" name="phone" class="feedback-form__input" placeholder="Ваш номер телефона" inputmode="tel" pattern="[+0-9 ()-]{10,20}" title="Мобильный: +375 (XX) XXX-XX-XX, городской: +375 (XXX) XX-XX-XX" value="{{ form_phone }}" required>
-            </div>
-            <div class="feedback-form__row">
-                <textarea name="description" class="feedback-form__textarea" placeholder="Что случилось" required>{{ form_description }}</textarea>
+                <label class="visually-hidden" for="ff-desc">Что случилось</label>
+                <textarea id="ff-desc" name="description" class="feedback-form__textarea" placeholder="Что случилось" autocomplete="off">{{ form_description }}</textarea>
             </div>
             <button type="submit" class="btn btn--primary btn--block">Оставить заявку</button>
-            <p class="feedback-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных</p>
+            <p class="feedback-form__note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с <a href="/politika-konfidencialnosti/">политикой конфиденциальности</a></p>
         </form>
         {% endif %}
     </div>

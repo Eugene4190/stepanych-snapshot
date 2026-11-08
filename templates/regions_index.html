@@ -11,10 +11,10 @@
     <div class="container hero__container">
         <div class="hero__content">
             <h1 class="hero__title">Сантехник с выездом: <span class="hero__accent">Барановичи и вся область</span></h1>
-            <p class="hero__subtitle">Барановичи — базовая цена без доплат за выезд. В остальные населённые пункты выезжаем по договорённости: стоимость выезда зависит от расстояния и известна до начала работ.</p>
+            <p class="hero__subtitle">Выезд: {{ travel_policy }}. В остальные населённые пункты выезжаю по договорённости, стоимость известна до начала работ.</p>
             <div class="hero__buttons">
                 <a href="tel:{{ site_phone }}" class="btn btn--primary"><i class="fas fa-phone"></i> Позвонить мастеру</a>
-                <a href="/kontakty/#order" class="btn btn--outline">Оставить заявку</a>
+                <a href="#order" class="btn btn--outline">Оставить заявку</a>
             </div>
         </div>
     </div>
@@ -23,28 +23,56 @@
 <section class="section">
     <div class="container">
         <div class="section__header">
-            <h2 class="section__title">Куда выезжаем</h2>
+            <h2 class="section__title">География выездов</h2>
             <p class="section__subtitle">Выберите свой населённый пункт — на странице условия выезда и услуги.</p>
         </div>
         <div class="services-grid">
             {% for r in regions %}
             <div class="service-card">
                 <h3 class="service-card__title"><a href="/santehnik/{{ r.slug }}/">{{ r.name }}</a></h3>
-                <p class="service-card__text">{{ r.note }}</p>
                 <div class="service-card__price">≈ {{ r.km }} км от Барановичей</div>
             </div>
             {% endfor %}
         </div>
-        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, обсудим выезд индивидуально, стоимость зависит от расстояния.</p>
+        <p style="text-align: center; margin-top: 32px; color: var(--text-light);">Нет вашего населённого пункта в списке — позвоните, и я обсужу выезд индивидуально. Выезд: {{ travel_policy }}.</p>
     </div>
 </section>
 
-{% include 'includes/faq.html' %}
+<section class="section section--light">
+    <div class="container">
+        <div class="section__header">
+            <h2 class="section__title">Услуги на выезде</h2>
+            <p class="section__subtitle">В любом населённом пункте из списка — прочистка канализации, гидродинамика и сантехработы.</p>
+        </div>
+        <div class="services-grid services-grid--3">
+            <div class="service-card service-card--clickable">
+                <h3 class="service-card__title">Прочистка канализации</h3>
+                <p class="service-card__text">Засоры в квартире, частном доме или организации. Электромеханическая машина, цена до начала работ.</p>
+                <div class="service-card__price">от 100 руб</div>
+                <a href="/prochistka-kanalizatsii/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card service-card--clickable">
+                <h3 class="service-card__title">Гидродинамическая прочистка</h3>
+                <p class="service-card__text">Прямые участки канализации и ливнёвки: промывка водой под давлением, налёт по всей длине. Минимальный заказ — 300 руб.</p>
+                <div class="service-card__price">от 15 руб / метр</div>
+                <a href="/gidrodinamicheskaya-prochistka/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="service-card service-card--clickable">
+                <h3 class="service-card__title">Сантехработы</h3>
+                <p class="service-card__text">Смесители, сифоны, унитазы, подводка, стояки, отопление, водопровод, мелкий ремонт.</p>
+                <div class="service-card__price">цена до начала работ · индивидуально</div>
+                <a href="/santekhnicheskie-raboty/" class="service-card__link">Подробнее <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% include 'includes/feedback_form.html' %}
 
 <section class="section">
     <div class="container">
         <div class="section__header">
-            <h2 class="section__title">Как мы работаем</h2>
+            <h2 class="section__title">Как я работаю</h2>
             <p class="section__subtitle">Три шага от звонка до результата.</p>
         </div>
         <div class="services-grid">
@@ -58,11 +86,11 @@
             </div>
             <div class="service-card">
                 <h3 class="service-card__title"><i class="fas fa-car"></i> Приезд в согласованное время</h3>
-                <p class="service-card__text">Приезжаю сам, со своим инструментом и оборудованием. Оплата после результата, наличные или безнал.</p>
+                <p class="service-card__text">Приезжаю сам или с помощником, со своим инструментом и оборудованием. Выезд, оценку и качество контролирую лично. Оплата после результата, наличные или безнал.</p>
             </div>
         </div>
     </div>
 </section>
 
-{% include 'includes/feedback_form.html' %}
+{% include 'includes/faq.html' %}
 {% endblock %}

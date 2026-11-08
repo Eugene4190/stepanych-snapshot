@@ -3,7 +3,7 @@
         <div class="container footer__container">
             <div class="footer__col">
                 <div class="footer__logo">
-                    <img src="/static/img/emblem.png" alt="Степаныч" class="footer__logo-img">
+                    <img src="/static/img/emblem.png" alt="Степаныч" class="footer__logo-img" width="192" height="192" loading="lazy" decoding="async">
                     <div>
                         <div class="footer__logo-title">Степаныч · stepanych.by</div>
                         <div class="footer__logo-sub">Устранение засоров и сантехнические работы. Барановичи и район.</div>
@@ -18,33 +18,41 @@
                     <li><a href="{{ site_telegram|social_href:social_text }}"><i class="fab fa-telegram"></i> Telegram</a></li>
                     <li><a href="{{ site_viber }}"><i class="fab fa-viber"></i> Viber</a></li>
                     <li><a href="{{ site_whatsapp|social_href:social_text }}"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
-                    <li><a href="/kontakty/#order"><i class="fas fa-envelope"></i> Оставить заявку</a></li>
+                    <li><a href="{% if request.path == '/santehnik/' %}#order{% else %}/kontakty/#order{% endif %}"><i class="fas fa-envelope"></i> Оставить заявку</a></li>
                 </ul>
             </div>
             <div class="footer__col">
                 <div class="footer__title">Режим работы</div>
                 <ul class="footer__list">
-                    <li>Пн–Вс: 9:00 – 23:00</li>
+                    <li>Пн–Вс: 9:00–23:00</li>
                     <li>Аварийный выезд: по договорённости</li>
                     <li>Барановичи и район, выезд в соседние города</li>
                 </ul>
             </div>
         </div>
         <div class="container footer__bottom">
-            <div>© 2026 ИП Молчан Ю.С. Цены на сайте не являются публичной офертой — итоговую стоимость определяем до начала работ.</div>
+            <div>© {% now "Y" %} ИП Молчан Ю.С. Цены на сайте не являются публичной офертой — итоговую стоимость определяю до начала работ.</div>
             <div class="footer__links">
-                <a href="/">Степаныч — все услуги</a> · <a href="/prochistka-kanalizatsii/">Прочистка</a> · <a href="/gidrodinamicheskaya-prochistka/">Гидродинамика</a> · <a href="/santekhnicheskie-raboty/">Сантехработы</a> · <a href="/santehnik/">Регионы выездов</a>
+                <a href="/">Степаныч — все услуги</a> · <a href="/prochistka-kanalizatsii/">Прочистка</a> · <a href="/gidrodinamicheskaya-prochistka/">Гидродинамика</a> · <a href="/santekhnicheskie-raboty/">Сантехработы</a> · <a href="/santehnik/">Регионы выездов</a> · <a href="/politika-konfidencialnosti/">Политика конфиденциальности</a>
             </div>
         </div>
     </footer>
 
     <div class="sticky-contacts">
-        <a href="{{ site_viber }}" class="sticky-contacts__item sticky-contacts__item--viber"><i class="fab fa-viber"></i></a>
-        <a href="{{ site_whatsapp|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--whatsapp"><i class="fab fa-whatsapp"></i></a>
-        <a href="{{ site_telegram|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--telegram"><i class="fab fa-telegram"></i></a>
-        <a href="tel:{{ site_phone }}" class="sticky-contacts__item sticky-contacts__item--phone"><i class="fas fa-phone"></i></a>
+        <a href="{{ site_viber }}" class="sticky-contacts__item sticky-contacts__item--viber" aria-label="Написать в Viber"><i class="fab fa-viber"></i></a>
+        <a href="{{ site_whatsapp|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--whatsapp" aria-label="Написать в WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="{{ site_telegram|social_href:social_text }}" class="sticky-contacts__item sticky-contacts__item--telegram" aria-label="Написать в Telegram"><i class="fab fa-telegram"></i></a>
+        <a href="tel:{{ site_phone }}" class="sticky-contacts__item sticky-contacts__item--phone" aria-label="Позвонить мастеру"><i class="fas fa-phone"></i></a>
     </div>
 
     <button class="scroll-top" id="scrollTop" aria-label="Наверх"><i class="fas fa-chevron-up"></i></button>
+
+    <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Уведомление об использовании cookie" hidden>
+        <p>Сайт использует cookie и сервисы аналитики, чтобы понимать, как им пользуются. Подробнее — в <a href="/politika-konfidencialnosti/">политике обработки персональных данных</a>.</p>
+        <div class="cookie-banner__actions">
+            <button type="button" class="btn btn--primary btn--small" id="cookieAccept">Принять</button>
+            <button type="button" class="btn btn--outline btn--small" id="cookieDecline">Только необходимые</button>
+        </div>
+    </div>
 
     <script src="/static/js/main.js"></script>

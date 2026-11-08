@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SiteSettings, Lead, Service, TelegramRecipient
+from .models import SiteSettings, Lead, TelegramRecipient
 
 
 class TelegramRecipientInline(admin.TabularInline):
@@ -41,8 +41,8 @@ class SiteSettingsAdmin(admin.ModelAdmin):
 
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ('phone', 'created_at')
-    readonly_fields = ('phone', 'description', 'created_at')
+    list_display = ('phone', 'created_at', 'source')
+    readonly_fields = ('phone', 'description', 'source', 'created_at')
     list_filter = ('created_at',)
     search_fields = ('phone', 'description')
 
@@ -51,13 +51,3 @@ class LeadAdmin(admin.ModelAdmin):
 
     def has_change_permission(self, request, obj=None):
         return False
-
-
-@admin.register(Service)
-class ServiceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'price_text', 'is_active', 'sort_order')
-    list_editable = ('is_active', 'sort_order')
-    prepopulated_fields = {'slug': ('title',)}
-    list_filter = ('is_active',)
-    search_fields = ('title', 'short_description')
-    ordering = ('sort_order', 'id')
