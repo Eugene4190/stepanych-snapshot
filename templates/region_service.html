@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб, гарантия 14 дней{% elif meta.key == 'gidro' %}от 15 руб/метр{% else %}вызов без выходных{% endif %}{% endblock %}
+{% block title %}{{ meta.name }} в {{ region.name_prep }} — {% if meta.key == 'prochistka' %}от 100 руб{% elif meta.key == 'gidro' %}от 15 руб/метр{% else %}вызов без выходных{% endif %}{% endblock %}
 {% block meta_description %}{{ meta.name }} в {{ region.name_prep }}: цена до начала работ, без выходных. {% if meta.key == 'prochistka' %}Гарантия 14 дней на устранённый засор. {% endif %}Звоните: {{ site_phone_display }}.{% endblock %}
 {% block og_title %}{{ meta.name }} в {{ region.name_prep }} — цена до начала работ{% endblock %}
 {% block og_description %}{{ region.name }}: {{ meta.name|lower }}, цена до начала работ.{% if meta.key == 'prochistka' %} Гарантия 14 дней на устранённый засор.{% endif %}{% endblock %}

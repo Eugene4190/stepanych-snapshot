@@ -37,6 +37,10 @@ else:
 # og:url, sitemap и robots отдают http вместо https.
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+# Куки админки и формы отдаются только по https (http->https уже делает nginx).
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
