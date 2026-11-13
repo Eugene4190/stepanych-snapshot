@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.core.cache import cache
 
 from .models import SiteSettings, Service, normalize_viber_link
 from .seo import REGIONS
@@ -10,7 +11,11 @@ def form_draft(request):
 
 
 def site_logo(request):
-    settings_obj = SiteSettings.objects.first()
+    settings_obj = cache.get('site_settings_cache')
+    if settings_obj is None:
+        settings_obj = SiteSettings.objects.first()
+        if settings_obj:
+            cache.set('site_settings_cache', settings_obj, 3600)
     context = {'site_logo': '/static/img/emblem.png'}
     context['site_phone'] = settings.SITE_PHONE
     context['site_phone_display'] = settings.SITE_PHONE_DISPLAY
@@ -23,7 +28,7 @@ def site_logo(request):
     context['social_text'] = 'Здравствуйте! Пишу с сайта stepanych.by, нужен мастер'
     context['services_menu'] = Service.objects.filter(is_active=True)
     context['regions'] = REGIONS
-    context['disable_leads'] = False
+    context['disable_leads'] = settings_obj.disable_leads if settings_obj else False
     info_defs = [
         ('fa-file-contract', 'Официально', 'ИП, УНП 291568475'),
         ('fa-clock', 'Без выходных 9:00–23:00', 'аварии — по договорённости'),

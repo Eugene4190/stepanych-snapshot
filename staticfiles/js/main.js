@@ -43,7 +43,7 @@ if (scrollTopBtn) {
 }
 
 const analyticsConfig = window.SITE_ANALYTICS || {};
-const consentKey = 'cookie_consent';
+const noticeKey = 'cookie_notice';
 let analyticsLoaded = false;
 
 const loadAnalytics = () => {
@@ -88,25 +88,50 @@ const loadAnalytics = () => {
     }
 };
 
-const cookieBanner = document.getElementById('cookieBanner');
-const savedConsent = sessionStorage.getItem(consentKey);
+loadAnalytics();
 
-if (savedConsent === 'accepted') {
-    loadAnalytics();
-} else if (cookieBanner && !savedConsent) {
+const cookieBanner = document.getElementById('cookieBanner');
+const noticeShown = sessionStorage.getItem(noticeKey);
+
+if (cookieBanner && !noticeShown) {
     cookieBanner.hidden = false;
 }
 
-const closeCookieBanner = (choice) => {
-    sessionStorage.setItem(consentKey, choice);
+const hideCookieBanner = () => {
+    sessionStorage.setItem(noticeKey, 'seen');
     if (cookieBanner) cookieBanner.hidden = true;
-    if (choice === 'accepted') loadAnalytics();
 };
 
+// Плашка закрывается только кнопкой «Понятно». Клики сквозь неё проходят
+// к странице (pointer-events: none в CSS), поэтому форма работает и до нажатия.
 const cookieAccept = document.getElementById('cookieAccept');
-const cookieDecline = document.getElementById('cookieDecline');
-if (cookieAccept) cookieAccept.addEventListener('click', () => closeCookieBanner('accepted'));
-if (cookieDecline) cookieDecline.addEventListener('click', () => closeCookieBanner('declined'));
+if (cookieAccept) cookieAccept.addEventListener('click', hideCookieBanner);
+
+// Пока открыта экранная клавиатура, прячем плашку под неё, чтобы она
+// не закрывала поля ввода. Определяем клавиатуру по сжатию видимой области.
+const viewport = window.visualViewport;
+const stickyContacts = document.querySelector('.sticky-contacts');
+let baseHeight = viewport ? viewport.height : window.innerHeight;
+let fieldFocused = false;
+
+const isFormField = (el) => !!(el && el.closest && el.closest('input, textarea, select'));
+
+const syncKeyboard = () => {
+    const h = viewport ? viewport.height : window.innerHeight;
+    if (h > baseHeight) baseHeight = h;
+    const keyboardOpen = fieldFocused && (baseHeight - h) > 120;
+    if (cookieBanner) cookieBanner.classList.toggle('cookie-banner--under-keyboard', keyboardOpen);
+    if (stickyContacts) stickyContacts.classList.toggle('sticky-contacts--under-keyboard', keyboardOpen);
+};
+
+document.addEventListener('focusin', (e) => {
+    if (isFormField(e.target)) { fieldFocused = true; syncKeyboard(); }
+});
+document.addEventListener('focusout', (e) => {
+    if (isFormField(e.target)) { fieldFocused = false; syncKeyboard(); }
+});
+window.addEventListener('resize', syncKeyboard);
+if (viewport) viewport.addEventListener('resize', syncKeyboard);
 
 const track = (name) => {
     if (typeof ym === 'function' && analyticsConfig.metricaId) {

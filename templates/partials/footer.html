@@ -48,11 +48,10 @@
     <button class="scroll-top" id="scrollTop" aria-label="Наверх"><i class="fas fa-chevron-up"></i></button>
 
     <div class="cookie-banner" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Уведомление об использовании cookie" hidden>
-        <p>Сайт использует cookie и сервисы аналитики, чтобы понимать, как им пользуются. Подробнее — в <a href="/politika-konfidencialnosti/">политике обработки персональных данных</a>.</p>
+        <p>Для работы сайта используются cookie и сервисы аналитики. Подробнее — в <a href="/politika-konfidencialности/">политике обработки персональных данных</a>.</p>
         <div class="cookie-banner__actions">
-            <button type="button" class="btn btn--primary btn--small" id="cookieAccept">Принять</button>
-            <button type="button" class="btn btn--outline btn--small" id="cookieDecline">Только необходимые</button>
+            <button type="button" class="btn btn--primary btn--small" id="cookieAccept">Понятно</button>
         </div>
     </div>
 
-    <script src="/static/js/main.js"></script>
+    <script src="{{ 'js/main.js'|asset_url }}"></script>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{% load social %}<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,7 @@
     <link rel="apple-touch-icon" href="/static/img/apple-touch-icon.png">
     <link rel="stylesheet" href="/static/css/fonts.css">
     <link rel="stylesheet" href="/static/vendor/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="{{ 'css/style.css'|asset_url }}">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",

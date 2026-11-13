@@ -1958,6 +1958,8 @@ summary {
     color: #ffffff;
     border-radius: 12px;
     box-shadow: 0 16px 40px -12px rgba(7, 26, 43, 0.55);
+    /* Клики проходят сквозь баннер к полям формы; интерактивны только кнопки и ссылка. */
+    pointer-events: none;
 }
 
 .cookie-banner[hidden] {
@@ -1974,12 +1976,14 @@ summary {
 .cookie-banner a {
     color: #ffffff;
     text-decoration: underline;
+    pointer-events: auto;
 }
 
 .cookie-banner__actions {
     display: flex;
     flex: 0 0 auto;
     gap: 10px;
+    pointer-events: auto;
 }
 
 .cookie-banner .btn--outline {
@@ -2007,4 +2011,23 @@ summary {
         flex: 1 1 0;
         text-align: center;
     }
+}
+
+/* Поднимаем плашку над рядом кнопок мессенджеров, чтобы не закрывать их. */
+@media (max-width: 968px) {
+    .cookie-banner {
+        bottom: 64px;
+    }
+}
+
+/* Пока открыта клавиатура, плашка уходит под неё и не закрывает поля ввода. */
+.cookie-banner--under-keyboard {
+    top: 100%;
+    bottom: auto;
+}
+
+/* Кнопки мессенджеров тоже прячем под клавиатуру, чтобы не мешать вводу. */
+.sticky-contacts--under-keyboard {
+    top: 100%;
+    bottom: auto;
 }
