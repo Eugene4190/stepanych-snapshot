@@ -1215,7 +1215,7 @@ ul {
     }
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1199px) {
     .sticky-contacts {
         bottom: 10px;
         right: auto;
@@ -1783,7 +1783,7 @@ p a {
     opacity: 1;
 }
 
-@media (max-width: 968px) {
+@media (max-width: 1199px) {
     .scroll-top {
         left: auto;
         right: 12px;
@@ -2014,7 +2014,7 @@ summary {
 }
 
 /* Поднимаем плашку над рядом кнопок мессенджеров, чтобы не закрывать их. */
-@media (max-width: 968px) {
+@media (max-width: 1199px) {
     .cookie-banner {
         bottom: 64px;
     }
@@ -2030,4 +2030,26 @@ summary {
 .sticky-contacts--under-keyboard {
     top: 100%;
     bottom: auto;
+}
+
+/* На ПК плашка — ровная строка по ширине контента: текст слева, кнопка справа.
+   Ширина ограничена так, чтобы не залезать под колонку мессенджеров справа. */
+@media (min-width: 1200px) {
+    .cookie-banner {
+        left: 20px;
+        right: 20px;
+        bottom: 20px;
+        max-width: min(1160px, calc(100% - 176px));
+        padding: 16px 24px;
+        gap: 24px;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 -12px 40px rgba(7, 26, 43, 0.45);
+    }
+    .cookie-banner p {
+        flex: 1 1 auto;
+    }
+    .cookie-banner__actions {
+        flex: 0 0 auto;
+    }
 }
