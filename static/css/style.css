@@ -853,7 +853,7 @@ ul {
 }
 
 .about-preview .hero__buttons {
-    justify-content: flex-start;
+    justify-content: center;
     margin-bottom: 0;
 }
 
@@ -864,6 +864,7 @@ ul {
 .about-preview__text {
     color: var(--text-light);
     margin-bottom: 24px;
+    text-align: center;
 }
 
 .about-preview__image img {
@@ -1971,6 +1972,7 @@ summary {
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
+    text-align: center;
     color: var(--text, #14202e);
 }
 
