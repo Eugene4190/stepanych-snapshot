@@ -1954,8 +1954,9 @@ summary {
     max-width: 960px;
     margin: 0 auto;
     padding: 18px 22px;
-    background: var(--dark, #0d2b45);
-    color: #ffffff;
+    background: var(--header-bg, #f4f6f9);
+    color: var(--text, #14202e);
+    border: 1px solid var(--border, #d5dee8);
     border-radius: 12px;
     box-shadow: 0 16px 40px -12px rgba(7, 26, 43, 0.55);
     /* Клики проходят сквозь баннер к полям формы; интерактивны только кнопки и ссылка. */
@@ -1970,11 +1971,11 @@ summary {
     margin: 0;
     font-size: 14px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text, #14202e);
 }
 
 .cookie-banner a {
-    color: #ffffff;
+    color: var(--accent, #0d2b45);
     text-decoration: underline;
     pointer-events: auto;
 }
@@ -1984,18 +1985,6 @@ summary {
     flex: 0 0 auto;
     gap: 10px;
     pointer-events: auto;
-}
-
-.cookie-banner .btn--outline {
-    background: transparent;
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.5);
-    box-shadow: none;
-}
-
-.cookie-banner .btn--outline:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: #ffffff;
 }
 
 @media (max-width: 699px) {
@@ -2043,7 +2032,6 @@ summary {
         padding: 16px 24px;
         gap: 24px;
         align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.12);
         box-shadow: 0 -12px 40px rgba(7, 26, 43, 0.45);
     }
     .cookie-banner p {
